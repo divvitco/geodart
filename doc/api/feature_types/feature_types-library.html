@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="feature_types library API docs, for the Dart programming language.">
+  <title>feature_types library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">geodart</a></li>
+    <li class="self-crumb">feature_types library</li>
+  </ol>
+  <div class="self-name">feature_types</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-library">feature_types</span> library 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>Doing geospatial calculations requires feature types.
+This library provides a set of feature types for use in geospatial
+calculations.</p>
+<p>The <a href="../feature_types/Feature-class.html">Feature</a> class is the base class for all feature types.</p>
+</section>
+
+
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+
+      <dl>
+        <dt id="Coordinate">
+  <span class="name "><a href="../feature_types/Coordinate-class.html">Coordinate</a></span> 
+
+</dt>
+<dd>
+  The base coordinate class, used by all feature types.
+</dd>
+
+        <dt id="Feature">
+  <span class="name "><a href="../feature_types/Feature-class.html">Feature</a></span> 
+
+</dt>
+<dd>
+  The base class for all feature types.
+</dd>
+
+        <dt id="LinearRing">
+  <span class="name "><a href="../feature_types/LinearRing-class.html">LinearRing</a></span> 
+
+</dt>
+<dd>
+  A <a href="../feature_types/LinearRing-class.html">LinearRing</a> is a closed series of <a href="../feature_types/Coordinate-class.html">Coordinate</a>s. It is used in Polygons and MultiPolygons.
+Closed means the first and last <a href="../feature_types/Coordinate-class.html">Coordinate</a>s are the same.
+</dd>
+
+        <dt id="LineString">
+  <span class="name "><a href="../feature_types/LineString-class.html">LineString</a></span> 
+
+</dt>
+<dd>
+  A <a href="../feature_types/LineString-class.html">LineString</a> is a <a href="../feature_types/Feature-class.html">Feature</a> made up of connected <a href="../feature_types/Coordinate-class.html">Coordinate</a>s to form a line.
+</dd>
+
+        <dt id="MultiLineString">
+  <span class="name "><a href="../feature_types/MultiLineString-class.html">MultiLineString</a></span> 
+
+</dt>
+<dd>
+  A <a href="../feature_types/MultiLineString-class.html">MultiLineString</a> is a <a href="../feature_types/Feature-class.html">Feature</a> made up of a <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a> of <a href="../feature_types/LineString-class.html">LineString</a> <a href="../feature_types/Coordinate-class.html">Coordinate</a>s.
+</dd>
+
+        <dt id="MultiPoint">
+  <span class="name "><a href="../feature_types/MultiPoint-class.html">MultiPoint</a></span> 
+
+</dt>
+<dd>
+  a <a href="../feature_types/MultiPoint-class.html">MultiPoint</a> is a collection of <a href="../feature_types/Coordinate-class.html">Coordinate</a>s that share properties.
+</dd>
+
+        <dt id="MultiPolygon">
+  <span class="name "><a href="../feature_types/MultiPolygon-class.html">MultiPolygon</a></span> 
+
+</dt>
+<dd>
+  A <a href="../feature_types/MultiPolygon-class.html">MultiPolygon</a> is a collection of <a href="../feature_types/Polygon-class.html">Polygon</a> Geometries with shared properties.
+</dd>
+
+        <dt id="Point">
+  <span class="name "><a href="../feature_types/Point-class.html">Point</a></span> 
+
+</dt>
+<dd>
+  A <a href="../feature_types/Point-class.html">Point</a> is a single position in a coordinate system, with <a href="../feature_types/Feature/properties.html">properties</a>.
+</dd>
+
+        <dt id="Polygon">
+  <span class="name "><a href="../feature_types/Polygon-class.html">Polygon</a></span> 
+
+</dt>
+<dd>
+  A <a href="../feature_types/Polygon-class.html">Polygon</a> is a single closed path with shared properties.
+The first <a href="../feature_types/LinearRing-class.html">LinearRing</a> defines the outer boundary of the <a href="../feature_types/Polygon-class.html">Polygon</a>, while the following <a href="../feature_types/LinearRing-class.html">LinearRing</a>s define holes within the <a href="../feature_types/Polygon-class.html">Polygon</a>.
+</dd>
+
+      </dl>
+    </section>
+
+
+
+
+
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">geodart</a></li>
+  <li class="self-crumb">feature_types library</li>
+</ol>
+
+
+    <h5><span class="package-name">geodart</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="../feature_types/feature_types-library.html">feature_types</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>feature_types library</h5>
+    <ol>
+  <li class="section-title"><a href="../feature_types/feature_types-library.html#classes">Classes</a></li>
+  <li><a href="../feature_types/Coordinate-class.html">Coordinate</a></li>
+  <li><a href="../feature_types/Feature-class.html">Feature</a></li>
+  <li><a href="../feature_types/LinearRing-class.html">LinearRing</a></li>
+  <li><a href="../feature_types/LineString-class.html">LineString</a></li>
+  <li><a href="../feature_types/MultiLineString-class.html">MultiLineString</a></li>
+  <li><a href="../feature_types/MultiPoint-class.html">MultiPoint</a></li>
+  <li><a href="../feature_types/MultiPolygon-class.html">MultiPolygon</a></li>
+  <li><a href="../feature_types/Point-class.html">Point</a></li>
+  <li><a href="../feature_types/Polygon-class.html">Polygon</a></li>
+
+
+
+
+
+
+
+
+</ol>
+
+  </div><!--/sidebar-offcanvas-right-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    geodart
+      1.0.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
