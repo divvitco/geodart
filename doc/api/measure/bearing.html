@@ -53,14 +53,14 @@
         
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
-<span class="name ">bearing</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="bearing-param-from"><span class="type-annotation"><a href="../feature_types/Point-class.html">Point</a></span> <span class="parameter-name">from</span>, </span></li>
-<li><span class="parameter" id="bearing-param-to"><span class="type-annotation"><a href="../feature_types/Point-class.html">Point</a></span> <span class="parameter-name">to</span></span></li>
+<span class="name ">bearing</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="bearing-param-from"><span class="type-annotation"><a href="../features/Point-class.html">Point</a></span> <span class="parameter-name">from</span>, </span></li>
+<li><span class="parameter" id="bearing-param-to"><span class="type-annotation"><a href="../features/Point-class.html">Point</a></span> <span class="parameter-name">to</span></span></li>
 </ol>)
 
     </section>
     
 <section class="desc markdown">
-  <p>Computes the <a href="../measure/bearing.html">bearing</a> between two <a href="../feature_types/Point-class.html">Point</a>s.</p>
+  <p>Computes the <a href="../measure/bearing.html">bearing</a> between two <a href="../features/Point-class.html">Point</a>s.</p>
 </section>
 
 
@@ -68,17 +68,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">double bearing(Point from, Point to) {
-  final lat1 = from.coordinate.latitude;
-  final lon1 = from.coordinate.longitude;
-  final lat2 = to.coordinate.latitude;
-  final lon2 = to.coordinate.longitude;
-
-  final dLon = lon2 - lon1;
-  final y = sin(dLon) * cos(lat2);
-  final x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
-  final bearing = atan2(y, x);
-
-  return bearing;
+  return from.coordinate.bearingTo(to.coordinate);
 }</code></pre>
 </section>
 

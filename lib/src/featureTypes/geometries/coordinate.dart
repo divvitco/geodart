@@ -63,4 +63,20 @@ class Coordinate {
 
     return 6371 * c;
   }
+
+  /// Returns the bearing to a different [Coordinate] in degrees.
+  double bearingTo(Coordinate other) {
+    final lat1 = latitude * (pi / 180);
+    final lon1 = longitude * (pi / 180);
+    final lat2 = other.latitude * (pi / 180);
+    final lon2 = other.longitude * (pi / 180);
+
+    final dLon = lon2 - lon1;
+
+    final y = sin(dLon) * cos(lat2);
+    final x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
+    final bearing = atan2(y, x);
+
+    return (bearing * (180 / pi) + 360) % 360;
+  }
 }

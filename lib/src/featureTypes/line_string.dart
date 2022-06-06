@@ -1,12 +1,19 @@
 import 'package:geodart/features.dart';
+import 'package:geodart/measure.dart' as measure;
 
 /// A [LineString] is a [Feature] made up of connected [Coordinate]s to form a line.
 class LineString extends Feature {
-  List<Coordinate> coordinates;
+  final List<Coordinate> coordinates;
   static final String type = 'LineString';
+  late double length;
+  late bool isClosedRing;
 
   LineString(this.coordinates, {properties = const {}})
-      : super(properties: properties);
+      : super(properties: properties) {
+    length = coordinates.length > 1 ? measure.length(this) : 0.0;
+    isClosedRing = coordinates.length > 3 &&
+        coordinates[0] == coordinates[coordinates.length - 1];
+  }
 
   @override
   String toString() {
@@ -59,5 +66,14 @@ class LineString extends Feature {
   @override
   List<Point> explode() {
     return coordinates.map((e) => Point(e)).toList();
+  }
+
+  /// If the [LineString] is a closed ring, it will be converted to a [Polygon].
+  Polygon toPolygon() {
+    if (!isClosedRing) {
+      throw ArgumentError('LineString is not a closed ring');
+    }
+
+    return Polygon([LinearRing(coordinates)], properties: properties);
   }
 }

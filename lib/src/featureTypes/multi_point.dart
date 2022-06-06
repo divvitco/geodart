@@ -69,4 +69,13 @@ class MultiPoint extends Feature {
       coordinates.map((c) => Point(c, properties: properties)).toList(),
     );
   }
+
+  /// Returns a [MultiPoint] that is the union of this [MultiPoint] and another [MultiPoint].
+  /// The resulting [MultiPoint] will have the same [properties] as this [MultiPoint].
+  MultiPoint union(MultiPoint other) {
+    return MultiPoint([
+      ...coordinates,
+      ...other.coordinates,
+    ], properties: properties);
+  }
 }

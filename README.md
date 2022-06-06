@@ -25,11 +25,37 @@ start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+**Measure the distance between two points.**
 
 ```dart
-const like = 'sample';
+import 'package:geodart/measure.dart';
+import 'package:geodart/features.dart';
+
+double distanceBetween = distance(
+    Point.fromLngLat(1.0, 1.0),
+    Point.fromLngLat(2.0, 2.0),
+);
+```
+
+**Measure the area of a polygon.**
+
+```dart
+import 'package:geodart/features.dart';
+
+Polygon polygon = Polygon.fromJson(
+    {
+      'type': 'Polygon',
+      'coordinates': [
+        [
+          [1.0, 1.0],
+          [2.0, 1.0],
+          [2.0, 2.0],
+          [1.0, 1.0],
+        ],
+      ],
+    }
+);
+print(polygon.area);
 ```
 
 ## Additional information

@@ -64,9 +64,32 @@ know whether this package might be useful for them.</p>
 <p>TODO: List prerequisites and provide or point to information on how to
 start using the package.</p>
 <h2 id="usage">Usage</h2>
-<p>TODO: Include short and useful examples for package users. Add longer examples
-to <code>/example</code> folder.</p>
-<pre class="language-dart"><code class="language-dart">const like = 'sample';
+<p><strong>Measure the distance between two points.</strong></p>
+<pre class="language-dart"><code class="language-dart">import 'package:geodart/measure.dart';
+import 'package:geodart/features.dart';
+
+double distanceBetween = distance(
+    Point.fromLngLat(1.0, 1.0),
+    Point.fromLngLat(2.0, 2.0),
+);
+</code></pre>
+<p><strong>Measure the area of a polygon.</strong></p>
+<pre class="language-dart"><code class="language-dart">import 'package:geodart/features.dart';
+
+Polygon polygon = Polygon.fromJson(
+    {
+      'type': 'Polygon',
+      'coordinates': [
+        [
+          [1.0, 1.0],
+          [2.0, 1.0],
+          [2.0, 2.0],
+          [1.0, 1.0],
+        ],
+      ],
+    }
+);
+print(polygon.area);
 </code></pre>
 <h2 id="additional-information">Additional information</h2>
 <p>TODO: Tell users more about the package: where to find more information, how to 
@@ -78,8 +101,8 @@ from the package authors, and more.</p>
       <section class="summary">
           <h2>Libraries</h2>
         <dl>
-          <dt id="feature_types">
-  <span class="name"><a href="feature_types/feature_types-library.html">feature_types</a></span> 
+          <dt id="features">
+  <span class="name"><a href="features/features-library.html">features</a></span> 
 
 </dt>
 <dd>Doing geospatial calculations requires feature types.
@@ -114,7 +137,7 @@ calculations.
     <h5 class="hidden-xs"><span class="package-name">geodart</span> <span class="package-kind">package</span></h5>
     <ol>
       <li class="section-title">Libraries</li>
-      <li><a href="feature_types/feature_types-library.html">feature_types</a></li>
+      <li><a href="features/features-library.html">features</a></li>
       <li><a href="measure/measure-library.html">measure</a></li>
 </ol>
 

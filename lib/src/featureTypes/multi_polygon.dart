@@ -81,4 +81,13 @@ class MultiPolygon extends Feature {
         .map((poly) => Polygon(poly, properties: properties))
         .toList());
   }
+
+  /// Returns a [MultiPolygon] that is the union of this [MultiPolygon] and another [MultiPolygon].
+  /// The resulting [MultiPolygon] will have the same [properties] as this [MultiPolygon].
+  MultiPolygon union(MultiPolygon other) {
+    return MultiPolygon([
+      ...coordinates,
+      ...other.coordinates,
+    ], properties: properties);
+  }
 }
