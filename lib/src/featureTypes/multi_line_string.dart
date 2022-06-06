@@ -1,5 +1,4 @@
-import 'package:geodart/src/featureTypes/geometries/coordinate.dart';
-import 'package:geodart/src/featureTypes/feature.dart';
+import 'package:geodart/features.dart';
 
 /// A [MultiLineString] is a [Feature] made up of a [List] of [LineString] [Coordinate]s.
 class MultiLineString extends Feature {
@@ -20,7 +19,7 @@ class MultiLineString extends Feature {
     return 'MULTILINESTRING(${coordinates.map((line) => "(${line.map((point) => point.toWKT()).toList().join(',')})").join(',')})';
   }
 
-  /// Returns a GeoJSON representation of the [MultiLineString]
+  /// Returns a GeoJSON representation of the [MultiLineString].
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -35,7 +34,7 @@ class MultiLineString extends Feature {
     };
   }
 
-  /// Creates a [MultiLineString] from a valid GeoJSON object
+  /// Creates a [MultiLineString] from a valid GeoJSON object.
   @override
   factory MultiLineString.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'MultiLineString') {
@@ -51,7 +50,7 @@ class MultiLineString extends Feature {
     );
   }
 
-  /// Creates a [MultiLineString] from a WKT [String]
+  /// Creates a [MultiLineString] from a WKT [String].
   @override
   factory MultiLineString.fromWKT(String wkt) {
     final wktLines = wkt.split('(')[1].split(')')[0].split(',');
@@ -61,5 +60,23 @@ class MultiLineString extends Feature {
           .map((c) => c.map((point) => Coordinate.fromWKT(point)).toList())
           .toList(),
     );
+  }
+
+  /// Explodes the [MultiLineString] into a [List] of [Point]s.
+  @override
+  List<Point> explode() {
+    final explodedFeatures = <Point>[];
+    for (final line in coordinates) {
+      explodedFeatures.addAll(line.map((coord) => Point(coord)).toList());
+    }
+    return explodedFeatures;
+  }
+
+  /// Flattens the [MultiLineString] into a [FeatureCollection] of [LineString]s.
+  /// Properties are inherited from the [MultiLineString].
+  FeatureCollection flatten() {
+    return FeatureCollection(coordinates
+        .map((line) => LineString(line, properties: properties))
+        .toList());
   }
 }

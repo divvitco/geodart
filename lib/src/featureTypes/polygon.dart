@@ -1,6 +1,4 @@
-import 'package:geodart/src/featureTypes/geometries/coordinate.dart';
-import 'package:geodart/src/featureTypes/feature.dart';
-import 'package:geodart/src/featureTypes/geometries/linear_ring.dart';
+import 'package:geodart/features.dart';
 
 /// A [Polygon] is a single closed path with shared properties.
 /// The first [LinearRing] defines the outer boundary of the [Polygon], while the following [LinearRing]s define holes within the [Polygon].
@@ -62,5 +60,21 @@ class Polygon extends Feature {
     final coordinates = wkt.split('(')[1].split(')')[0].split(',');
     return Polygon(
         [LinearRing(coordinates.map((c) => Coordinate.fromWKT(c)).toList())]);
+  }
+
+  /// Explodes the [Polygon] into a [List] of [Point]s.
+  @override
+  List<Point> explode() {
+    return coordinates
+        .map((ring) => ring.coordinates.map((coord) => Point(coord)))
+        .toList()
+        .expand((e) => e)
+        .toList();
+  }
+
+  /// Uses the [Polygon]'s [coordinates] to make a [LineString].
+  /// Ignores any holes in the polygon.
+  LineString toLineString() {
+    return LineString(coordinates.first.coordinates);
   }
 }

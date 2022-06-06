@@ -1,6 +1,4 @@
-import 'package:geodart/src/featureTypes/geometries/coordinate.dart';
-import 'package:geodart/src/featureTypes/feature.dart';
-import 'package:geodart/src/featureTypes/geometries/linear_ring.dart';
+import 'package:geodart/features.dart';
 
 /// A [MultiPolygon] is a collection of [Polygon] Geometries with shared properties.
 class MultiPolygon extends Feature {
@@ -53,5 +51,34 @@ class MultiPolygon extends Feature {
               .toList())
           .toList(),
     );
+  }
+
+  /// explode the [MultiPolygon] into a [List] of [Point]s.
+  @override
+  List<Point> explode() {
+    final explodedFeatures = <Point>[];
+    for (final poly in coordinates) {
+      explodedFeatures.addAll(poly
+          .map((ring) => ring.coordinates.map((cord) => Point(cord)).toList())
+          .toList()
+          .expand((i) => i)
+          .toList());
+    }
+    return explodedFeatures;
+  }
+
+  /// Converts the [MultiPolygon] to a WKT a [MultiLineString].
+  /// Uses the outer ring of each polygon, all holes are ignored.
+  MultiLineString toMultiLineString() {
+    return MultiLineString(
+        coordinates.map((poly) => poly.first.coordinates).toList());
+  }
+
+  /// Breaks the [MultiPolygon] into a [FeatureCollection] containing each [Polygon]s.
+  /// Also, copies the [properties] of the [MultiPolygon] to each [Polygon].
+  FeatureCollection flatten() {
+    return FeatureCollection(coordinates
+        .map((poly) => Polygon(poly, properties: properties))
+        .toList());
   }
 }

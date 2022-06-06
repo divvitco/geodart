@@ -1,7 +1,4 @@
-import 'package:geodart/src/featureTypes/feature.dart';
-import 'package:geodart/src/featureTypes/geometries/coordinate.dart';
-import 'package:geodart/src/featureTypes/line_string.dart';
-import 'package:geodart/src/featureTypes/multi_line_string.dart';
+import 'package:geodart/features.dart';
 
 /// Calculates the [length] of a [LineString] or [MultiLineString], in meters.
 double length(Feature line) {

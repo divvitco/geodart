@@ -1,5 +1,4 @@
-import 'package:geodart/src/featureTypes/geometries/coordinate.dart';
-import 'package:geodart/src/featureTypes/feature.dart';
+import 'package:geodart/features.dart';
 
 /// A [LineString] is a [Feature] made up of connected [Coordinate]s to form a line.
 class LineString extends Feature {
@@ -54,5 +53,11 @@ class LineString extends Feature {
     return LineString(
       coordinates.map((c) => Coordinate.fromWKT(c)).toList(),
     );
+  }
+
+  /// Explodes the [LineString] into a [List] of [Point]s
+  @override
+  List<Point> explode() {
+    return coordinates.map((e) => Point(e)).toList();
   }
 }

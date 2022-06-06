@@ -1,5 +1,4 @@
-import 'package:geodart/src/featureTypes/geometries/coordinate.dart';
-import 'package:geodart/src/featureTypes/feature.dart';
+import 'package:geodart/features.dart';
 
 /// A [Point] is a single position in a coordinate system, with [properties].
 class Point extends Feature {
@@ -57,5 +56,12 @@ class Point extends Feature {
   /// Creates a [Point] from a Lat/Long pair.
   factory Point.fromLatLong(double latitude, double longitude) {
     return Point(Coordinate(latitude, longitude));
+  }
+
+  /// Explodes the [Point] into a list of [Point]s
+  /// Pretty useless, but needs to overwrite the [Feature] method.
+  @override
+  List<Point> explode() {
+    return [this];
   }
 }

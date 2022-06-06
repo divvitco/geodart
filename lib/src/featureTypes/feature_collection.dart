@@ -1,10 +1,4 @@
-import 'package:geodart/src/featureTypes/feature.dart';
-import 'package:geodart/src/featureTypes/line_string.dart';
-import 'package:geodart/src/featureTypes/multi_line_string.dart';
-import 'package:geodart/src/featureTypes/multi_point.dart';
-import 'package:geodart/src/featureTypes/multi_polygon.dart';
-import 'package:geodart/src/featureTypes/point.dart';
-import 'package:geodart/src/featureTypes/polygon.dart';
+import 'package:geodart/features.dart';
 
 /// A FeatureCollection is a collection of [Feature]s.
 class FeatureCollection {
@@ -57,5 +51,13 @@ class FeatureCollection {
         }
       }).toList(),
     );
+  }
+
+  FeatureCollection explode() {
+    final explodedFeatures = <Feature>[];
+    for (final feature in features) {
+      explodedFeatures.addAll(feature.explode());
+    }
+    return FeatureCollection(explodedFeatures);
   }
 }

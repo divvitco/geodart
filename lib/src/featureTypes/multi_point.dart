@@ -1,5 +1,4 @@
-import 'package:geodart/src/featureTypes/geometries/coordinate.dart';
-import 'package:geodart/src/featureTypes/feature.dart';
+import 'package:geodart/features.dart';
 
 /// a [MultiPoint] is a collection of [Coordinate]s that share properties.
 class MultiPoint extends Feature {
@@ -54,6 +53,20 @@ class MultiPoint extends Feature {
     final coordinates = wkt.split('(')[1].split(')')[0].split(',');
     return MultiPoint(
       coordinates.map((c) => Coordinate.fromWKT(c)).toList(),
+    );
+  }
+
+  /// Explodes the [MultiPoint] into a [List] of [Point]s.
+  @override
+  List<Point> explode() {
+    return coordinates.map((c) => Point(c)).toList();
+  }
+
+  /// Flattens the [MultiPoint] into a [FeatureCollection] of [Point]s.
+  /// Properties of the [MultiPoint] are copied to the [Point]s.
+  FeatureCollection flatten() {
+    return FeatureCollection(
+      coordinates.map((c) => Point(c, properties: properties)).toList(),
     );
   }
 }

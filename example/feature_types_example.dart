@@ -1,4 +1,4 @@
-import 'package:geodart/feature_types.dart';
+import 'package:geodart/features.dart';
 import 'package:geodart/src/featureTypes/point.dart';
 
 void main() {

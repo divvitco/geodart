@@ -5,4 +5,8 @@ import 'package:geodart/src/featureTypes/geometries/coordinate.dart';
 class LinearRing {
   List<Coordinate> coordinates;
   LinearRing(this.coordinates);
+
+  toLineString() {
+    return coordinates;
+  }
 }

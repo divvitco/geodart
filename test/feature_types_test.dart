@@ -1,5 +1,4 @@
-import 'package:geodart/feature_types.dart';
-import 'package:geodart/src/featureTypes/feature.dart';
+import 'package:geodart/features.dart';
 import 'package:test/test.dart';
 
 void main() {
