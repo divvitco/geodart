@@ -1,3 +1,5 @@
+import 'dart:math';
+
 /// The base coordinate class, used by all feature types.
 class Coordinate {
   final double latitude;
@@ -43,5 +45,22 @@ class Coordinate {
     final coordinates = wkt.split(' ');
     return Coordinate(
         double.parse(coordinates[1]), double.parse(coordinates[0]));
+  }
+
+  /// Returns the distance to a different [Coordinate] in meters.
+  double distanceTo(Coordinate other) {
+    final lat1 = latitude * (pi / 180);
+    final lon1 = longitude * (pi / 180);
+    final lat2 = other.latitude * (pi / 180);
+    final lon2 = other.longitude * (pi / 180);
+
+    final dLat = lat2 - lat1;
+    final dLon = lon2 - lon1;
+
+    final a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2);
+    final c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    return 6371 * c;
   }
 }

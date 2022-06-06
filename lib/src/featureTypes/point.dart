@@ -53,4 +53,9 @@ class Point extends Feature {
     final coordinates = wkt.split('(')[1].split(')')[0];
     return Point(Coordinate.fromWKT(coordinates));
   }
+
+  /// Creates a [Point] from a Lat/Long pair.
+  factory Point.fromLatLong(double latitude, double longitude) {
+    return Point(Coordinate(latitude, longitude));
+  }
 }
