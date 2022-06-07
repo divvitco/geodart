@@ -49,20 +49,39 @@
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
-        <section class="multi-line-signature">
-          <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>
-          <span class="name ">length</span>
-          <div class="features">read / write</div>
-
-        </section>
-        
 
         
+<section id="getter">
+
+<section class="multi-line-signature">
+  <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  <span class="name ">length</span>
+  
+
+</section>
+
+
+
+
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">late double length;
+  <pre class="language-dart"><code class="language-dart">double get length {
+  double getLength(List&lt;Coordinate&gt; coordinates) {
+    if (coordinates.length &lt; 2) {
+      return 0.0;
+    }
 
-</code></pre>
+    double length = 0.0;
+    for (int i = 0; i &lt; coordinates.length - 1; i++) {
+      length += coordinates[i].distanceTo(coordinates[i + 1]);
+    }
+    return length;
+  }
+
+  return coordinates.fold(0.0, (a, b) =&gt; a + getLength(b));
+}</code></pre>
+</section>
+
 </section>
 
 

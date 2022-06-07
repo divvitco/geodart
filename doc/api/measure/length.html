@@ -67,18 +67,10 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">double length(Feature line) {
-  double getLength(List&lt;Coordinate&gt; coordinates) {
-    double length = 0.0;
-    for (int i = 0; i &lt; coordinates.length - 1; i++) {
-      length += coordinates[i].distanceTo(coordinates[i + 1]);
-    }
-    return length;
-  }
-
   if (line is LineString) {
-    return getLength(line.coordinates);
+    return line.length;
   } else if (line is MultiLineString) {
-    return line.coordinates.fold(0.0, (a, b) =&gt; a + getLength(b));
+    return line.length;
   } else {
     throw ArgumentError(&#39;Line must be a LineString or MultiLineString&#39;);
   }

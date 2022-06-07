@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the toJson method from the Polygon class, for the Dart programming language.">
-  <title>toJson method - Polygon class - features library - Dart API</title>
+  <meta name="description" content="API docs for the area property from the Polygon class, for the Dart programming language.">
+  <title>area property - Polygon class - features library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">geodart</a></li>
     <li><a href="../../features/features-library.html">features</a></li>
     <li><a href="../../features/Polygon-class.html">Polygon</a></li>
-    <li class="self-crumb">toJson method</li>
+    <li class="self-crumb">area property</li>
   </ol>
-  <div class="self-name">toJson</div>
+  <div class="self-name">area</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,46 +45,83 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">toJson</span> method 
+<h1><span class="kind-property">area</span> property 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
-    <section class="multi-line-signature">
-      
-<div>
-  <ol class="annotation-list">
-    <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
-  </ol>
-</div>
 
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
-<span class="name ">toJson</span>(<wbr>)
+        
+<section id="getter">
 
-      <div class="features">override</div>
+<section class="multi-line-signature">
+  <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  <span class="name ">area</span>
+  
 
-    </section>
-    
-<section class="desc markdown">
-  <p>Returns a GeoJSON <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a> of the <a href="../../features/Polygon-class.html">Polygon</a>.</p>
 </section>
 
 
-    
+<section class="desc markdown">
+  <p>The area pf the <a href="../../features/Polygon-class.html">Polygon</a> in square meters.</p>
+</section>
+
+
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">@override
-Map&lt;String, dynamic&gt; toJson() {
-  return {
-    &#39;type&#39;: &#39;Feature&#39;,
-    &#39;geometry&#39;: {
-      &#39;type&#39;: &#39;Polygon&#39;,
-      &#39;coordinates&#39;: coordinates
-          .map((ring) =&gt; ring.coordinates.map((c) =&gt; c.toJson()).toList())
-          .toList()
-    },
-    &#39;properties&#39;: properties,
-  };
+  <pre class="language-dart"><code class="language-dart">double get area {
+  num rad(num value) =&gt; value * pi &#47; 180;
+  double ringArea(LinearRing ring) {
+    &#47;&#47; ignore: constant_identifier_names
+    const WGS84_RADIUS = 6378137;
+    double ringAreaSum = 0;
+
+    if (ring.coordinates.length &gt; 2) {
+      for (int i = 0; i &lt; coordinates.length; i++) {
+        var lowerIndex = i;
+        var middleIndex = i + 1;
+        var upperIndex = i + 2;
+
+        if (i == ring.coordinates.length - 2) {
+          lowerIndex = ring.coordinates.length - 2;
+          middleIndex = ring.coordinates.length - 1;
+          upperIndex = 0;
+        } else if (i == ring.coordinates.length - 1) {
+          lowerIndex = ring.coordinates.length - 1;
+          middleIndex = 0;
+          upperIndex = 1;
+        }
+
+        var p1 = ring.coordinates[lowerIndex];
+        var p2 = ring.coordinates[middleIndex];
+        var p3 = ring.coordinates[upperIndex];
+
+        ringAreaSum +=
+            (rad(p3.longitude) - rad(p1.longitude)) * sin(rad(p2.latitude));
+      }
+
+      ringAreaSum = ringAreaSum * WGS84_RADIUS * WGS84_RADIUS &#47; 2;
+    }
+
+    return ringAreaSum;
+  }
+
+  double polygonArea(List&lt;LinearRing&gt; rings) {
+    double polyArea = 0;
+
+    if (rings.isNotEmpty) {
+      polyArea += ringArea(rings[0]).abs();
+      for (var hole in rings.getRange(1, coordinates.length)) {
+        polyArea -= ringArea(hole).abs();
+      }
+    }
+
+    return polyArea;
+  }
+
+  return polygonArea(coordinates);
 }</code></pre>
+</section>
+
 </section>
 
 
@@ -101,7 +138,7 @@ Map&lt;String, dynamic&gt; toJson() {
   <li><a href="../../index.html">geodart</a></li>
   <li><a href="../../features/features-library.html">features</a></li>
   <li><a href="../../features/Polygon-class.html">Polygon</a></li>
-  <li class="self-crumb">toJson method</li>
+  <li class="self-crumb">area property</li>
 </ol>
 
 
