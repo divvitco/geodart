@@ -5,7 +5,7 @@ class LineString extends Feature {
   final List<Coordinate> coordinates;
   static final String type = 'LineString';
 
-  LineString(this.coordinates, {properties = const {}})
+  LineString(this.coordinates, {properties = const <String, dynamic>{}})
       : super(properties: properties);
 
   @override

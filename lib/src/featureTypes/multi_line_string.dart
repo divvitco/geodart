@@ -5,7 +5,7 @@ class MultiLineString extends Feature {
   List<List<Coordinate>> coordinates;
   static final String type = 'MultiLineString';
 
-  MultiLineString(this.coordinates, {properties = const {}})
+  MultiLineString(this.coordinates, {properties = const <String, dynamic>{}})
       : super(properties: properties);
 
   @override

@@ -4,7 +4,7 @@ import 'package:geodart/features.dart';
 class Feature {
   Map<String, dynamic> properties;
 
-  Feature({this.properties = const {}});
+  Feature({this.properties = const <String, dynamic>{}});
 
   @override
   String toString() {
