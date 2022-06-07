@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the length function from the measure library, for the Dart programming language.">
-  <title>length function - measure library - Dart API</title>
+  <meta name="description" content="API docs for the area function from the measure library, for the Dart programming language.">
+  <title>area function - measure library - Dart API</title>
 
 
   
@@ -31,9 +31,9 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">geodart</a></li>
     <li><a href="../measure/measure-library.html">measure</a></li>
-    <li class="self-crumb">length function</li>
+    <li class="self-crumb">area function</li>
   </ol>
-  <div class="self-name">length</div>
+  <div class="self-name">area</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -44,7 +44,7 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-function">length</span> function 
+<h1><span class="kind-function">area</span> function 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
  
 </h1></div>
@@ -53,26 +53,27 @@
         
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
-<span class="name ">length</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="length-param-line"><span class="type-annotation"><a href="../features/Feature-class.html">Feature</a></span> <span class="parameter-name">line</span></span></li>
+<span class="name ">area</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="area-param-poly"><span class="type-annotation"><a href="../features/Feature-class.html">Feature</a></span> <span class="parameter-name">poly</span></span></li>
 </ol>)
 
     </section>
     
 <section class="desc markdown">
-  <p>Calculates the <a href="../measure/length.html">length</a> of a <a href="../features/LineString-class.html">LineString</a> or <a href="../features/MultiLineString-class.html">MultiLineString</a>, in meters.</p>
+  <p>Calculates the <a href="../measure/area.html">area</a> of a <a href="../features/Polygon-class.html">Polygon</a> or <a href="../features/MultiPolygon-class.html">MultiPolygon</a>, in square meters.
+Also accessible from <a href="../features/Polygon/area.html">Polygon.area</a> and <a href="../features/MultiPolygon/area.html">MultiPolygon.area</a>.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">double length(Feature line) {
-  if (line is LineString) {
-    return line.length;
-  } else if (line is MultiLineString) {
-    return line.length;
+  <pre class="language-dart"><code class="language-dart">double area(Feature poly) {
+  if (poly is Polygon) {
+    return poly.area;
+  } else if (poly is MultiPolygon) {
+    return poly.area;
   } else {
-    throw ArgumentError(&#39;Line must be a LineString or MultiLineString&#39;);
+    throw ArgumentError(&#39;Feature must be a Polygon or Multipolygon&#39;);
   }
 }</code></pre>
 </section>
@@ -90,7 +91,7 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
   <li><a href="../index.html">geodart</a></li>
   <li><a href="../measure/measure-library.html">measure</a></li>
-  <li class="self-crumb">length function</li>
+  <li class="self-crumb">area function</li>
 </ol>
 
 

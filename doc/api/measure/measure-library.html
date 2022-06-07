@@ -51,7 +51,7 @@
     
 <section class="desc markdown">
   <p>A collection of measurement functions.</p>
-<p>All measurements are in meters.
+<p>All measurements are in meters or square meters.
 All measurements are in the <code>EPSG:4326</code> coordinate system.</p>
 </section>
 
@@ -65,6 +65,20 @@ All measurements are in the <code>EPSG:4326</code> coordinate system.</p>
       <h2>Functions</h2>
 
       <dl class="callables">
+        <dt id="area" class="callable">
+  <span class="name"><a href="../measure/area.html">area</a></span><span class="signature">(<wbr><span class="parameter" id="area-param-poly"><span class="type-annotation"><a href="../features/Feature-class.html">Feature</a></span> <span class="parameter-name">poly</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Calculates the <a href="../measure/area.html">area</a> of a <a href="../features/Polygon-class.html">Polygon</a> or <a href="../features/MultiPolygon-class.html">MultiPolygon</a>, in square meters.
+Also accessible from <a href="../features/Polygon/area.html">Polygon.area</a> and <a href="../features/MultiPolygon/area.html">MultiPolygon.area</a>.
+  
+
+</dd>
+
         <dt id="bearing" class="callable">
   <span class="name"><a href="../measure/bearing.html">bearing</a></span><span class="signature">(<wbr><span class="parameter" id="bearing-param-from"><span class="type-annotation"><a href="../features/Point-class.html">Point</a></span> <span class="parameter-name">from</span>, </span><span class="parameter" id="bearing-param-to"><span class="type-annotation"><a href="../features/Point-class.html">Point</a></span> <span class="parameter-name">to</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
@@ -143,6 +157,7 @@ All measurements are in the <code>EPSG:4326</code> coordinate system.</p>
 
 
   <li class="section-title"><a href="../measure/measure-library.html#functions">Functions</a></li>
+  <li><a href="../measure/area.html">area</a></li>
   <li><a href="../measure/bearing.html">bearing</a></li>
   <li><a href="../measure/distance.html">distance</a></li>
   <li><a href="../measure/length.html">length</a></li>
