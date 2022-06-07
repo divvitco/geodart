@@ -47,5 +47,6 @@ void loadFeaturesFromWkt() {
 
   var point = Point.fromWKT('POINT(-122.676483 45.516525)');
 
-  print('point: ${point.coordinate.latitude}');
+  print(
+      'point: ${point.coordinate.latitude}, polygon: ${polygon.coordinates.length}');
 }

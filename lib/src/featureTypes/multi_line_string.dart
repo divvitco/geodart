@@ -1,16 +1,12 @@
 import 'package:geodart/features.dart';
-import 'package:geodart/measure.dart' as measure;
 
 /// A [MultiLineString] is a [Feature] made up of a [List] of [LineString] [Coordinate]s.
 class MultiLineString extends Feature {
   List<List<Coordinate>> coordinates;
   static final String type = 'MultiLineString';
-  late double length;
 
   MultiLineString(this.coordinates, {properties = const {}})
-      : super(properties: properties) {
-    length = measure.length(this);
-  }
+      : super(properties: properties);
 
   @override
   String toString() {
@@ -91,5 +87,21 @@ class MultiLineString extends Feature {
       ...coordinates,
       ...other.coordinates,
     ], properties: properties);
+  }
+
+  double get length {
+    double getLength(List<Coordinate> coordinates) {
+      if (coordinates.length < 2) {
+        return 0.0;
+      }
+
+      double length = 0.0;
+      for (int i = 0; i < coordinates.length - 1; i++) {
+        length += coordinates[i].distanceTo(coordinates[i + 1]);
+      }
+      return length;
+    }
+
+    return coordinates.fold(0.0, (a, b) => a + getLength(b));
   }
 }

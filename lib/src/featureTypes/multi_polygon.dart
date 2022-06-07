@@ -90,4 +90,10 @@ class MultiPolygon extends Feature {
       ...other.coordinates,
     ], properties: properties);
   }
+
+  /// The area of the [MultiPolygon] in square meters.
+  double get area {
+    return coordinates.fold(
+        0.0, (double acc, poly) => acc + Polygon(poly).area);
+  }
 }
