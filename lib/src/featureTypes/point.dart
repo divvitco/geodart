@@ -14,12 +14,22 @@ class Point extends Feature {
   }
 
   /// Converts the [Point] to a WKT [String].
+  ///
+  /// Example:
+  /// ```dart
+  ///    Point(Coordinate(1, 2)).toWKT(); // POINT(1 2)
+  /// ```
   @override
   String toWKT() {
     return 'POINT(${coordinate.toWKT()})';
   }
 
   /// Converts the [Point] to a GeoJSON [Map].
+  ///
+  /// Example:
+  /// ```dart
+  ///   Point(Coordinate(1, 2), properties: {'name': 'point'}).toJson();
+  /// ```
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -33,6 +43,18 @@ class Point extends Feature {
   }
 
   /// Creates a [Point] from a GeoJSON [Map].
+  ///
+  /// Example:
+  /// ```dart
+  /// Point.fromJson({
+  ///  'type': 'Feature',
+  ///  'geometry': {
+  ///    'type': 'Point',
+  ///    'coordinates': [1, 2]
+  ///   },
+  ///   'properties': {'name': 'point'}
+  /// });
+  /// ```
   @override
   factory Point.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'Point') {
@@ -47,6 +69,11 @@ class Point extends Feature {
   }
 
   /// Creates a [Point] from a WKT [String].
+  ///
+  /// Example:
+  /// ```dart
+  /// Point.fromWKT('POINT(1 2)');
+  /// ```
   @override
   factory Point.fromWKT(String wkt) {
     final coordinates = wkt.split('(')[1].split(')')[0];
@@ -54,12 +81,22 @@ class Point extends Feature {
   }
 
   /// Creates a [Point] from a Lat/Long pair.
+  ///
+  /// Example:
+  /// ```dart
+  /// Point.fromLatLong(1, 2);
+  /// ```
   factory Point.fromLatLong(double latitude, double longitude) {
     return Point(Coordinate(latitude, longitude));
   }
 
   /// Explodes the [Point] into a list of [Point]s
   /// Pretty useless, but needs to overwrite the [Feature] method.
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 2)).explode(); // [Point(1, 2)]
+  /// ```
   @override
   List<Point> explode() {
     return [this];

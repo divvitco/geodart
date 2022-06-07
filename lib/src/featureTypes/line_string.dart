@@ -14,12 +14,22 @@ class LineString extends Feature {
   }
 
   /// Converts the [LineString] to a [String] in WKT format.
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).toWKT(); // LINESTRING(1 2, 3 4)
+  /// ```
   @override
   String toWKT() {
     return 'LINESTRING(${coordinates.map((c) => c.toWKT()).join(',')})';
   }
 
   /// Returns a GeoJSON representation of the [LineString]
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).toJson(); // {'type': 'Feature', 'geometry': {'type': 'LineString', 'coordinates': [[1, 2], [3, 4]]}, 'properties': {}}
+  /// ```
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -33,6 +43,11 @@ class LineString extends Feature {
   }
 
   /// Creates a [LineString] from a valid GeoJSON object
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString.fromJson({'type': 'Feature', 'geometry': {'type': 'LineString', 'coordinates': [[1, 2], [3, 4]]}, 'properties': {}}); // LineString([Coordinate(1, 2), Coordinate(3, 4)])
+  /// ```
   @override
   factory LineString.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'LineString') {
