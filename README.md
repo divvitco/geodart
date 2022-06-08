@@ -221,6 +221,30 @@ A [`MultiPolygon`](#Multi-Polygon) is a collection of [`Polygon`](#Polygon) geom
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 * `area` - The are (in square meters) of the MultiPolygon.
 
+### Coordinate
+
+A [`Coordinate`](#Coordinate) is a point in a two-dimensional Cartesian coordinate system.
+
+**Constructors**
+
+* `Coordinate.fromJson(Map<String, dynamic> json)` - Creates a [`Coordinate`](#Coordinate) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
+* `Coordinate.fromWkt(String wkt)` - Creates a [`Coordinate`](#Coordinate) from a Well-Known Text string.
+
+**Methods**
+
+* `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
+* `toWKT()` - Returns a Well-Known Text string representing the [`Coordinate`](#Coordinate).
+* `distanceTo(Coordinate other)` - Returns the distance (in meters) between the [`Coordinate`](#Coordinate) and another [`Coordinate`](#Coordinate).
+* `bearingTo(Coordinate other)` - Returns the bearing (in degrees) between the [`Coordinate`](#Coordinate) and another [`Coordinate`](#Coordinate).
+* `destination(num distance, num bearing)` - Returns a [`Coordinate`](#Coordinate) that is the same geometry as the [`Coordinate`](#Coordinate) but moved a given distance and bearing.
+* `interpolate(Coordinate other, num fraction)` - Returns a [`Coordinate`](#Coordinate) that is the same geometry as the [`Coordinate`](#Coordinate) but moved a given fraction of the distance and bearing to another [`Coordinate`](#Coordinate).
+
+**Properties**
+
+* `latitude` - The latitude of the [`Coordinate`](#Coordinate).
+* `longitude` - The longitude of the [`Coordinate`](#Coordinate).
+* `type` - The type of the [`Coordinate`](#Coordinate). Always `"Coordinate"`.
+
 ## Usage
 
 **Measure the distance between two points.**
