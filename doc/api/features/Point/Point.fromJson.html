@@ -87,7 +87,7 @@ factory Point.fromJson(Map&lt;String, dynamic&gt; json) {
   return Point(
     Coordinate(json[&#39;geometry&#39;][&#39;coordinates&#39;][1],
         json[&#39;geometry&#39;][&#39;coordinates&#39;][0]),
-    properties: json[&#39;properties&#39;],
+    properties: Map&lt;String, dynamic&gt;.from(json[&#39;properties&#39;]),
   );
 }</code></pre>
 </section>

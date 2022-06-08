@@ -74,8 +74,6 @@ factory Polygon.fromJson(Map&lt;String, dynamic&gt; json) {
     throw ArgumentError(&#39;json is not a Polygon&#39;);
   }
 
-  print(
-      &quot;and now ${json[&#39;geometry&#39;][&#39;coordinates&#39;]} and ${json[&#39;geometry&#39;][&#39;coordinates&#39;][0][0]}&quot;);
   List&lt;LinearRing&gt; rings =
       (json[&#39;geometry&#39;][&#39;coordinates&#39;] as List&lt;List&lt;dynamic&gt;&gt;)
           .map((List&lt;dynamic&gt; shape) =&gt; LinearRing(

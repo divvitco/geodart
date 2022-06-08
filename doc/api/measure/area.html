@@ -60,7 +60,13 @@
     
 <section class="desc markdown">
   <p>Calculates the <a href="../measure/area.html">area</a> of a <a href="../features/Polygon-class.html">Polygon</a> or <a href="../features/MultiPolygon-class.html">MultiPolygon</a>, in square meters.
-Also accessible from <a href="../features/Polygon/area.html">Polygon.area</a> and <a href="../features/MultiPolygon/area.html">MultiPolygon.area</a>.</p>
+Also accessible from <a href="../features/Polygon/area.html">Polygon.area</a> and <a href="../features/MultiPolygon/area.html">MultiPolygon.area</a>.
+The area is calculated using the <a href="">Shoelace formula</a>.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">area(Polygon([
+ LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])
+])); // 12.5
+</code></pre>
 </section>
 
 

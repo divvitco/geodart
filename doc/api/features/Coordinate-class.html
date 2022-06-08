@@ -150,6 +150,21 @@
 </dt>
 <dd>
   Returns the bearing to a different <a href="../features/Coordinate-class.html">Coordinate</a> in degrees.
+Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the bearing between two points.
+  
+
+</dd>
+
+        <dt id="destination" class="callable">
+  <span class="name"><a href="../features/Coordinate/destination.html">destination</a></span><span class="signature">(<wbr><span class="parameter" id="destination-param-distance"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">distance</span>, </span><span class="parameter" id="destination-param-bearing"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">bearing</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../features/Coordinate-class.html">Coordinate</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the <a href="../features/Coordinate-class.html">Coordinate</a> at a certain distance and bearing from the <a href="../features/Coordinate-class.html">Coordinate</a>.
+Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the new coordinate.
   
 
 </dd>
@@ -163,6 +178,24 @@
 </dt>
 <dd>
   Returns the distance to a different <a href="../features/Coordinate-class.html">Coordinate</a> in meters.
+Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the distance between two points.
+  
+
+</dd>
+
+        <dt id="interpolate" class="callable">
+  <span class="name"><a href="../features/Coordinate/interpolate.html">interpolate</a></span><span class="signature">(<wbr><span class="parameter" id="interpolate-param-to"><span class="type-annotation"><a href="../features/Coordinate-class.html">Coordinate</a></span> <span class="parameter-name">to</span>, </span><span class="parameter" id="interpolate-param-fraction"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">fraction</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../features/Coordinate-class.html">Coordinate</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the <a href="../features/Coordinate-class.html">Coordinate</a> at a certain fraction of the distance between the <a href="../features/Coordinate-class.html">Coordinate</a> and different <a href="../features/Coordinate-class.html">Coordinate</a>, <code>to</code>.
+Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the new coordinate.
+The <code>fraction</code> is a number between 0 and 1.
+If the <code>fraction</code> is 0, the <a href="../features/Coordinate-class.html">Coordinate</a> will be the same as the <a href="../features/Coordinate-class.html">Coordinate</a>.
+If the <code>fraction</code> is 1, the <a href="../features/Coordinate-class.html">Coordinate</a> will be the same as the <code>to</code>.
   
 
 </dd>
@@ -325,7 +358,9 @@ Useless on its own, but useful for other classes.
 
     <li class="section-title"><a href="../features/Coordinate-class.html#instance-methods">Methods</a></li>
     <li><a href="../features/Coordinate/bearingTo.html">bearingTo</a></li>
+    <li><a href="../features/Coordinate/destination.html">destination</a></li>
     <li><a href="../features/Coordinate/distanceTo.html">distanceTo</a></li>
+    <li><a href="../features/Coordinate/interpolate.html">interpolate</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../features/Coordinate/toJson.html">toJson</a></li>
     <li><a href="../features/Coordinate/toString.html">toString</a></li>

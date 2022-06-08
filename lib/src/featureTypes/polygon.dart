@@ -47,8 +47,6 @@ class Polygon extends Feature {
       throw ArgumentError('json is not a Polygon');
     }
 
-    print(
-        "and now ${json['geometry']['coordinates']} and ${json['geometry']['coordinates'][0][0]}");
     List<LinearRing> rings =
         (json['geometry']['coordinates'] as List<List<dynamic>>)
             .map((List<dynamic> shape) => LinearRing(

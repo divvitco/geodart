@@ -30,7 +30,7 @@ class Feature {
   /// (Not actually possible, as a base feature has no geometry)
   factory Feature.fromJson(Map<String, dynamic> json) {
     return Feature(
-      properties: json['properties'],
+      properties: Map<String, dynamic>.from(json['properties']),
     );
   }
 

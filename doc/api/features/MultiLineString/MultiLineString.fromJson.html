@@ -62,6 +62,9 @@
     
 <section class="desc markdown">
   <p>Creates a <a href="../../features/MultiLineString-class.html">MultiLineString</a> from a valid GeoJSON object.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiLineString.fromJson({'type': 'Feature', 'geometry': {'type': 'MultiLineString', 'coordinates': [[[1, 2], [3, 4]]]}, 'properties': {}}); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]])
+</code></pre>
 </section>
 
 
@@ -79,7 +82,7 @@ factory MultiLineString.fromJson(Map&lt;String, dynamic&gt; json) {
         .map((line) =&gt;
             line.map((point) =&gt; Coordinate.fromJson(point)).toList())
         .toList(),
-    properties: json[&#39;properties&#39;],
+    properties: Map&lt;String, dynamic&gt;.from(json[&#39;properties&#39;]),
   );
 }</code></pre>
 </section>

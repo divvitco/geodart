@@ -63,6 +63,9 @@
 <section class="desc markdown">
   <p>Returns a <a href="../../features/MultiPoint-class.html">MultiPoint</a> that is the union of this <a href="../../features/MultiPoint-class.html">MultiPoint</a> and another <a href="../../features/MultiPoint-class.html">MultiPoint</a>.
 The resulting <a href="../../features/MultiPoint-class.html">MultiPoint</a> will have the same <a href="../../features/Feature/properties.html">properties</a> as this <a href="../../features/MultiPoint-class.html">MultiPoint</a>.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiPoint([Coordinate(1, 2), Coordinate(3, 4)]).union(MultiPoint([Coordinate(2, 3), Coordinate(4, 5)])); // MultiPoint([Coordinate(1, 2), Coordinate(3, 4), Coordinate(2, 3), Coordinate(4, 5)])
+</code></pre>
 </section>
 
 

@@ -62,6 +62,16 @@
 <section class="desc markdown">
   <p>Converts the <a href="../../features/MultiPolygon-class.html">MultiPolygon</a> to a WKT a <a href="../../features/MultiLineString-class.html">MultiLineString</a>.
 Uses the outer ring of each polygon, all holes are ignored.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiPolygon([
+  [
+    LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])
+  ],
+  [
+    LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])
+  ]
+]).toMultiLineString(); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)], [Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)]])
+</code></pre>
 </section>
 
 

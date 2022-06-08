@@ -14,12 +14,22 @@ class MultiLineString extends Feature {
   }
 
   /// Converts the [MultiLineString] to a [String] in WKT format.
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).toWKT(); // MULTILINESTRING((1 2, 3 4))
+  /// ```
   @override
   String toWKT() {
     return 'MULTILINESTRING(${coordinates.map((line) => "(${line.map((point) => point.toWKT()).toList().join(',')})").join(',')})';
   }
 
   /// Returns a GeoJSON representation of the [MultiLineString].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).toJson(); // {'type': 'Feature', 'geometry': {'type': 'MultiLineString', 'coordinates': [[[1, 2], [3, 4]]]}, 'properties': {}}
+  /// ```
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -35,6 +45,11 @@ class MultiLineString extends Feature {
   }
 
   /// Creates a [MultiLineString] from a valid GeoJSON object.
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString.fromJson({'type': 'Feature', 'geometry': {'type': 'MultiLineString', 'coordinates': [[[1, 2], [3, 4]]]}, 'properties': {}}); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]])
+  /// ```
   @override
   factory MultiLineString.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'MultiLineString') {
@@ -46,11 +61,16 @@ class MultiLineString extends Feature {
           .map((line) =>
               line.map((point) => Coordinate.fromJson(point)).toList())
           .toList(),
-      properties: json['properties'],
+      properties: Map<String, dynamic>.from(json['properties']),
     );
   }
 
   /// Creates a [MultiLineString] from a WKT [String].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString.fromWKT('MULTILINESTRING((1 2, 3 4))'); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]])
+  /// ```
   @override
   factory MultiLineString.fromWKT(String wkt) {
     final wktLines = wkt.split('(')[1].split(')')[0].split(',');
@@ -63,6 +83,11 @@ class MultiLineString extends Feature {
   }
 
   /// Explodes the [MultiLineString] into a [List] of [Point]s.
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).explode(); // [Coordinate(1, 2), Coordinate(3, 4)]
+  /// ```
   @override
   List<Point> explode() {
     final explodedFeatures = <Point>[];
@@ -74,6 +99,11 @@ class MultiLineString extends Feature {
 
   /// Flattens the [MultiLineString] into a [FeatureCollection] of [LineString]s.
   /// Properties are inherited from the [MultiLineString].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).flatten(); // FeatureCollection([LineString([Coordinate(1, 2), Coordinate(3, 4)])])
+  /// ```
   FeatureCollection flatten() {
     return FeatureCollection(coordinates
         .map((line) => LineString(line, properties: properties))
@@ -82,6 +112,11 @@ class MultiLineString extends Feature {
 
   /// Returns a [MultiLineString] that is the union of this [MultiLineString] and another [MultiLineString].
   /// The resulting [MultiLineString] will have the same [properties] as this [MultiLineString].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).union(MultiLineString([[Coordinate(4, 5), Coordinate(6, 7)]])); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4), Coordinate(4, 5), Coordinate(6, 7)]])
+  /// ```
   MultiLineString union(MultiLineString other) {
     return MultiLineString([
       ...coordinates,
@@ -89,6 +124,14 @@ class MultiLineString extends Feature {
     ], properties: properties);
   }
 
+  /// Returns the total distance of the [MultiLineString] in meters.
+  /// This is the sum of the distances of each [LineString] in the [MultiLineString].
+  /// The distance is calculated using the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula).
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).distance(); // 314283.2550736839
+  /// ```
   double get length {
     double getLength(List<Coordinate> coordinates) {
       if (coordinates.length < 2) {

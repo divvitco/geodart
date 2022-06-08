@@ -60,7 +60,13 @@
     </section>
     
 <section class="desc markdown">
-  <p>Computes the <a href="../measure/bearing.html">bearing</a> between two <a href="../features/Point-class.html">Point</a>s.</p>
+  <p>Computes the <a href="../measure/bearing.html">bearing</a> between two <a href="../features/Point-class.html">Point</a>s.
+The bearing is the angle from the north to the second point.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">bearing(Point(0, 0), Point(0, 1)) // returns 0
+bearing(Point(0, 0), Point(1, 1)) // returns 45
+bearing(Point(0, 0), Point(1, 0)) // returns 90
+</code></pre>
 </section>
 
 

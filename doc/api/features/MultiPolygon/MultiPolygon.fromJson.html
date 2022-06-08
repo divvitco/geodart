@@ -62,6 +62,9 @@
     
 <section class="desc markdown">
   <p>Creates a <a href="../../features/MultiPolygon-class.html">MultiPolygon</a> from a GeoJSON <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a>.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiPolygon.fromJson({'type': 'Feature', 'geometry': {'type': 'MultiPolygon', 'coordinates': [[[[1, 2], [3, 4], [5, 6], [1, 2]]], [[[7, 8], [9, 10], [11, 12], [7, 8]]]]}, 'properties': {}}); // MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)]), LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])
+</code></pre>
 </section>
 
 
@@ -75,13 +78,14 @@ factory MultiPolygon.fromJson(Map&lt;String, dynamic&gt; json) {
   }
 
   return MultiPolygon(
-    (json[&#39;geometry&#39;][&#39;coordinates&#39;] as List&lt;List&lt;List&lt;double&gt;&gt;&gt;)
-        .map((dynamic poly) =&gt; (poly as List&lt;List&lt;double&gt;&gt;)
-            .map((dynamic shape) =&gt; LinearRing((shape as List&lt;double&gt;)
+    (json[&#39;geometry&#39;][&#39;coordinates&#39;] as List&lt;List&lt;List&lt;List&lt;double&gt;&gt;&gt;&gt;)
+        .map((dynamic poly) =&gt; (poly as List&lt;List&lt;List&lt;double&gt;&gt;&gt;)
+            .map((dynamic shape) =&gt; LinearRing((shape as List&lt;List&lt;double&gt;&gt;)
                 .map((dynamic coord) =&gt; Coordinate.fromJson(coord))
                 .toList()))
             .toList())
         .toList(),
+    properties: Map&lt;String, dynamic&gt;.from(json[&#39;properties&#39;]),
   );
 }</code></pre>
 </section>

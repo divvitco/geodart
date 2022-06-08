@@ -66,7 +66,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">factory Feature.fromJson(Map&lt;String, dynamic&gt; json) {
   return Feature(
-    properties: json[&#39;properties&#39;],
+    properties: Map&lt;String, dynamic&gt;.from(json[&#39;properties&#39;]),
   );
 }</code></pre>
 </section>

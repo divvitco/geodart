@@ -63,6 +63,9 @@
 <section class="desc markdown">
   <p>Returns a <a href="../../features/MultiLineString-class.html">MultiLineString</a> that is the union of this <a href="../../features/MultiLineString-class.html">MultiLineString</a> and another <a href="../../features/MultiLineString-class.html">MultiLineString</a>.
 The resulting <a href="../../features/MultiLineString-class.html">MultiLineString</a> will have the same <a href="../../features/Feature/properties.html">properties</a> as this <a href="../../features/MultiLineString-class.html">MultiLineString</a>.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).union(MultiLineString([[Coordinate(4, 5), Coordinate(6, 7)]])); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4), Coordinate(4, 5), Coordinate(6, 7)]])
+</code></pre>
 </section>
 
 

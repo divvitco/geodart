@@ -75,6 +75,7 @@ All measurements are in the <code>EPSG:4326</code> coordinate system.</p>
 <dd>
   Calculates the <a href="../measure/area.html">area</a> of a <a href="../features/Polygon-class.html">Polygon</a> or <a href="../features/MultiPolygon-class.html">MultiPolygon</a>, in square meters.
 Also accessible from <a href="../features/Polygon/area.html">Polygon.area</a> and <a href="../features/MultiPolygon/area.html">MultiPolygon.area</a>.
+The area is calculated using the <a href="">Shoelace formula</a>.
   
 
 </dd>
@@ -88,6 +89,7 @@ Also accessible from <a href="../features/Polygon/area.html">Polygon.area</a> an
 </dt>
 <dd>
   Computes the <a href="../measure/bearing.html">bearing</a> between two <a href="../features/Point-class.html">Point</a>s.
+The bearing is the angle from the north to the second point.
   
 
 </dd>
@@ -101,6 +103,8 @@ Also accessible from <a href="../features/Polygon/area.html">Polygon.area</a> an
 </dt>
 <dd>
   Computes the <a href="../measure/distance.html">distance</a> between two <a href="../features/Point-class.html">Point</a>s in meters.
+The distance is the straight-line distance between the two points.
+The distance is calculated using the Haversine formula.
   
 
 </dd>
@@ -114,6 +118,9 @@ Also accessible from <a href="../features/Polygon/area.html">Polygon.area</a> an
 </dt>
 <dd>
   Calculates the <a href="../measure/length.html">length</a> of a <a href="../features/LineString-class.html">LineString</a> or <a href="../features/MultiLineString-class.html">MultiLineString</a>, in meters.
+Also accessible from <a href="../features/LineString/length.html">LineString.length</a> and <a href="../features/MultiLineString/length.html">MultiLineString.length</a>.
+The length is calculated using the <a href="">Haversine formula</a>.
+Compare this snippet from lib/src/measure/length.dart:
   
 
 </dd>

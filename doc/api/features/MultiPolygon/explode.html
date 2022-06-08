@@ -66,6 +66,16 @@
     
 <section class="desc markdown">
   <p>explode the <a href="../../features/MultiPolygon-class.html">MultiPolygon</a> into a <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a> of <code>Point</code>s.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiPolygon([
+  [
+    LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])
+  ],
+  [
+    LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])
+  ]
+]).explode(); // [Point(1, 2), Point(3, 4), Point(5, 6), Point(1, 2), Point(7, 8), Point(9, 10), Point(11, 12), Point(7, 8)]
+</code></pre>
 </section>
 
 

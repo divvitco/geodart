@@ -61,6 +61,14 @@
 </section>
 
 
+<section class="desc markdown">
+  <p>Returns the total distance of the <a href="../../features/MultiLineString-class.html">MultiLineString</a> in meters.
+This is the sum of the distances of each <a href="../../features/LineString-class.html">LineString</a> in the <a href="../../features/MultiLineString-class.html">MultiLineString</a>.
+The distance is calculated using the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a>.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).distance(); // 314283.2550736839
+</code></pre>
+</section>
 
 
 <section class="summary source-code" id="source">

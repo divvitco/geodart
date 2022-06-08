@@ -61,7 +61,11 @@
     </section>
     
 <section class="desc markdown">
-  <p>Returns the bearing to a different <a href="../../features/Coordinate-class.html">Coordinate</a> in degrees.</p>
+  <p>Returns the bearing to a different <a href="../../features/Coordinate-class.html">Coordinate</a> in degrees.
+Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the bearing between two points.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">Coordinate(1, 2).bearingTo(Coordinate(3, 4)); // 45.0
+</code></pre>
 </section>
 
 
@@ -121,7 +125,9 @@
 
     <li class="section-title"><a href="../../features/Coordinate-class.html#instance-methods">Methods</a></li>
     <li><a href="../../features/Coordinate/bearingTo.html">bearingTo</a></li>
+    <li><a href="../../features/Coordinate/destination.html">destination</a></li>
     <li><a href="../../features/Coordinate/distanceTo.html">distanceTo</a></li>
+    <li><a href="../../features/Coordinate/interpolate.html">interpolate</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../../features/Coordinate/toJson.html">toJson</a></li>
     <li><a href="../../features/Coordinate/toString.html">toString</a></li>

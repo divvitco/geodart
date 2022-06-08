@@ -66,6 +66,16 @@
     
 <section class="desc markdown">
   <p>Returns a GeoJSON representation of the <a href="../../features/MultiPolygon-class.html">MultiPolygon</a></p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiPolygon([
+  [
+    LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])
+  ],
+  [
+    LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])
+  ]
+]).toJson(); // {'type': 'Feature', 'geometry': {'type': 'MultiPolygon', 'coordinates': [[[[1, 2], [3, 4], [5, 6], [1, 2]]], [[[7, 8], [9, 10], [11, 12], [7, 8]]]]}, 'properties': {}}
+</code></pre>
 </section>
 
 

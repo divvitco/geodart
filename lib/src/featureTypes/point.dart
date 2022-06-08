@@ -64,7 +64,7 @@ class Point extends Feature {
     return Point(
       Coordinate(json['geometry']['coordinates'][1],
           json['geometry']['coordinates'][0]),
-      properties: json['properties'],
+      properties: Map<String, dynamic>.from(json['properties']),
     );
   }
 

@@ -62,6 +62,9 @@
 <section class="desc markdown">
   <p>Flattens the <a href="../../features/MultiPoint-class.html">MultiPoint</a> into a <a href="../../features/FeatureCollection-class.html">FeatureCollection</a> of <a href="../../features/Point-class.html">Point</a>s.
 Properties of the <a href="../../features/MultiPoint-class.html">MultiPoint</a> are copied to the <a href="../../features/Point-class.html">Point</a>s.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiPoint([Coordinate(1, 2), Coordinate(3, 4)]).flatten(); // FeatureCollection([Point(Coordinate(1, 2)), Point(Coordinate(3, 4))])
+</code></pre>
 </section>
 
 

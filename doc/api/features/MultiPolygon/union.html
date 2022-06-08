@@ -63,6 +63,9 @@
 <section class="desc markdown">
   <p>Returns a <a href="../../features/MultiPolygon-class.html">MultiPolygon</a> that is the union of this <a href="../../features/MultiPolygon-class.html">MultiPolygon</a> and another <a href="../../features/MultiPolygon-class.html">MultiPolygon</a>.
 The resulting <a href="../../features/MultiPolygon-class.html">MultiPolygon</a> will have the same <a href="../../features/Feature/properties.html">properties</a> as this <a href="../../features/MultiPolygon-class.html">MultiPolygon</a>.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])]]).union(MultiPolygon([[LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])); // MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])], [LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])
+</code></pre>
 </section>
 
 

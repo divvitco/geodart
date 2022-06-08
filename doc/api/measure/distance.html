@@ -60,7 +60,14 @@
     </section>
     
 <section class="desc markdown">
-  <p>Computes the <a href="../measure/distance.html">distance</a> between two <a href="../features/Point-class.html">Point</a>s in meters.</p>
+  <p>Computes the <a href="../measure/distance.html">distance</a> between two <a href="../features/Point-class.html">Point</a>s in meters.
+The distance is the straight-line distance between the two points.
+The distance is calculated using the Haversine formula.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">distance(Point(0, 0), Point(0, 1)) // returns 1
+distance(Point(0, 0), Point(1, 1)) // returns 1.4142135623730951
+distance(Point(0, 0), Point(1, 0)) // returns 1
+</code></pre>
 </section>
 
 

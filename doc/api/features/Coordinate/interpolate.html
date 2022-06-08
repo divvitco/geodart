@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the hashCode property from the Coordinate class, for the Dart programming language.">
-  <title>hashCode property - Coordinate class - features library - Dart API</title>
+  <meta name="description" content="API docs for the interpolate method from the Coordinate class, for the Dart programming language.">
+  <title>interpolate method - Coordinate class - features library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">geodart</a></li>
     <li><a href="../../features/features-library.html">features</a></li>
     <li><a href="../../features/Coordinate-class.html">Coordinate</a></li>
-    <li class="self-crumb">hashCode property</li>
+    <li class="self-crumb">interpolate method</li>
   </ol>
-  <div class="self-name">hashCode</div>
+  <div class="self-name">interpolate</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,58 +45,54 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-property">hashCode</span> property 
+<h1><span class="kind-method">interpolate</span> method 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
+    <section class="multi-line-signature">
+      
 
-        
-<section id="getter">
+<span class="returntype"><a href="../../features/Coordinate-class.html">Coordinate</a></span>
+<span class="name ">interpolate</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="interpolate-param-to"><span class="type-annotation"><a href="../../features/Coordinate-class.html">Coordinate</a></span> <span class="parameter-name">to</span>, </span></li>
+<li><span class="parameter" id="interpolate-param-fraction"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">fraction</span></span></li>
+</ol>)
 
-<section class="multi-line-signature">
-  <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
-  <span class="name ">hashCode</span>
-  <div class="features">override</div>
+      
 
-</section>
-
-
+    </section>
+    
 <section class="desc markdown">
-  <p>The hash code for this object.</p>
-<p>A hash code is a single integer which represents the state of the object
-that affects <a href="../../features/Coordinate/operator_equals.html">operator ==</a> comparisons.</p>
-<p>All objects have hash codes.
-The default hash code implemented by <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>
-represents only the identity of the object,
-the same way as the default <a href="../../features/Coordinate/operator_equals.html">operator ==</a> implementation only considers objects
-equal if they are identical (see <a href="https://api.flutter.dev/flutter/dart-core/identityHashCode.html">identityHashCode</a>).</p>
-<p>If <a href="../../features/Coordinate/operator_equals.html">operator ==</a> is overridden to use the object state instead,
-the hash code must also be changed to represent that state,
-otherwise the object cannot be used in hash based data structures
-like the default <a href="https://api.flutter.dev/flutter/dart-core/Set-class.html">Set</a> and <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a> implementations.</p>
-<p>Hash codes must be the same for objects that are equal to each other
-according to <a href="../../features/Coordinate/operator_equals.html">operator ==</a>.
-The hash code of an object should only change if the object changes
-in a way that affects equality.
-There are no further requirements for the hash codes.
-They need not be consistent between executions of the same program
-and there are no distribution guarantees.</p>
-<p>Objects that are not equal are allowed to have the same hash code.
-It is even technically allowed that all instances have the same hash code,
-but if clashes happen too often,
-it may reduce the efficiency of hash-based data structures
-like <a href="https://api.flutter.dev/flutter/dart-collection/HashSet-class.html">HashSet</a> or <a href="https://api.flutter.dev/flutter/dart-collection/HashMap-class.html">HashMap</a>.</p>
-<p>If a subclass overrides <a href="../../features/Coordinate/hashCode.html">hashCode</a>, it should override the
-<a href="../../features/Coordinate/operator_equals.html">operator ==</a> operator as well to maintain consistency.</p>
+  <p>Returns the <a href="../../features/Coordinate-class.html">Coordinate</a> at a certain fraction of the distance between the <a href="../../features/Coordinate-class.html">Coordinate</a> and different <a href="../../features/Coordinate-class.html">Coordinate</a>, <code>to</code>.
+Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the new coordinate.
+The <code>fraction</code> is a number between 0 and 1.
+If the <code>fraction</code> is 0, the <a href="../../features/Coordinate-class.html">Coordinate</a> will be the same as the <a href="../../features/Coordinate-class.html">Coordinate</a>.
+If the <code>fraction</code> is 1, the <a href="../../features/Coordinate-class.html">Coordinate</a> will be the same as the <code>to</code>.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">Coordinate(1, 2).interpolate(Coordinate(3, 4), 0.5); // Coordinate(2, 3)
+</code></pre>
 </section>
 
 
+    
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">@override
-int get hashCode =&gt; latitude.hashCode ^ longitude.hashCode;</code></pre>
-</section>
+  <pre class="language-dart"><code class="language-dart">Coordinate interpolate(Coordinate to, double fraction) {
+  final lat1 = latitude * (pi &#47; 180);
+  final lon1 = longitude * (pi &#47; 180);
+  final lat2 = to.latitude * (pi &#47; 180);
+  final lon2 = to.longitude * (pi &#47; 180);
 
+  final dLon = lon2 - lon1;
+
+  final Bx = cos(lat2) * cos(dLon);
+  final By = cos(lat2) * sin(dLon);
+
+  final lat3 = atan2(sin(lat1) + sin(lat2),
+      sqrt((cos(lat1) + Bx) * (cos(lat1) + Bx) + By * By));
+  final lon3 = lon1 + atan2(By, cos(lat1) + Bx);
+
+  return Coordinate(lat3 * (180 &#47; pi), lon3 * (180 &#47; pi));
+}</code></pre>
 </section>
 
 
@@ -113,7 +109,7 @@ int get hashCode =&gt; latitude.hashCode ^ longitude.hashCode;</code></pre>
   <li><a href="../../index.html">geodart</a></li>
   <li><a href="../../features/features-library.html">features</a></li>
   <li><a href="../../features/Coordinate-class.html">Coordinate</a></li>
-  <li class="self-crumb">hashCode property</li>
+  <li class="self-crumb">interpolate method</li>
 </ol>
 
 
