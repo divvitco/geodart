@@ -45,10 +45,10 @@ import 'package:geodart/measure.dart';
 The following features are included in this library:
 
 * [`FeatureCollection`](#Feature-Collection)
-* [`LineString`](#Line String)
-* [`MultiLineString`](#Multi Line String)
-* [`MultiPoint`](#Multi Point)
-* [`MultiPolygon`](#Multi Polygon)
+* [`LineString`](#Line-String)
+* [`MultiLineString`](#Multi-Line-String)
+* [`MultiPoint`](#Multi-Point)
+* [`MultiPolygon`](#Multi-Polygon)
 * [`Point`](#Point)
 * [`Polygon`](#Polygon)
 
@@ -103,35 +103,35 @@ A [`Point`](#Point) is a single position. It is represented by a [`Coordinate`](
 
 ### Multi Point
 
-A [`MultiPoint`](#Multi Point) is a collection of [`Coordinate`](#Coordinate) objects, represented by individual and non-connected points.
+A [`MultiPoint`](#Multi-Point) is a collection of [`Coordinate`](#Coordinate) objects, represented by individual and non-connected points.
 
 **Constructors**
 
-* `MultiPoint.fromJson(Map<String, dynamic> json)` - Creates a [`MultiPoint`](#Multi Point) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
-* `MultiPoint.fromWKT(String wkt)` - Creates a [`MultiPoint`](#Multi Point) from a Well-Known Text string.
+* `MultiPoint.fromJson(Map<String, dynamic> json)` - Creates a [`MultiPoint`](#Multi-Point) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
+* `MultiPoint.fromWKT(String wkt)` - Creates a [`MultiPoint`](#Multi-Point) from a Well-Known Text string.
 
 **Methods**
 
 * `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects.
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
-* `toWKT()` - Returns a Well-Known Text string representing the [`MultiPoint`](#Multi Point).
-* `union(MultiPoint other)` - Merges the [`MultiPoint`](#Multi Point) with another [`MultiPoint`](#Multi Point).
+* `toWKT()` - Returns a Well-Known Text string representing the [`MultiPoint`](#Multi-Point).
+* `union(MultiPoint other)` - Merges the [`MultiPoint`](#Multi-Point) with another [`MultiPoint`](#Multi-Point).
 * `flatten()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects.
 
 **Properties**
 
 * `coordinates` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Coordinate`](#Coordinate) objects.
-* `type` - The type of the [`MultiPoint`](#Multi Point). Always `"MultiPoint"`.
+* `type` - The type of the [`MultiPoint`](#Multi-Point). Always `"MultiPoint"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 
 ### Line String
 
-A [`LineString`](#Line String) is a collection of [`Coordinate`](#Coordinate) objects that form a line.
+A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) objects that form a line.
 
 **Constructors**
 
-* `LineString.fromJson(Map<String, dynamic> json)` - Creates a [`LineString`](#Line String) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
-* `LineString.fromWkt(String wkt)` - Creates a [`LineString`](#Line String) from a Well-Known Text string.
+* `LineString.fromJson(Map<String, dynamic> json)` - Creates a [`LineString`](#Line-String) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
+* `LineString.fromWkt(String wkt)` - Creates a [`LineString`](#Line-String) from a Well-Known Text string.
 
 **Methods**
 
@@ -152,25 +152,25 @@ A [`LineString`](#Line String) is a collection of [`Coordinate`](#Coordinate) ob
 
 ### Multi Line String
 
-A [`MultiLineString`](#Multi Line String) is a collection of [`Coordinate`](#Coordinate) objects that form multiple separate LineStrings with one set of shared properties.
+A [`MultiLineString`](#Multi-Line-String) is a collection of [`Coordinate`](#Coordinate) objects that form multiple separate LineStrings with one set of shared properties.
 
 **Constructor**
 
-* `MultiLineString.fromJson(Map<String, dynamic> json)` - Creates a [`MultiLineString`](#Multi Line String) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
-* `MultiLineString.fromWkt(String wkt)` - Creates a [`MultiLineString`](#Multi Line String) from a Well-Known Text string.
+* `MultiLineString.fromJson(Map<String, dynamic> json)` - Creates a [`MultiLineString`](#Multi-Line-String) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
+* `MultiLineString.fromWkt(String wkt)` - Creates a [`MultiLineString`](#Multi-Line-String) from a Well-Known Text string.
 
 **Methods**
 
-* `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#Line String) objects.
+* `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#Line-String) objects.
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
-* `toWKT()` - Returns a Well-Known Text string representing the [`MultiLineString`](#Multi Line String).
-* `union(MultiLineString other)` - Merges the [`MultiLineString`](#Multi Line String) with another [`MultiLineString`](#Multi Line String).
-* `flatten()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#Line String) objects.
+* `toWKT()` - Returns a Well-Known Text string representing the [`MultiLineString`](#Multi-Line-String).
+* `union(MultiLineString other)` - Merges the [`MultiLineString`](#Multi-Line-String) with another [`MultiLineString`](#Multi-Line-String).
+* `flatten()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#Line-String) objects.
 
 **Properties**
 
 * `coordinates` - A nested [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Coordinate`](#Coordinate) objects.
-* `type` - The type of the [`MultiLineString`](#Multi Line String). Always `"MultiLineString"`.
+* `type` - The type of the [`MultiLineString`](#Multi-Line-String). Always `"MultiLineString"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 
 ### Polygon
@@ -187,7 +187,7 @@ A [`Polygon`](#Polygon) is a collection of [`LinearRing`](#Linear Ring) objects 
 * `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects.
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `toWKT()` - Returns a Well-Known Text string representing the [`Polygon`](#Polygon).
-* `toLineString()` - Returns a [`LineString`](#Line String) that is the same geometry as the [`Polygon`](#Polygon).
+* `toLineString()` - Returns a [`LineString`](#Line-String) that is the same geometry as the [`Polygon`](#Polygon).
 
 **Properties**
 
@@ -198,26 +198,26 @@ A [`Polygon`](#Polygon) is a collection of [`LinearRing`](#Linear Ring) objects 
 
 ### Multi Polygon
 
-A [`MultiPolygon`](#Multi Polygon) is a collection of [`Polygon`](#Polygon) geometries forming one MultiPolygon with shared properties.
+A [`MultiPolygon`](#Multi-Polygon) is a collection of [`Polygon`](#Polygon) geometries forming one MultiPolygon with shared properties.
 
 **Constructors**
 
-* `MultiPolygon.fromJson(Map<String, dynamic> json)` - Creates a [`MultiPolygon`](#Multi Polygon) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
-* `MultiPolygon.fromWkt(String wkt)` - Creates a [`MultiPolygon`](#Multi Polygon) from a Well-Known Text string.
+* `MultiPolygon.fromJson(Map<String, dynamic> json)` - Creates a [`MultiPolygon`](#Multi-Polygon) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
+* `MultiPolygon.fromWkt(String wkt)` - Creates a [`MultiPolygon`](#Multi-Polygon) from a Well-Known Text string.
 
 **Methods**
 
 * `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects.
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
-* `toWKT()` - Returns a Well-Known Text string representing the [`MultiPolygon`](#Multi Polygon).
-* `union(MultiPolygon other)` - Merges the [`MultiPolygon`](#Multi Polygon) with another [`MultiPolygon`](#Multi Polygon).
+* `toWKT()` - Returns a Well-Known Text string representing the [`MultiPolygon`](#Multi-Polygon).
+* `union(MultiPolygon other)` - Merges the [`MultiPolygon`](#Multi-Polygon) with another [`MultiPolygon`](#Multi-Polygon).
 * `flatten()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Polygon`](#Polygon) objects.
-* `toMultiLineString()` - Returns a [`MultiLineString`](#Multi Line String) that is the same geometry as the [`MultiPolygon`](#Multi Polygon).
+* `toMultiLineString()` - Returns a [`MultiLineString`](#Multi-Line-String) that is the same geometry as the [`MultiPolygon`](#Multi-Polygon).
 
 **Properties**
 
 * `coordinates` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Polygon`](#Polygon) objects.
-* `type` - The type of the [`MultiPolygon`](#Multi Polygon). Always `"MultiPolygon"`.
+* `type` - The type of the [`MultiPolygon`](#Multi-Polygon). Always `"MultiPolygon"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 * `area` - The are (in square meters) of the MultiPolygon.
 
@@ -267,7 +267,7 @@ print(polygon.area);
 
 **Measure the length of a LineString.**
 
-[`LineString`](#Line String) length is calculated on the fly.
+[`LineString`](#Line-String) length is calculated on the fly.
 
 ```dart
 import 'package:geodart/features.dart';
