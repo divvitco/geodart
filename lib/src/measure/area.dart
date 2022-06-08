@@ -15,6 +15,6 @@ double area(Feature poly) {
   } else if (poly is MultiPolygon) {
     return poly.area;
   } else {
-    throw ArgumentError('Feature must be a Polygon or Multipolygon');
+    throw ArgumentError('Feature must be a Polygon or MultiPolygon');
   }
 }
