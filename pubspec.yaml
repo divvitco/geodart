@@ -1,14 +1,11 @@
 name: geodart
-description: A geospatial toolkit written in dart
-version: 0.0.1
+description: A geospatial toolkit written in dart. Designed to make it easier to work with vector features.
+version: 0.0.2
 # homepage: https://www.example.com
 repository: https://github.com/divvitco/geodart
 
 environment:
   sdk: '>=2.17.1 <3.0.0'
-
-# dependencies:
-#   path: ^1.8.0
 
 dev_dependencies:
   lints: ^2.0.0
