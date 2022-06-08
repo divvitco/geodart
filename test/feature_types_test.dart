@@ -85,6 +85,23 @@ void main() {
       MultiPolygon feature = MultiPolygon.fromJson(geojson);
       expect(feature.area, 441144965418.01575);
     });
+
+    test("invalid geojson", () {
+      Map<String, dynamic> geojson = {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [0, 1]
+        }
+      };
+      try {
+        MultiPolygon.fromJson(geojson);
+      } catch (err) {
+        expect(
+            err.toString(), "Invalid argument(s): json is not a MultiPolygon");
+      }
+    });
   });
 
   group('point.dart', () {
