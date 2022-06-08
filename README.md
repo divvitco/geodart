@@ -44,7 +44,7 @@ import 'package:geodart/measure.dart';
 
 The following features are included in this library:
 
-* [`FeatureCollection`](#Feature Collection)
+* [`FeatureCollection`](#Feature-Collection)
 * [`LineString`](#Line String)
 * [`MultiLineString`](#Multi Line String)
 * [`MultiPoint`](#Multi Point)
@@ -61,7 +61,7 @@ convenience methods for working with coordinates.
 ### Feature Collection
 
 
-A [`FeatureCollection`](#Feature Collection) is a collection of
+A [`FeatureCollection`](#Feature-Collection) is a collection of
 [`Feature`](#Feature) objects. 
 
 It functions very similarly to a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Feature`](#Feature) objects,
@@ -69,11 +69,11 @@ but might extended to include additional properties in the future.
 
 **Constructors**
 
-* `FeatureCollection.fromJson(Map<String, dynamic> json)` - Creates a [`FeatureCollection`](#Feature Collection) from a JSON object. Automatically converts features from GeoJSON to their respective types.
+* `FeatureCollection.fromJson(Map<String, dynamic> json)` - Creates a [`FeatureCollection`](#Feature-Collection) from a JSON object. Automatically converts features from GeoJSON to their respective types.
 
 **Methods**
 
-* `toJson()` - Returns a JSON object representing the [`FeatureCollection`](#Feature Collection). Automatically converts features to GeoJSON.
+* `toJson()` - Returns a JSON object representing the [`FeatureCollection`](#Feature-Collection). Automatically converts features to GeoJSON.
 
 **Properties**
 
