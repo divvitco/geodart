@@ -213,6 +213,19 @@ If the <code>distance</code> is less than 0, the first <a href="../features/Poin
 
 </dd>
 
+        <dt id="midpoint" class="callable">
+  <span class="name"><a href="../features/LineString/midpoint.html">midpoint</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../features/Point-class.html">Point</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the mid<a href="../features/Point-class.html">Point</a> of the <a href="../features/LineString-class.html">LineString</a>.
+  
+
+</dd>
+
         <dt id="noSuchMethod" class="callable inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
     <span class="returntype parameter">&#8594; dynamic</span>
@@ -223,6 +236,23 @@ If the <code>distance</code> is less than 0, the first <a href="../features/Poin
 <dd class="inherited">
   Invoked when a non-existent method or property is accessed.
   <div class="features">inherited</div>
+
+</dd>
+
+        <dt id="pointAt" class="callable">
+  <span class="name"><a href="../features/LineString/pointAt.html">pointAt</a></span><span class="signature">(<wbr><span class="parameter" id="pointAt-param-percentage"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">percentage</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../features/Point-class.html">Point</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the <a href="../features/Point-class.html">Point</a> at the <code>percentage</code> along the <a href="../features/LineString-class.html">LineString</a>.
+If the <code>percentage</code> is greater than 1, the last <a href="../features/Point-class.html">Point</a> in the <a href="../features/LineString-class.html">LineString</a> will be returned.
+If the <code>percentage</code> is less than 0, the first <a href="../features/Point-class.html">Point</a> in the <a href="../features/LineString-class.html">LineString</a> will be returned.
+If the <code>percentage</code> is 0, the first <a href="../features/Point-class.html">Point</a> in the <a href="../features/LineString-class.html">LineString</a> will be returned.
+If the <code>percentage</code> is 1, the last <a href="../features/Point-class.html">Point</a> in the <a href="../features/LineString-class.html">LineString</a> will be returned.
+  
 
 </dd>
 
@@ -387,7 +417,9 @@ Any <a href="../features/Feature/properties.html">properties</a> will be applied
     <li class="section-title"><a href="../features/LineString-class.html#instance-methods">Methods</a></li>
     <li><a href="../features/LineString/along.html">along</a></li>
     <li><a href="../features/LineString/explode.html">explode</a></li>
+    <li><a href="../features/LineString/midpoint.html">midpoint</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../features/LineString/pointAt.html">pointAt</a></li>
     <li><a href="../features/LineString/toJson.html">toJson</a></li>
     <li><a href="../features/LineString/toPolygon.html">toPolygon</a></li>
     <li><a href="../features/LineString/toString.html">toString</a></li>

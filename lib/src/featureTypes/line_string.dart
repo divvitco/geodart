@@ -143,6 +143,38 @@ class LineString extends Feature {
     return Point(coordinates.first.interpolate(coordinates.last, ratio));
   }
 
+  /// Returns the mid[Point] of the [LineString].
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).midpoint(); // Point(Coordinate(2, 3))
+  /// ```
+  Point midpoint() {
+    return along(length / 2);
+  }
+
+  /// Returns the [Point] at the [percentage] along the [LineString].
+  /// If the [percentage] is greater than 1, the last [Point] in the [LineString] will be returned.
+  /// If the [percentage] is less than 0, the first [Point] in the [LineString] will be returned.
+  /// If the [percentage] is 0, the first [Point] in the [LineString] will be returned.
+  /// If the [percentage] is 1, the last [Point] in the [LineString] will be returned.
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).pointAt(0.5); // Point(Coordinate(2, 3))
+  /// ```
+  Point pointAt(double percentage) {
+    if (percentage <= 0) {
+      return Point(coordinates.first);
+    } else if (percentage >= 1) {
+      return Point(coordinates.last);
+    } else if (coordinates.length < 2) {
+      return Point(coordinates.first);
+    }
+
+    return along(length * percentage);
+  }
+
   /// Returns the [LineString]'s length in meters.
   /// The length is calculated using the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula).
   ///
