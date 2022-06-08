@@ -11,6 +11,8 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
+# Geodart
+
 A geospatial library for Dart. Designed primarily around vector features,
 this library provides a simple interface for working with geographic data.
 
