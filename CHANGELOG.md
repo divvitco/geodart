@@ -1,3 +1,7 @@
+## 0.1.3
+
+- More readme badges
+
 ## 0.1.2
 
 - Add area conversions to the `conversions` library.
