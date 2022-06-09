@@ -132,4 +132,10 @@ class Point extends Feature {
           other.coordinate.longitude == coordinate.longitude &&
           other.coordinate.latitude == coordinate.latitude &&
           other.properties == properties;
+
+  @override
+  int get hashCode =>
+      coordinate.latitude.hashCode ^
+      coordinate.longitude.hashCode ^
+      properties.hashCode;
 }
