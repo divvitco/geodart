@@ -1,3 +1,8 @@
+## 0.1.1
+
+- Found an incorrect import in readme
+- Added badges (hopefully) to the readme
+
 ## 0.1.0
 
 - Remove installation information from the README.md

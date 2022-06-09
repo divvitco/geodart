@@ -13,6 +13,14 @@ and the Flutter guide for
 
 # Geodart
 
+[![Pub Version](https://img.shields.io/pub/v/badges?color=blueviolet)](https://pub.dev/packages/geodart)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[![popularity](https://badges.bar/geodart/popularity)](https://pub.dev/packages/geodart/score)
+
+[![pub points](https://badges.bar/geodart/pub%20points)](https://pub.dev/packages/geodart/score)
+
 A geospatial library for Dart. Designed primarily around vector features,
 this library provides a simple interface for working with geographic data.
 
@@ -277,7 +285,7 @@ print(polygon.area);
 [`LineString`](#Line-String) length is calculated on the fly.
 
 ```dart
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 LineString lineString = LineString.fromJson(
     {

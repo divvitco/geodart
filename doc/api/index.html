@@ -57,6 +57,10 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 <h1 id="geodart">Geodart</h1>
+<p><a href="https://pub.dev/packages/geodart"><img src="https://img.shields.io/pub/v/badges?color=blueviolet" alt="Pub Version"></a></p>
+<p><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
+<p><a href="https://pub.dev/packages/geodart/score"><img src="https://badges.bar/geodart/popularity" alt="popularity"></a></p>
+<p><a href="https://pub.dev/packages/geodart/score"><img src="https://badges.bar/geodart/pub%20points" alt="pub points"></a></p>
 <p>A geospatial library for Dart. Designed primarily around vector features,
 this library provides a simple interface for working with geographic data.</p>
 <p>It's based heavily on the geojson specification, but has been extended to
@@ -249,8 +253,8 @@ but might extended to include additional properties in the future.</p>
 </ul>
 <h2 id="usage">Usage</h2>
 <p><strong>Measure the distance between two points.</strong></p>
-<pre class="language-dart"><code class="language-dart">import 'package:geodart/measure.dart';
-import 'package:geodart/features.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:geodart/measurements.dart';
+import 'package:geodart/geometries.dart';
 
 double distanceBetween = distance(
     Point.fromLngLat(1.0, 1.0),
@@ -259,12 +263,12 @@ double distanceBetween = distance(
 </code></pre>
 <p>Under the hood, this uses the coordinate <code>distanceTo()</code> function, and could be very easily replaced with a different algorithm.
 I prefer the <code>distanceTo()</code> function because it is more explicit and easier to read.</p>
-<pre class="language-dart"><code class="language-dart">import 'package:geodart/features.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:geodart/geometries.dart';
 
 double distanceBetween = Coordinate(1.0, 1.0).distanceTo(Coordinate(2.0, 2.0));
 </code></pre>
 <p><strong>Measure the area of a polygon.</strong></p>
-<pre class="language-dart"><code class="language-dart">import 'package:geodart/features.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:geodart/geometries.dart';
 
 Polygon polygon = Polygon.fromJson(
     {
@@ -283,7 +287,7 @@ print(polygon.area);
 </code></pre>
 <p><strong>Measure the length of a LineString.</strong></p>
 <p><a href="#Line-String"><code>LineString</code></a> length is calculated on the fly.</p>
-<pre class="language-dart"><code class="language-dart">import 'package:geodart/features.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:geodart/geometries.dart';
 
 LineString lineString = LineString.fromJson(
     {
