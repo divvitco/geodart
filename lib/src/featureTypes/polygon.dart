@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 /// A [Polygon] is a single closed path with shared properties.
 /// The first [LinearRing] defines the outer boundary of the [Polygon], while the following [LinearRing]s define holes within the [Polygon].

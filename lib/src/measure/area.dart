@@ -1,4 +1,4 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 /// Calculates the [area] of a [Polygon] or [MultiPolygon], in square meters.
 /// Also accessible from [Polygon.area] and [MultiPolygon.area].

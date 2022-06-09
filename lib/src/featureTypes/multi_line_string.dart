@@ -1,4 +1,4 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 /// A [MultiLineString] is a [Feature] made up of a [List] of [LineString] [Coordinate]s.
 class MultiLineString extends Feature {

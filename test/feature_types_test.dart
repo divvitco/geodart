@@ -1,4 +1,4 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -101,35 +101,6 @@ void main() {
         expect(
             err.toString(), "Invalid argument(s): json is not a MultiPolygon");
       }
-    });
-  });
-
-  group('point.dart', () {
-    setUp(() {
-      // Additional setup goes here.
-    });
-
-    test('Create fromJson() test', () {
-      Map<String, dynamic> geojson = {
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-122.676483, 45.516525]
-        }
-      };
-      Point feature = Point.fromJson(geojson);
-      expect(feature.coordinate.latitude, 45.516525);
-      Map<String, dynamic> returned = feature.toJson();
-      expect(returned['geometry']['coordinates'][0],
-          geojson['geometry']['coordinates'][0]);
-    });
-
-    test("create from wkt", () {
-      String wkt = "POINT(-122.676483 45.516525)";
-      Point feature = Point.fromWKT(wkt);
-      expect(feature.coordinate.latitude, 45.516525);
-      expect(feature.toWKT(), wkt);
     });
   });
 }

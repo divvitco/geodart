@@ -1,6 +1,15 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 /// A [Point] is a single position in a coordinate system, with [properties].
+/// A [Point] can be created from a [Coordinate], from a WKT [String], or from a GeoJSON [Map].
+/// A [Point] can be converted to a WKT [String] or GeoJSON [Map].
+///
+/// Example:
+/// ```dart
+/// Point(Coordinate(1, 2), {'name': 'point'}); // Point(Coordinate(1, 2), {'name': 'point'})
+/// Point(Coordinate(1, 2), {'name': 'point'}).toWKT(); // POINT(1 2)
+/// Point(Coordinate(1, 2), {'name': 'point'}).toJson(); // {'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [1, 2]}, 'properties': {'name': 'point'}}
+/// ```
 class Point extends Feature {
   Coordinate coordinate;
   static final String type = 'Point';
@@ -57,8 +66,13 @@ class Point extends Feature {
   /// ```
   @override
   factory Point.fromJson(Map<String, dynamic> json) {
-    if (json['geometry']['type'] != 'Point') {
+    if (json['geometry'] == null) {
+      throw ArgumentError('json does not contain geometry');
+    } else if (json['geometry']['type'] != 'Point') {
       throw ArgumentError('json is not a Point');
+    } else if (json['geometry']['coordinates'] == null ||
+        json['geometry']['coordinates'].isEmpty) {
+      throw ArgumentError('json does not contain coordinates');
     }
 
     return Point(
@@ -101,4 +115,21 @@ class Point extends Feature {
   List<Point> explode() {
     return [this];
   }
+
+  /// Checks for equality between two [Point]s, specifically if they have the same [coordinate] and [properties].
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 2), properties: {'name': 'point'}) == Point(Coordinate(1, 2), properties: {'name': 'point'}); // true
+  /// Point(Coordinate(1, 2), properties: {'name': 'point'}) == Point(Coordinate(1, 2), properties: {'name': 'point2'}); // false
+  /// Point(Coordinate(1, 2), properties: {'name': 'point'}) == Point(Coordinate(1, 3), properties: {'name': 'point'}); // false
+  /// ```
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Point &&
+          runtimeType == other.runtimeType &&
+          other.coordinate.longitude == coordinate.longitude &&
+          other.coordinate.latitude == coordinate.latitude &&
+          other.properties == properties;
 }

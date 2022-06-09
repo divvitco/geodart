@@ -1,4 +1,4 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 void main() {
   var point = Point.fromWKT('POINT(10 20)');

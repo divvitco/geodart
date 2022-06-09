@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the area property from the Polygon class, for the Dart programming language.">
+  <title>area property - Polygon class - geometries library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">geodart</a></li>
+    <li><a href="../../geometries/geometries-library.html">geometries</a></li>
+    <li><a href="../../geometries/Polygon-class.html">Polygon</a></li>
+    <li class="self-crumb">area property</li>
+  </ol>
+  <div class="self-name">area</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-property">area</span> property 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+
+        
+<section id="getter">
+
+<section class="multi-line-signature">
+  <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  <span class="name ">area</span>
+  
+
+</section>
+
+
+<section class="desc markdown">
+  <p>The area pf the <a href="../../geometries/Polygon-class.html">Polygon</a> in square meters.</p>
+</section>
+
+
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">double get area {
+  num rad(num value) =&gt; value * pi &#47; 180;
+  double ringArea(LinearRing ring) {
+    &#47;&#47; ignore: constant_identifier_names
+    const WGS84_RADIUS = 6378137;
+    double ringAreaSum = 0;
+
+    if (ring.coordinates.length &gt; 2) {
+      for (int i = 0; i &lt; coordinates.length; i++) {
+        var lowerIndex = i;
+        var middleIndex = i + 1;
+        var upperIndex = i + 2;
+
+        if (i == ring.coordinates.length - 2) {
+          lowerIndex = ring.coordinates.length - 2;
+          middleIndex = ring.coordinates.length - 1;
+          upperIndex = 0;
+        } else if (i == ring.coordinates.length - 1) {
+          lowerIndex = ring.coordinates.length - 1;
+          middleIndex = 0;
+          upperIndex = 1;
+        }
+
+        var p1 = ring.coordinates[lowerIndex];
+        var p2 = ring.coordinates[middleIndex];
+        var p3 = ring.coordinates[upperIndex];
+
+        ringAreaSum +=
+            (rad(p3.longitude) - rad(p1.longitude)) * sin(rad(p2.latitude));
+      }
+
+      ringAreaSum = ringAreaSum * WGS84_RADIUS * WGS84_RADIUS &#47; 2;
+    }
+
+    return ringAreaSum;
+  }
+
+  double polygonArea(List&lt;LinearRing&gt; rings) {
+    double polyArea = 0;
+
+    if (rings.isNotEmpty) {
+      polyArea += ringArea(rings[0]).abs();
+      for (var hole in rings.getRange(1, coordinates.length)) {
+        polyArea -= ringArea(hole).abs();
+      }
+    }
+
+    return polyArea;
+  }
+
+  return polygonArea(coordinates);
+}</code></pre>
+</section>
+
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">geodart</a></li>
+  <li><a href="../../geometries/geometries-library.html">geometries</a></li>
+  <li><a href="../../geometries/Polygon-class.html">Polygon</a></li>
+  <li class="self-crumb">area property</li>
+</ol>
+
+
+    <h5>Polygon class</h5>
+    <ol>
+
+        <li class="section-title"><a href="../../geometries/Polygon-class.html#constructors">Constructors</a></li>
+          <li><a href="../../geometries/Polygon/Polygon.html">Polygon</a></li>
+          <li><a href="../../geometries/Polygon/Polygon.fromJson.html">fromJson</a></li>
+          <li><a href="../../geometries/Polygon/Polygon.fromWKT.html">fromWKT</a></li>
+
+
+    <li class="section-title">
+      <a href="../../geometries/Polygon-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../../geometries/Polygon/area.html">area</a></li>
+    <li><a href="../../geometries/Polygon/coordinates.html">coordinates</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li class="inherited"><a href="../../geometries/Feature/properties.html">properties</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+
+    <li class="section-title"><a href="../../geometries/Polygon-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../geometries/Polygon/explode.html">explode</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../geometries/Polygon/toJson.html">toJson</a></li>
+    <li><a href="../../geometries/Polygon/toLineString.html">toLineString</a></li>
+    <li><a href="../../geometries/Polygon/toString.html">toString</a></li>
+    <li><a href="../../geometries/Polygon/toWKT.html">toWKT</a></li>
+
+    <li class="section-title inherited"><a href="../../geometries/Polygon-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+        <li class="section-title"><a href="../../geometries/Polygon-class.html#static-properties">Static properties</a></li>
+          <li><a href="../../geometries/Polygon/type.html">type</a></li>
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    geodart
+      0.1.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

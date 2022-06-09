@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the destination method from the Coordinate class, for the Dart programming language.">
+  <title>destination method - Coordinate class - geometries library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">geodart</a></li>
+    <li><a href="../../geometries/geometries-library.html">geometries</a></li>
+    <li><a href="../../geometries/Coordinate-class.html">Coordinate</a></li>
+    <li class="self-crumb">destination method</li>
+  </ol>
+  <div class="self-name">destination</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">destination</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+
+<span class="returntype"><a href="../../geometries/Coordinate-class.html">Coordinate</a></span>
+<span class="name ">destination</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="destination-param-distance"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">distance</span>, </span></li>
+<li><span class="parameter" id="destination-param-bearing"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">bearing</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Returns the <a href="../../geometries/Coordinate-class.html">Coordinate</a> at a certain distance and bearing from the <a href="../../geometries/Coordinate-class.html">Coordinate</a>.
+Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the new coordinate.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">Coordinate(1, 2).destination(1000, 45); // Coordinate(3.0, 4.0)
+</code></pre>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">Coordinate destination(double distance, double bearing) {
+  final lat1 = latitude * (pi &#47; 180);
+  final lon1 = longitude * (pi &#47; 180);
+
+  final bearingRad = bearing * (pi &#47; 180);
+
+  final d = distance &#47; 6371000;
+
+  final lat2 =
+      asin(sin(lat1) * cos(d) + cos(lat1) * sin(d) * cos(bearingRad));
+  final lon2 = lon1 +
+      atan2(sin(bearingRad) * sin(d) * cos(lat1),
+          cos(d) - sin(lat1) * sin(lat2));
+
+  return Coordinate(lat2 * (180 &#47; pi), lon2 * (180 &#47; pi));
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">geodart</a></li>
+  <li><a href="../../geometries/geometries-library.html">geometries</a></li>
+  <li><a href="../../geometries/Coordinate-class.html">Coordinate</a></li>
+  <li class="self-crumb">destination method</li>
+</ol>
+
+
+    <h5>Coordinate class</h5>
+    <ol>
+
+        <li class="section-title"><a href="../../geometries/Coordinate-class.html#constructors">Constructors</a></li>
+          <li><a href="../../geometries/Coordinate/Coordinate.html">Coordinate</a></li>
+          <li><a href="../../geometries/Coordinate/Coordinate.fromJson.html">fromJson</a></li>
+          <li><a href="../../geometries/Coordinate/Coordinate.fromWKT.html">fromWKT</a></li>
+
+
+    <li class="section-title">
+      <a href="../../geometries/Coordinate-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../../geometries/Coordinate/hashCode.html">hashCode</a></li>
+    <li><a href="../../geometries/Coordinate/latitude.html">latitude</a></li>
+    <li><a href="../../geometries/Coordinate/longitude.html">longitude</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+
+    <li class="section-title"><a href="../../geometries/Coordinate-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../geometries/Coordinate/bearingTo.html">bearingTo</a></li>
+    <li><a href="../../geometries/Coordinate/destination.html">destination</a></li>
+    <li><a href="../../geometries/Coordinate/distanceTo.html">distanceTo</a></li>
+    <li><a href="../../geometries/Coordinate/interpolate.html">interpolate</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../geometries/Coordinate/toJson.html">toJson</a></li>
+    <li><a href="../../geometries/Coordinate/toString.html">toString</a></li>
+    <li><a href="../../geometries/Coordinate/toWKT.html">toWKT</a></li>
+
+    <li class="section-title"><a href="../../geometries/Coordinate-class.html#operators">Operators</a></li>
+    <li><a href="../../geometries/Coordinate/operator_equals.html">operator ==</a></li>
+
+
+        <li class="section-title"><a href="../../geometries/Coordinate-class.html#static-properties">Static properties</a></li>
+          <li><a href="../../geometries/Coordinate/type.html">type</a></li>
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    geodart
+      0.1.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

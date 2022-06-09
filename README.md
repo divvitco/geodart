@@ -19,28 +19,11 @@ this library provides a simple interface for working with geographic data.
 It's based heavily on the geojson specification, but has been extended to
 add functionality directly to the feature types.
 
-## Getting started
+## Geometries
 
-#### Add it to your dependencies:
+To use this library, you'll need to get familiar with the feature types. All other actions taken depend on using the proper feature types. These feature types are very similar to the ones used in the [geojson](https://tools.ietf.org/html/rfc7946) specification.
 
-```yaml
-dependencies:
-  geodart: '^0.0.1'
-```
-OR run this command to install it:
-
-```terminal
-flutter pub add geodart
-```
-
-#### Then import it:
-
-```dart
-import 'package:geodart/features.dart';
-import 'package:geodart/measure.dart';
-```
-
-## Features
+I'll admit, the feature coordinates are a bit of a mess. I'm working on a better way to handle this.
 
 The following features are included in this library:
 

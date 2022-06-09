@@ -1,4 +1,4 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 /// a [MultiPoint] is a collection of [Coordinate]s that share properties.
 class MultiPoint extends Feature {

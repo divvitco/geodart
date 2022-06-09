@@ -1,4 +1,4 @@
-import 'package:geodart/src/featureTypes/point.dart';
+import 'package:geodart/geometries.dart';
 
 /// Computes the [distance] between two [Point]s in meters.
 /// The distance is the straight-line distance between the two points.

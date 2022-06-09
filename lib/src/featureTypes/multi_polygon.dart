@@ -1,4 +1,4 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 /// A [MultiPolygon] is a collection of [Polygon] Geometries with shared properties.
 class MultiPolygon extends Feature {

@@ -1,4 +1,4 @@
-import 'package:geodart/src/featureTypes/point.dart';
+import 'package:geodart/geometries.dart';
 
 /// Computes the [bearing] between two [Point]s.
 /// The bearing is the angle from the north to the second point.

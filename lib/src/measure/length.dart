@@ -1,4 +1,4 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 /// Calculates the [length] of a [LineString] or [MultiLineString], in meters.
 /// Also accessible from [LineString.length] and [MultiLineString.length].

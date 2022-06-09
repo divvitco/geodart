@@ -1,4 +1,4 @@
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 /// A FeatureCollection is a collection of [Feature]s.
 class FeatureCollection {

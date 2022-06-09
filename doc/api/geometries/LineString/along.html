@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the along method from the LineString class, for the Dart programming language.">
+  <title>along method - LineString class - geometries library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">geodart</a></li>
+    <li><a href="../../geometries/geometries-library.html">geometries</a></li>
+    <li><a href="../../geometries/LineString-class.html">LineString</a></li>
+    <li class="self-crumb">along method</li>
+  </ol>
+  <div class="self-name">along</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">along</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+
+<span class="returntype"><a href="../../geometries/Point-class.html">Point</a></span>
+<span class="name ">along</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="along-param-distance"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">distance</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Returns the <a href="../../geometries/Point-class.html">Point</a> at the <code>distance</code> (in meters) along the <a href="../../geometries/LineString-class.html">LineString</a>.
+If the <code>distance</code> is greater than the length of the <a href="../../geometries/LineString-class.html">LineString</a>,
+the last <a href="../../geometries/Point-class.html">Point</a> in the <a href="../../geometries/LineString-class.html">LineString</a> will be returned.
+If the <code>distance</code> is less than 0, the first <a href="../../geometries/Point-class.html">Point</a> in the <a href="../../geometries/LineString-class.html">LineString</a> will be returned.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">LineString([Coordinate(1, 2), Coordinate(3, 4)]).along(100); // Point(Coordinate(2, 3))
+</code></pre>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">Point along(double distance) {
+  if (distance &lt;= 0) {
+    return Point(coordinates.first);
+  } else if (distance &gt;= length) {
+    return Point(coordinates.last);
+  } else if (coordinates.length &lt; 2) {
+    return Point(coordinates.first);
+  }
+
+  if (coordinates.length &gt; 2) {
+    double distanceLeft = distance;
+    for (int i = 0; i &lt; coordinates.length - 1; i++) {
+      final c1 = coordinates[i];
+      final c2 = coordinates[i + 1];
+      final segmentLength = c1.distanceTo(c2);
+      if (distanceLeft &lt;= segmentLength) {
+        final ratio = distanceLeft &#47; segmentLength;
+        return Point(c1.interpolate(c2, ratio));
+      } else {
+        distanceLeft -= segmentLength;
+      }
+    }
+  }
+
+  final ratio = distance &#47; length;
+  return Point(coordinates.first.interpolate(coordinates.last, ratio));
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">geodart</a></li>
+  <li><a href="../../geometries/geometries-library.html">geometries</a></li>
+  <li><a href="../../geometries/LineString-class.html">LineString</a></li>
+  <li class="self-crumb">along method</li>
+</ol>
+
+
+    <h5>LineString class</h5>
+    <ol>
+
+        <li class="section-title"><a href="../../geometries/LineString-class.html#constructors">Constructors</a></li>
+          <li><a href="../../geometries/LineString/LineString.html">LineString</a></li>
+          <li><a href="../../geometries/LineString/LineString.fromJson.html">fromJson</a></li>
+          <li><a href="../../geometries/LineString/LineString.fromWKT.html">fromWKT</a></li>
+
+
+    <li class="section-title">
+      <a href="../../geometries/LineString-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../../geometries/LineString/coordinates.html">coordinates</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li><a href="../../geometries/LineString/isClosedRing.html">isClosedRing</a></li>
+    <li><a href="../../geometries/LineString/length.html">length</a></li>
+    <li class="inherited"><a href="../../geometries/Feature/properties.html">properties</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+
+    <li class="section-title"><a href="../../geometries/LineString-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../geometries/LineString/along.html">along</a></li>
+    <li><a href="../../geometries/LineString/explode.html">explode</a></li>
+    <li><a href="../../geometries/LineString/midpoint.html">midpoint</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../geometries/LineString/pointAt.html">pointAt</a></li>
+    <li><a href="../../geometries/LineString/toJson.html">toJson</a></li>
+    <li><a href="../../geometries/LineString/toPolygon.html">toPolygon</a></li>
+    <li><a href="../../geometries/LineString/toString.html">toString</a></li>
+    <li><a href="../../geometries/LineString/toWKT.html">toWKT</a></li>
+
+    <li class="section-title inherited"><a href="../../geometries/LineString-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+        <li class="section-title"><a href="../../geometries/LineString-class.html#static-properties">Static properties</a></li>
+          <li><a href="../../geometries/LineString/type.html">type</a></li>
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    geodart
+      0.1.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
