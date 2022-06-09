@@ -233,8 +233,8 @@ A [`Coordinate`](#Coordinate) is a point in a two-dimensional Cartesian coordina
 **Measure the distance between two points.**
 
 ```dart
-import 'package:geodart/measure.dart';
-import 'package:geodart/features.dart';
+import 'package:geodart/measurements.dart';
+import 'package:geodart/geometries.dart';
 
 double distanceBetween = distance(
     Point.fromLngLat(1.0, 1.0),
@@ -246,7 +246,7 @@ Under the hood, this uses the coordinate `distanceTo()` function, and could be v
 I prefer the `distanceTo()` function because it is more explicit and easier to read.
 
 ```dart
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 double distanceBetween = Coordinate(1.0, 1.0).distanceTo(Coordinate(2.0, 2.0));
 ```
@@ -254,7 +254,7 @@ double distanceBetween = Coordinate(1.0, 1.0).distanceTo(Coordinate(2.0, 2.0));
 **Measure the area of a polygon.**
 
 ```dart
-import 'package:geodart/features.dart';
+import 'package:geodart/geometries.dart';
 
 Polygon polygon = Polygon.fromJson(
     {

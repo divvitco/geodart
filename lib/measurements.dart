@@ -5,7 +5,7 @@
 ///
 /// Example:
 /// ```dart
-/// import 'package:geodart/src/measure.dart';
+/// import 'package:geodart/measurements.dart';
 ///
 /// // Calculate the distance between two points.
 /// double distance = measure.distance(Point(0, 0), Point(1, 1));

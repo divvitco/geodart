@@ -5,7 +5,7 @@
 /// ## Using
 ///
 /// ```dart
-/// import 'package:geodart/conversion.dart';
+/// import 'package:geodart/conversions.dart';
 ///
 /// // Convert distances
 /// convertDistance(20, SingleAxisUnits.nauticalMiles, SingleAxisUnits.feet); // returns 121522

@@ -45,7 +45,7 @@
 /// Examples of how to use the above feature classes are shown below.
 ///
 /// ```dart
-/// import 'package:geodart/features.dart';
+/// import 'package:geodart/geometries.dart';
 ///
 /// // Create a point feature
 /// Point point = Point(
