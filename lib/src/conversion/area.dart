@@ -1,4 +1,9 @@
-/// Convert [original] distance [from] some area unit [to] another.
+/// Convert [original] area [from] some unit [to] another.
+///
+/// Example:
+/// ```dart
+/// convertArea(100, AreaUnits.hectares, AreaUnits.squareMeters) // returns: 10000
+/// ```
 double convertArea(
   double original,
   AreaUnit from,
@@ -7,6 +12,7 @@ double convertArea(
   return original * to.squareMeterRatio / from.squareMeterRatio;
 }
 
+/// A class to define units of area
 class AreaUnit {
   final String title;
   final String identifier;
@@ -18,6 +24,7 @@ class AreaUnit {
       required this.squareMeterRatio});
 }
 
+/// A helper class to make units of area more accessible
 class AreaUnits {
   static final AreaUnit squareMeters =
       AreaUnit(title: "Square Meters", identifier: "m2", squareMeterRatio: 1);

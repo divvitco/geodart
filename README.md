@@ -25,6 +25,32 @@ this library provides a simple interface for working with geographic data.
 It's based heavily on the geojson specification, but has been extended to
 add functionality directly to the feature types.
 
+## Conversions
+
+You can convert between different units with the [`conversions`](#conversions) library.
+
+Types of conversions:
+
+  - **Distance**: conversions between meters, kilometers, and miles.
+  - **Area**: conversions between square meters, square kilometers, and square miles.
+  - **Angle**: conversions between degrees, radians, and gradians.
+
+Here's an example:
+
+```dart
+import 'package:geodart/conversions.dart';
+
+// Ten miles to kilometers
+convertDistance(10, DistanceUnit.miles, DistanceUnit.kilometers); // returns 16.09344
+
+// Ten degrees to radians
+convertAngle(10, AngleUnit.degrees, AngleUnit.radians); // returns 0.17453292519943295
+
+// Ten acres to square miles
+convertArea(10, AreaUnit.acres, AreaUnit.squareMiles); // returns 0.004046856
+
+```
+
 ## Geometries
 
 To use this library, you'll need to get familiar with the feature types. All other actions taken depend on using the proper feature types. These feature types are very similar to the ones used in the [geojson](https://tools.ietf.org/html/rfc7946) specification.

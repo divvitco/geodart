@@ -1,6 +1,8 @@
 ## 0.1.3
 
 - More readme badges
+- Convert between angle units
+- Add conversion example to README
 
 ## 0.1.2
 
