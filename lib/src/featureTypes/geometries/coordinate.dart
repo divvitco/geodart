@@ -134,12 +134,12 @@ class Coordinate {
 
     final dLon = lon2 - lon1;
 
-    final Bx = cos(lat2) * cos(dLon);
-    final By = cos(lat2) * sin(dLon);
+    final bx = cos(lat2) * cos(dLon);
+    final by = cos(lat2) * sin(dLon);
 
     final lat3 = atan2(sin(lat1) + sin(lat2),
-        sqrt((cos(lat1) + Bx) * (cos(lat1) + Bx) + By * By));
-    final lon3 = lon1 + atan2(By, cos(lat1) + Bx);
+        sqrt((cos(lat1) + bx) * (cos(lat1) + bx) + by * by));
+    final lon3 = lon1 + atan2(by, cos(lat1) + bx);
 
     return Coordinate(lat3 * (180 / pi), lon3 * (180 / pi));
   }
