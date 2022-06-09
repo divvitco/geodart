@@ -14,6 +14,8 @@ and the Flutter guide for
 # Geodart
 
 [![Pub Version](https://img.shields.io/pub/v/geodart)](https://pub.dev/packages/geodart)
+[![Pub Score](https://img.shields.io/pub/points/geodart)](https://pub.dev/packages/geodart)
+[![Open Issues](https://img.shields.io/github/issues-raw/divvitco/geodart)](https://github.com/divvitco/geodart/issues)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A geospatial library for Dart. Designed primarily around vector features,
