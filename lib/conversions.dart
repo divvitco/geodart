@@ -8,8 +8,12 @@
 /// import 'package:geodart/conversions.dart';
 ///
 /// // Convert distances
-/// convertDistance(20, SingleAxisUnits.nauticalMiles, SingleAxisUnits.feet); // returns 121522
+/// convertDistance(20, DistanceUnits.nauticalMiles, DistanceUnits.feet); // returns 121522
+///
+/// // Convert areas
+/// convertArea(20, AreaUnits.hectares, AreaUnits.squareMeters); // returns 200000
 /// ```
 library conversions;
 
 export 'src/conversion/distance.dart';
+export 'src/conversion/area.dart';

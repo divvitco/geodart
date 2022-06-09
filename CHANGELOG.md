@@ -1,3 +1,9 @@
+## 0.1.2
+
+- Add area conversions to the `conversions` library.
+- Fix readme pub.dev badge.
+- Fix examples path.
+
 ## 0.1.1
 
 - Found an incorrect import in readme
