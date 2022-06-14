@@ -1,3 +1,10 @@
+## 0.2.3
+
+- Expose `convertAngle` function.
+- Fix readme conversion bugs.
+- Change `distanceTo` and `bearingTo` to accept units.
+- Document available units in readme.
+
 ## 0.2.2
 
 - Add BoundingBox `toPolygon` conversion
