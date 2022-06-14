@@ -51,7 +51,13 @@
 
     
 <section class="desc markdown">
-  <p>The base coordinate class, used by all feature types.</p>
+  <p>The base coordinate class, used by all feature types.
+It's used to represent a point in geographic coordinates.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">Coordinate(1, 2); // Coordinate(1, 2)
+Coordinate(1, 2).toWKT(); // 1 2
+Coordinate(1, 2).toJson(); // [1, 2]
+</code></pre>
 </section>
 
 
@@ -79,6 +85,14 @@
         </dt>
         <dd>
           Creates a <a href="../geometries/Coordinate-class.html">Coordinate</a> from a WKT <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>.
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+        <dt id="Coordinate.random" class="callable">
+          <span class="name"><a href="../geometries/Coordinate/Coordinate.random.html">Coordinate.random</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+          Returns a random <a href="../geometries/Coordinate-class.html">Coordinate</a>.
+This is useful for testing.
             <div class="constructor-modifier features">factory</div>
         </dd>
     </dl>
@@ -347,6 +361,7 @@ Useless on its own, but useful for other classes.
           <li><a href="../geometries/Coordinate/Coordinate.html">Coordinate</a></li>
           <li><a href="../geometries/Coordinate/Coordinate.fromJson.html">fromJson</a></li>
           <li><a href="../geometries/Coordinate/Coordinate.fromWKT.html">fromWKT</a></li>
+          <li><a href="../geometries/Coordinate/Coordinate.random.html">random</a></li>
 
 
     <li class="section-title">
@@ -384,7 +399,7 @@ Useless on its own, but useful for other classes.
 <footer>
   <span class="no-break">
     geodart
-      0.2.0
+      0.2.2
   </span>
 
   

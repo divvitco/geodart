@@ -162,7 +162,6 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 
 * `along(distance)` - Returns a [`Point`](#Point) at the specified distance along the line.
 * `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects that make up the LineString.
-* `midpoint()` - Returns a [`Point`](#Point) at the midpoint of the LineString.
 * `toJson()` - Returns a GeoJSON [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of the LineString.
 * `toPolygon()` - Returns a [`Polygon`](#Polygon) that is the same as the LineString. LineString must be closed, or an exception will be thrown.
 * `toWKT()` - Returns a [`String`](https://api.dartlang.org/stable/dart-core/String-class.html) of the LineString in WKT format.
@@ -176,6 +175,8 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 * `bbox` - a [`BoundingBox`](#BoundingBox) of the [`LineString`](#linestring).
 * `segments` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#linestring) objects that make up the LineString.
+* `midpoint` - Returns a [`Point`](#Point) at the midpoint of the LineString.
+
 
 ### Multi Line String
 

@@ -62,6 +62,18 @@
 <section class="desc markdown">
   <p>Uses the <a href="../../geometries/Polygon-class.html">Polygon</a>'s <a href="../../geometries/Polygon/coordinates.html">coordinates</a> to make a <a href="../../geometries/LineString-class.html">LineString</a>.
 Ignores any holes in the polygon.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">Polygon polygon = Polygon([
+  LinearRing([
+    Coordinate(0, 0),
+    Coordinate(0, 1),
+    Coordinate(1, 1),
+    Coordinate(1, 0),
+    Coordinate(0, 0),
+  ]),
+]);
+print(polygon.lineString);
+</code></pre>
 </section>
 
 
@@ -139,7 +151,7 @@ Ignores any holes in the polygon.</p>
 <footer>
   <span class="no-break">
     geodart
-      0.2.0
+      0.2.2
   </span>
 
   
