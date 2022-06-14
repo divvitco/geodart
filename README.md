@@ -31,9 +31,9 @@ You can convert between different units with the [`conversions`](#conversions) l
 
 Types of conversions:
 
-  - **Distance**: conversions between meters, kilometers, and miles.
-  - **Area**: conversions between square meters, square kilometers, and square miles.
-  - **Angle**: conversions between degrees, radians, and gradians.
+  - **Distance**: conversions between meters, kilometers, and miles, etc.
+  - **Area**: conversions between square meters, square kilometers, and square miles, etc.
+  - **Angle**: conversions between degrees, radians, and gradians, etc.
 
 Here's an example:
 
@@ -41,15 +41,54 @@ Here's an example:
 import 'package:geodart/conversions.dart';
 
 // Ten miles to kilometers
-convertDistance(10, DistanceUnit.miles, DistanceUnit.kilometers); // returns 16.09344
+convertDistance(10, DistanceUnits.miles, DistanceUnits.kilometers); // returns 16.09344
 
 // Ten degrees to radians
-convertAngle(10, AngleUnit.degrees, AngleUnit.radians); // returns 0.17453292519943295
+convertAngle(10, AngleUnits.degrees, AngleUnits.radians); // returns 0.17453292519943295
 
 // Ten acres to square miles
-convertArea(10, AreaUnit.acres, AreaUnit.squareMiles); // returns 0.004046856
-
+convertArea(10, AreaUnits.acres, AreaUnits.squareMiles); // returns 0.004046856
 ```
+
+There are some static units that are available with the type of `DistanceUnit`, `AngleUnit` and `AreaUnit`. There are some preset units that are available with these types:
+
+**`DistanceUnit`**
+
+The following are the available units for length and distance:
+
+  - `DistanceUnits.meters`
+  - `DistanceUnits.kilometers`
+  - `DistanceUnits.miles`
+  - `DistanceUnits.feet`
+  - `DistanceUnits.yards`
+  - `DistanceUnits.nauticalMiles`
+  - `DistanceUnits.millimeters`
+  - `DistanceUnits.centimeters`
+
+**`AngleUnit`**
+
+The following are the available units for angles:
+
+  - `AngleUnits.degrees`
+  - `AngleUnits.radians`
+  - `AngleUnits.gradians`
+  - `AngleUnits.turns`
+  - `AngleUnits.arcSeconds`
+  - `AngleUnits.arcMinutes`
+  - `AngleUnits.milliradians`
+
+**`AreaUnit`**
+
+The following are the available units for area:
+
+  - `AreaUnits.squareMeters`
+  - `AreaUnits.squareKilometers`
+  - `AreaUnits.squareMiles`
+  - `AreaUnits.acres`
+  - `AreaUnits.hectares`
+  - `AreaUnits.squareFeet`
+  - `AreaUnits.squareYards`
+  - `AreaUnits.squareInches`
 
 ## Geometries
 

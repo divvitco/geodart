@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:geodart/conversions.dart';
+
 /// The base coordinate class, used by all feature types.
 /// It's used to represent a point in geographic coordinates.
 ///
@@ -87,14 +89,14 @@ class Coordinate {
         Random().nextDouble() * 180 - 90, Random().nextDouble() * 360 - 180);
   }
 
-  /// Returns the distance to a different [Coordinate] in meters.
+  /// Returns the distance to a different [Coordinate] in meters or specified [unit].
   /// Uses the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula) to calculate the distance between two points.
   ///
   /// Example:
   /// ```dart
   /// Coordinate(1, 2).distanceTo(Coordinate(3, 4)); // 314635.33
   /// ```
-  double distanceTo(Coordinate other) {
+  double distanceTo(Coordinate other, {DistanceUnit? unit}) {
     final lat1 = latitude * (pi / 180);
     final lon1 = longitude * (pi / 180);
     final lat2 = other.latitude * (pi / 180);
@@ -107,17 +109,21 @@ class Coordinate {
         cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2);
     final c = 2 * atan2(sqrt(a), sqrt(1 - a));
 
-    return 6371000 * c;
+    return convertDistance(
+      6371000 * c,
+      DistanceUnits.meters,
+      unit ?? DistanceUnits.meters,
+    );
   }
 
-  /// Returns the bearing to a different [Coordinate] in degrees.
+  /// Returns the bearing to a different [Coordinate] in degrees, or specified [unit].
   /// Uses the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula) to calculate the bearing between two points.
   ///
   /// Example:
   /// ```dart
   /// Coordinate(1, 2).bearingTo(Coordinate(3, 4)); // 45.0
   /// ```
-  double bearingTo(Coordinate other) {
+  double bearingTo(Coordinate other, {AngleUnit? unit}) {
     final lat1 = latitude * (pi / 180);
     final lon1 = longitude * (pi / 180);
     final lat2 = other.latitude * (pi / 180);
@@ -129,10 +135,12 @@ class Coordinate {
     final x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
     final bearing = atan2(y, x);
 
-    return (bearing * (180 / pi) + 360) % 360;
+    return convertAngle((bearing * (180 / pi) + 360) % 360, AngleUnits.degrees,
+        unit ?? AngleUnits.degrees);
   }
 
   /// Returns the [Coordinate] at a certain distance and bearing from the [Coordinate].
+  /// [distance] is in meters and [bearing] is in degrees.
   /// Uses the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula) to calculate the new coordinate.
   ///
   /// Example:
