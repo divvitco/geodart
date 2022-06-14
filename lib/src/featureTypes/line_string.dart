@@ -118,6 +118,23 @@ class LineString extends Feature {
     return BoundingBox.fromPoints(points);
   }
 
+  /// Returns each segment (a 2-coordinate [LineString]) of the [LineString] in a [FeatureCollection]
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6)]).segments; // FeatureCollection([LineString([Coordinate(1, 2), Coordinate(3, 4)]), LineString([Coordinate(3, 4), Coordinate(5, 6)])])
+  /// ```
+  FeatureCollection get segments {
+    List<LineString> segments = [];
+    for (int i = 0; i < coordinates.length - 1; i++) {
+      final start = coordinates[i];
+      final end = coordinates[i + 1];
+      final segment = LineString([start, end]);
+      segments.add(segment);
+    }
+    return FeatureCollection(segments);
+  }
+
   /// If the [LineString] is a closed ring, it will be converted to a [Polygon].
   /// Any [properties] will be applied to the [Polygon].
   ///

@@ -73,6 +73,10 @@ abstract class that can be extended to create new feature types.
 Positions are stored using [`Coordinate`](#Coordinate) objects, which has a variety of
 convenience methods for working with coordinates.
 
+Bounding boxes (generally used as the minimum surrounding area of a `Feature`) are stored 
+using [`BoundingBox`](#Bounding-Box) objects, which has a variety of convenience methods
+for working with bounding boxes.
+
 ### Feature Collection
 
 
@@ -89,10 +93,14 @@ but might extended to include additional properties in the future.
 **Methods**
 
 * `toJson()` - Returns a JSON object representing the [`FeatureCollection`](#Feature-Collection). Automatically converts features to GeoJSON.
+* `nearestPointTo(Point point)` - Returns the nearest [`Point`](#point) in the [`FeatureCollection`](#Feature-Collection) to the given point.
 
 **Properties**
 
 * `features` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Feature`](#Feature) objects.
+* `type` - The type of the [`FeatureCollection`](#Feature-Collection). Always `"FeatureCollection"`.
+* `bbox` - The [`BoundingBox`] of the [`FeatureCollection`](#Feature-Collection).
+* `envelope` - A [`Polygon`](#polygon) representing the envelope of the [`FeatureCollection`](#Feature-Collection).
 
 ### Point
 
@@ -167,6 +175,7 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `length` - The length (in meters) of the LineString.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 * `bbox` - a [`BoundingBox`](#BoundingBox) of the [`LineString`](#linestring).
+* `segments` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#linestring) objects that make up the LineString.
 
 ### Multi Line String
 
@@ -279,6 +288,7 @@ A [`Coordinate`](#Coordinate) is a point in a two-dimensional Cartesian coordina
 
   **Methods**
   * `toList()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of GeoJSON data.
+  * `toPolygon()` - Returns a [`Polygon`](#Polygon) that is the same geometry as the [`BoundingBox`](#BoundingBox).
 
   **Properties**
   * `minLong` - The minimum longitude of the [`BoundingBox`](#BoundingBox).

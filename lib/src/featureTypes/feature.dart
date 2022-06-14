@@ -3,6 +3,7 @@ import 'package:geodart/geometries.dart';
 /// The base class for all feature types.
 abstract class Feature {
   Map<String, dynamic> properties;
+  static final String type = 'Feature';
 
   Feature({this.properties = const <String, dynamic>{}});
 

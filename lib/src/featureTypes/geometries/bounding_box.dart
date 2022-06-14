@@ -91,6 +91,24 @@ class BoundingBox {
   /// ```
   List<double> toList() => [minLong, minLat, maxLong, maxLat];
 
+  /// Return a [Polygon] representing the [BoundingBox].
+  ///
+  /// Example:
+  /// ```dart
+  /// BoundingBox(1, 2, 3, 4).toPolygon(); // POLYGON((1 2, 3 2, 3 4, 1 4, 1 2))
+  /// ```
+  Polygon toPolygon() {
+    return Polygon([
+      LinearRing([
+        Coordinate(minLong, minLat),
+        Coordinate(maxLong, minLat),
+        Coordinate(maxLong, maxLat),
+        Coordinate(minLong, maxLat),
+        Coordinate(minLong, minLat),
+      ])
+    ]);
+  }
+
   /// Get the center [Point] of the [BoundingBox].
   ///
   /// Example:
@@ -99,4 +117,17 @@ class BoundingBox {
   /// ```
   Coordinate get center =>
       Coordinate((minLat + maxLat) / 2, (minLong + maxLong) / 2);
+
+  /// Get the [BoundingBox] in a square.
+  ///
+  /// Example:
+  /// ```dart
+  /// BoundingBox(1, 2, 3, 4).square; // BoundingBox(1, 2, 3, 4)
+  /// ```
+  BoundingBox get square {
+    double length = math.max(maxLong - minLong, maxLat - minLat) / 2;
+
+    return BoundingBox(center.longitude - length, center.latitude - length,
+        center.longitude + length, center.latitude + length);
+  }
 }

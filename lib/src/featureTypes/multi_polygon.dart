@@ -182,17 +182,18 @@ class MultiPolygon extends Feature {
         .toList());
   }
 
-  /// Returns a [MultiPolygon] that is the union of this [MultiPolygon] and another [MultiPolygon].
+  /// Returns a [MultiPolygon] that is the union of this [MultiPolygon] and another [MultiPolygon] or [Polygon].
   /// The resulting [MultiPolygon] will have the same [properties] as this [MultiPolygon].
   ///
   /// Example:
   /// ```dart
-  /// MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])]]).union(MultiPolygon([[LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])); // MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])], [LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])
+  /// MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])]]).union(multi: MultiPolygon([[LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])); // MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])], [LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])
   /// ```
-  MultiPolygon union(MultiPolygon other) {
+  MultiPolygon union({MultiPolygon? multi, Polygon? poly}) {
     return MultiPolygon([
       ...coordinates,
-      ...other.coordinates,
+      ...(multi != null ? multi.coordinates : []),
+      ...(poly != null ? [poly.coordinates] : []),
     ], properties: properties);
   }
 
