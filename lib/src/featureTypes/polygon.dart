@@ -162,19 +162,15 @@ class Polygon extends Feature {
   /// print(polygon.area); // 1
   /// ```
   double get area {
-    double polygonArea(List<LinearRing> rings) {
-      double polyArea = 0;
+    double polyArea = 0;
 
-      if (rings.isNotEmpty) {
-        polyArea += (rings[0].area).abs();
-        for (var hole in rings.getRange(1, coordinates.length)) {
-          polyArea -= (hole.area).abs();
-        }
+    if (coordinates.length > 2) {
+      polyArea += (coordinates[0].area).abs();
+      for (var hole in coordinates.getRange(1, coordinates.length)) {
+        polyArea -= (hole.area).abs();
       }
-
-      return polyArea;
     }
 
-    return polygonArea(coordinates);
+    return polyArea;
   }
 }

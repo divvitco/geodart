@@ -8,10 +8,23 @@ class LinearRing {
   List<Coordinate> coordinates;
   LinearRing(this.coordinates);
 
+  /// Converts the [LinearRing] to a [LineString].
   LineString toLineString() {
     return LineString(coordinates);
   }
 
+  /// The area of the [LinearRing] in square meters.
+  /// Example:
+  /// ```dart
+  /// LinearRing ring = LinearRing([
+  ///   Coordinate(0, 0),
+  ///   Coordinate(0, 1),
+  ///   Coordinate(1, 1),
+  ///   Coordinate(1, 0),
+  ///   Coordinate(0, 0),
+  /// ]);
+  /// print(ring.area); // 1
+  /// ```
   double get area {
     // ignore: constant_identifier_names
     const WGS84_RADIUS = 6378137;

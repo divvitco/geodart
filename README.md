@@ -94,6 +94,8 @@ but might extended to include additional properties in the future.
 
 * `toJson()` - Returns a JSON object representing the [`FeatureCollection`](#Feature-Collection). Automatically converts features to GeoJSON.
 * `nearestPointTo(Point point)` - Returns the nearest [`Point`](#point) in the [`FeatureCollection`](#Feature-Collection) to the given point.
+* `explode()` - Returns a [`FeatureCollection`](#Feature-Collection) of [`Point`](#point) objects, one for each coordinate in each geometry in the [`FeatureCollection`](#Feature-Collection).
+* `isCollectionOf(String type)` - Returns true if the [`FeatureCollection`](#Feature-Collection) contains only features of the given type.
 
 **Properties**
 
@@ -101,6 +103,8 @@ but might extended to include additional properties in the future.
 * `type` - The type of the [`FeatureCollection`](#Feature-Collection). Always `"FeatureCollection"`.
 * `bbox` - The [`BoundingBox`] of the [`FeatureCollection`](#Feature-Collection).
 * `envelope` - A [`Polygon`](#polygon) representing the envelope of the [`FeatureCollection`](#Feature-Collection).
+* `center` - The [`Point`](#point) representing the center of the [`FeatureCollection`](#Feature-Collection).
+* `isEmpty` - Whether or not the [`FeatureCollection`](#Feature-Collection) is empty.
 
 ### Point
 
@@ -111,6 +115,7 @@ A [`Point`](#Point) is a single position. It is represented by a [`Coordinate`](
 * `Point.fromJson(Map<String, dynamic> json)` - Creates a [`Point`](#Point) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `Point.fromLngLat(num lng, num lat)` - Creates a [`Point`](#Point) from a [`num`](https://api.dartlang.org/stable/dart-core/num-class.html) longitude and latitude.
 * `Point.fromWKT(String wkt)` - Creates a [`Point`](#Point) from a Well-Known Text string.
+* `Point.random()` - Creates a [`Point`](#Point) at a random location within the [-180, 180] x [-90, 90] bounding box.
 
 **Methods**
 
@@ -124,6 +129,9 @@ A [`Point`](#Point) is a single position. It is represented by a [`Coordinate`](
 * `type` - The type of the [`Point`](#Point). Always `"Point"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 * `bbox` - a [`BoundingBox`](#BoundingBox) of the [`Point`](#Point).
+* `center` - The [`Point`](#Point) representing the center of the [`Point`](#Point), which is same as the point itself.
+* `lat` - The latitude of the [`Point`](#Point).
+* `lng` - The longitude of the [`Point`](#Point).
 
 ### Multi Point
 
@@ -139,7 +147,7 @@ A [`MultiPoint`](#Multi-Point) is a collection of [`Coordinate`](#Coordinate) ob
 * `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects.
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `toWKT()` - Returns a Well-Known Text string representing the [`MultiPoint`](#Multi-Point).
-* `union(MultiPoint other)` - Merges the [`MultiPoint`](#Multi-Point) with another [`MultiPoint`](#Multi-Point).
+* `union({MultiPoint? multi, Point? point})` - Merges the [`MultiPoint`](#Multi-Point) with another [`MultiPoint`](#Multi-Point) or [`Point`](#point).
 * `flatten()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects.
 
 **Properties**
@@ -148,6 +156,7 @@ A [`MultiPoint`](#Multi-Point) is a collection of [`Coordinate`](#Coordinate) ob
 * `type` - The type of the [`MultiPoint`](#Multi-Point). Always `"MultiPoint"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 * `bbox` - a [`BoundingBox`](#BoundingBox) of the [`MultiPoint`](#multipoint).
+* `center` - The [`Point`](#Point) representing the center of the [`MultiPoint`](#Multi-Point).
 
 ### Line String
 
@@ -157,6 +166,7 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 
 * `LineString.fromJson(Map<String, dynamic> json)` - Creates a [`LineString`](#Line-String) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `LineString.fromWkt(String wkt)` - Creates a [`LineString`](#Line-String) from a Well-Known Text string.
+* `LineString.random()` - Creates a [`LineString`](#Line-String) at a random location within the [-180, 180] x [-90, 90] bounding box.
 
 **Methods**
 
@@ -165,6 +175,7 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `toJson()` - Returns a GeoJSON [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of the LineString.
 * `toPolygon()` - Returns a [`Polygon`](#Polygon) that is the same as the LineString. LineString must be closed, or an exception will be thrown.
 * `toWKT()` - Returns a [`String`](https://api.dartlang.org/stable/dart-core/String-class.html) of the LineString in WKT format.
+* `pointAt(double percentage)` - Returns a [`Point`](#Point) at the specified percentage along the line.
 
 **Properties**
 
@@ -176,6 +187,7 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `bbox` - a [`BoundingBox`](#BoundingBox) of the [`LineString`](#linestring).
 * `segments` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#linestring) objects that make up the LineString.
 * `midpoint` - Returns a [`Point`](#Point) at the midpoint of the LineString.
+* `center` - The [`Point`](#Point) representing the center of the [`LineString`](#linestring)'s coordinates.
 
 
 ### Multi Line String
@@ -240,7 +252,7 @@ A [`MultiPolygon`](#Multi-Polygon) is a collection of [`Polygon`](#Polygon) geom
 * `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects.
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `toWKT()` - Returns a Well-Known Text string representing the [`MultiPolygon`](#Multi-Polygon).
-* `union(MultiPolygon other)` - Merges the [`MultiPolygon`](#Multi-Polygon) with another [`MultiPolygon`](#Multi-Polygon).
+* `union({MultiPolygon? multi, Polygon? poly})` - Merges the [`MultiPolygon`](#Multi-Polygon) with another [`MultiPolygon`](#Multi-Polygon) and/or [`Polygon`](#polygon).
 * `flatten()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Polygon`](#Polygon) objects.
 * `toMultiLineString()` - Returns a [`MultiLineString`](#Multi-Line-String) that is the same geometry as the [`MultiPolygon`](#Multi-Polygon).
 
@@ -260,6 +272,7 @@ A [`Coordinate`](#Coordinate) is a point in a two-dimensional Cartesian coordina
 
 * `Coordinate.fromJson(Map<String, dynamic> json)` - Creates a [`Coordinate`](#Coordinate) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `Coordinate.fromWkt(String wkt)` - Creates a [`Coordinate`](#Coordinate) from a Well-Known Text string.
+* `Coordinate.random()` - Creates a [`Coordinate`](#Coordinate) at a random location.
 
 **Methods**
 
@@ -298,6 +311,7 @@ A [`Coordinate`](#Coordinate) is a point in a two-dimensional Cartesian coordina
   * `maxLat` - The maximum latitude of the [`BoundingBox`](#BoundingBox).
   * `type` - The type of the [`BoundingBox`](#BoundingBox). Always `"BoundingBox"`.
   * `center` - The [`Coordinate`](#coordinate) center of the [`BoundingBox`](#BoundingBox).
+  * `square` - The [`BoundingBox`](#BoundingBox), but made square.
 
 ## Usage
 

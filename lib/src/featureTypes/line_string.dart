@@ -80,6 +80,17 @@ class LineString extends Feature {
     );
   }
 
+  /// Creates a [LineString] with random [Coordinate]s
+  /// Currently only supports a 2 [Coordinate] [LineString]
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString.random(); // LineString([Coordinate(?, ?), Coordinate(?, ?)])
+  /// ```
+  factory LineString.random() {
+    return LineString([Coordinate.random(), Coordinate.random()]);
+  }
+
   /// Explodes the [LineString] into a [List] of [Point]s
   ///
   /// Example:

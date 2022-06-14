@@ -141,10 +141,11 @@ class MultiPoint extends Feature {
   /// ```dart
   /// MultiPoint([Coordinate(1, 2), Coordinate(3, 4)]).union(MultiPoint([Coordinate(2, 3), Coordinate(4, 5)])); // MultiPoint([Coordinate(1, 2), Coordinate(3, 4), Coordinate(2, 3), Coordinate(4, 5)])
   /// ```
-  MultiPoint union(MultiPoint other) {
+  MultiPoint union({MultiPoint? multi, Point? point}) {
     return MultiPoint([
       ...coordinates,
-      ...other.coordinates,
+      ...(multi != null ? multi.coordinates : []),
+      ...(point != null ? [point.coordinate] : []),
     ], properties: properties);
   }
 }
