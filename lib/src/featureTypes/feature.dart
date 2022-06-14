@@ -27,4 +27,8 @@ abstract class Feature {
 
   /// Explodes the [Feature] into a list of [Point]s.
   List<Point> explode();
+
+  /// Returns the center [Point] of the [Feature].
+  /// This is the average of all [Coordinate]s in the [Feature].
+  Point get center;
 }

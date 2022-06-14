@@ -30,7 +30,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li class="self-crumb">geodart package</li>
+    <li><a href="https://github.com/divvitco/geodart">geodart package</a></li>
   </ol>
   <div class="self-name">geodart</div>
   <form class="search navbar-right" role="search">
@@ -57,14 +57,36 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 <h1 id="geodart">Geodart</h1>
-<p><a href="https://pub.dev/packages/geodart"><img src="https://img.shields.io/pub/v/badges?color=blueviolet" alt="Pub Version"></a></p>
-<p><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
-<p><a href="https://pub.dev/packages/geodart/score"><img src="https://badges.bar/geodart/popularity" alt="popularity"></a></p>
-<p><a href="https://pub.dev/packages/geodart/score"><img src="https://badges.bar/geodart/pub%20points" alt="pub points"></a></p>
+<p><a href="https://github.com/divvitco/geodart"><img src="https://img.shields.io/badge/geo-dart-orange" alt="Geodart"></a>
+<a href="https://pub.dev/packages/geodart"><img src="https://img.shields.io/pub/v/geodart" alt="Pub Version"></a>
+<a href="https://pub.dev/packages/geodart"><img src="https://img.shields.io/pub/points/geodart" alt="Pub Score"></a>
+<a href="https://github.com/divvitco/geodart/issues"><img src="https://img.shields.io/github/issues-raw/divvitco/geodart" alt="Open Issues"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
 <p>A geospatial library for Dart. Designed primarily around vector features,
 this library provides a simple interface for working with geographic data.</p>
 <p>It's based heavily on the geojson specification, but has been extended to
 add functionality directly to the feature types.</p>
+<h2 id="conversions">Conversions</h2>
+<p>You can convert between different units with the <a href="#conversions"><code>conversions</code></a> library.</p>
+<p>Types of conversions:</p>
+<ul>
+<li><strong>Distance</strong>: conversions between meters, kilometers, and miles.</li>
+<li><strong>Area</strong>: conversions between square meters, square kilometers, and square miles.</li>
+<li><strong>Angle</strong>: conversions between degrees, radians, and gradians.</li>
+</ul>
+<p>Here's an example:</p>
+<pre class="language-dart"><code class="language-dart">import 'package:geodart/conversions.dart';
+
+// Ten miles to kilometers
+convertDistance(10, DistanceUnit.miles, DistanceUnit.kilometers); // returns 16.09344
+
+// Ten degrees to radians
+convertAngle(10, AngleUnit.degrees, AngleUnit.radians); // returns 0.17453292519943295
+
+// Ten acres to square miles
+convertArea(10, AreaUnit.acres, AreaUnit.squareMiles); // returns 0.004046856
+
+</code></pre>
 <h2 id="geometries">Geometries</h2>
 <p>To use this library, you'll need to get familiar with the feature types. All other actions taken depend on using the proper feature types. These feature types are very similar to the ones used in the <a href="https://tools.ietf.org/html/rfc7946">geojson</a> specification.</p>
 <p>I'll admit, the feature coordinates are a bit of a mess. I'm working on a better way to handle this.</p>
@@ -347,7 +369,7 @@ See the <a href="/LICENSE">LICENSE</a> file for more details.</p>
 </header>
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-  <li class="self-crumb">geodart package</li>
+  <li><a href="https://github.com/divvitco/geodart">geodart package</a></li>
 </ol>
 
 
@@ -369,7 +391,7 @@ See the <a href="/LICENSE">LICENSE</a> file for more details.</p>
 <footer>
   <span class="no-break">
     geodart
-      0.1.0
+      0.2.0
   </span>
 
   

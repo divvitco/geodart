@@ -91,6 +91,21 @@ class LineString extends Feature {
     return coordinates.map((e) => Point(e)).toList();
   }
 
+  /// Returns the center [Point] of the [LineString]
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).center(); // Coordinate(2, 3)
+  /// ```
+  @override
+  Point get center {
+    final lat = coordinates.map((c) => c.latitude).reduce((a, b) => a + b) /
+        coordinates.length;
+    final long = coordinates.map((c) => c.longitude).reduce((a, b) => a + b) /
+        coordinates.length;
+    return Point.fromLatLong(lat, long);
+  }
+
   /// If the [LineString] is a closed ring, it will be converted to a [Polygon].
   /// Any [properties] will be applied to the [Polygon].
   ///

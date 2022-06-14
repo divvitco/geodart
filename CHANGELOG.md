@@ -1,3 +1,9 @@
+## 0.2.0
+
+- Point lat lng exposed on point
+- add `center` method to all geometries
+- Add conversion example to README
+
 ## 0.1.3
 
 - More readme badges

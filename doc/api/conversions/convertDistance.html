@@ -54,8 +54,8 @@
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
 <span class="name ">convertDistance</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="convertDistance-param-original"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">original</span>, </span></li>
-<li><span class="parameter" id="convertDistance-param-from"><span class="type-annotation"><a href="../conversions/SingleAxisUnit-class.html">SingleAxisUnit</a></span> <span class="parameter-name">from</span>, </span></li>
-<li><span class="parameter" id="convertDistance-param-to"><span class="type-annotation"><a href="../conversions/SingleAxisUnit-class.html">SingleAxisUnit</a></span> <span class="parameter-name">to</span></span></li>
+<li><span class="parameter" id="convertDistance-param-from"><span class="type-annotation"><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></span> <span class="parameter-name">from</span>, </span></li>
+<li><span class="parameter" id="convertDistance-param-to"><span class="type-annotation"><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></span> <span class="parameter-name">to</span></span></li>
 </ol>)
 
     </section>
@@ -63,7 +63,7 @@
 <section class="desc markdown">
   <p>Convert <code>original</code> distance <code>from</code> some unit <code>to</code> another.</p>
 <p>Example:</p>
-<pre class="language-dart"><code class="language-dart">convertDistance(100, SingleAxisUnits.centimeters, SingleAxisUnits.meters) // returns: 1
+<pre class="language-dart"><code class="language-dart">convertDistance(100, DistanceUnits.centimeters, DistanceUnits.meters) // returns: 1
 </code></pre>
 </section>
 
@@ -71,8 +71,7 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">double convertDistance(
-    double original, SingleAxisUnit from, SingleAxisUnit to) {
+  <pre class="language-dart"><code class="language-dart">double convertDistance(double original, DistanceUnit from, DistanceUnit to) {
   return original * to.meterRatio &#47; from.meterRatio;
 }</code></pre>
 </section>
@@ -97,14 +96,17 @@
     <h5>conversions library</h5>
     <ol>
   <li class="section-title"><a href="../conversions/conversions-library.html#classes">Classes</a></li>
-  <li><a href="../conversions/SingleAxisUnit-class.html">SingleAxisUnit</a></li>
-  <li><a href="../conversions/SingleAxisUnits-class.html">SingleAxisUnits</a></li>
+  <li><a href="../conversions/AreaUnit-class.html">AreaUnit</a></li>
+  <li><a href="../conversions/AreaUnits-class.html">AreaUnits</a></li>
+  <li><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></li>
+  <li><a href="../conversions/DistanceUnits-class.html">DistanceUnits</a></li>
 
 
 
 
 
   <li class="section-title"><a href="../conversions/conversions-library.html#functions">Functions</a></li>
+  <li><a href="../conversions/convertArea.html">convertArea</a></li>
   <li><a href="../conversions/convertDistance.html">convertDistance</a></li>
 
 
@@ -121,7 +123,7 @@
 <footer>
   <span class="no-break">
     geodart
-      0.1.0
+      0.2.0
   </span>
 
   

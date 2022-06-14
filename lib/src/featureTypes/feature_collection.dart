@@ -54,10 +54,34 @@ class FeatureCollection {
   }
 
   FeatureCollection explode() {
-    final explodedFeatures = <Feature>[];
+    final explodedFeatures = <Point>[];
     for (final feature in features) {
       explodedFeatures.addAll(feature.explode());
     }
     return FeatureCollection(explodedFeatures);
+  }
+
+  /// Gets the center [Point] of the [FeatureCollection].
+  /// This is an average of all the [Point]s that create the [Feature]s in the [FeatureCollection].
+  ///
+  /// Example:
+  /// ```dart
+  /// FeatureCollection([
+  ///   Point([Coordinate(1, 2), Coordinate(3, 4)]),
+  ///   Point([Coordinate(5, 6), Coordinate(7, 8)])
+  /// ]).center; // Point(4, 5)
+  /// ```
+  Point get center {
+    List<Point> points = (explode().features as List<Point>);
+
+    double lat = 0;
+    double long = 0;
+
+    for (final point in points) {
+      lat += point.coordinate.latitude;
+      long += point.coordinate.longitude;
+    }
+
+    return Point.fromLatLong(lat / points.length, long / points.length);
   }
 }

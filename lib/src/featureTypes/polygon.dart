@@ -75,6 +75,34 @@ class Polygon extends Feature {
         .toList();
   }
 
+  /// Calculates the center [Point] of the [Polygon].
+  /// **Right now, cannot handle polygons with holes**.
+  ///
+  /// Example:
+  /// ```dart
+  /// Polygon polygon = Polygon([
+  ///   LinearRing([
+  ///     Coordinate(0, 0),
+  ///     Coordinate(0, 1),
+  ///     Coordinate(1, 1),
+  ///     Coordinate(1, 0),
+  ///     Coordinate(0, 0),
+  ///   ]),
+  /// ]);
+  /// print(polygon.centroid);
+  /// ```
+  Point get center {
+    List<Point> points = explode();
+    double lat = 0;
+    double long = 0;
+
+    for (Point point in points) {
+      lat += point.coordinate.latitude;
+      long += point.coordinate.longitude;
+    }
+    return Point.fromLatLong(lat / points.length, long / points.length);
+  }
+
   /// Uses the [Polygon]'s [coordinates] to make a [LineString].
   /// Ignores any holes in the polygon.
   LineString toLineString() {

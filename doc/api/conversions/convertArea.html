@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the convertArea function from the conversions library, for the Dart programming language.">
+  <title>convertArea function - conversions library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">geodart</a></li>
+    <li><a href="../conversions/conversions-library.html">conversions</a></li>
+    <li class="self-crumb">convertArea function</li>
+  </ol>
+  <div class="self-name">convertArea</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-function">convertArea</span> function 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+<span class="name ">convertArea</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="convertArea-param-original"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">original</span>, </span></li>
+<li><span class="parameter" id="convertArea-param-from"><span class="type-annotation"><a href="../conversions/AreaUnit-class.html">AreaUnit</a></span> <span class="parameter-name">from</span>, </span></li>
+<li><span class="parameter" id="convertArea-param-to"><span class="type-annotation"><a href="../conversions/AreaUnit-class.html">AreaUnit</a></span> <span class="parameter-name">to</span></span></li>
+</ol>)
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Convert <code>original</code> area <code>from</code> some unit <code>to</code> another.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">convertArea(100, AreaUnits.hectares, AreaUnits.squareMeters) // returns: 10000
+</code></pre>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">double convertArea(
+  double original,
+  AreaUnit from,
+  AreaUnit to,
+) {
+  return original * to.squareMeterRatio &#47; from.squareMeterRatio;
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">geodart</a></li>
+  <li><a href="../conversions/conversions-library.html">conversions</a></li>
+  <li class="self-crumb">convertArea function</li>
+</ol>
+
+
+    <h5>conversions library</h5>
+    <ol>
+  <li class="section-title"><a href="../conversions/conversions-library.html#classes">Classes</a></li>
+  <li><a href="../conversions/AreaUnit-class.html">AreaUnit</a></li>
+  <li><a href="../conversions/AreaUnits-class.html">AreaUnits</a></li>
+  <li><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></li>
+  <li><a href="../conversions/DistanceUnits-class.html">DistanceUnits</a></li>
+
+
+
+
+
+  <li class="section-title"><a href="../conversions/conversions-library.html#functions">Functions</a></li>
+  <li><a href="../conversions/convertArea.html">convertArea</a></li>
+  <li><a href="../conversions/convertDistance.html">convertDistance</a></li>
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    geodart
+      0.2.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

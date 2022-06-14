@@ -62,6 +62,25 @@ class MultiPoint extends Feature {
     );
   }
 
+  /// Return the center [Point] of the [MultiPoint].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiPoint([Coordinate(1, 2), Coordinate(3, 4)]).center(); // Point(2, 3)
+  /// ```
+  @override
+  Point get center {
+    List<Point> points = explode();
+    double lat = 0.0;
+    double long = 0.0;
+    for (var p in points) {
+      lat += p.coordinate.latitude;
+      long += p.coordinate.longitude;
+    }
+
+    return Point.fromLatLong(lat / points.length, long / points.length);
+  }
+
   /// Creates a [MultiPoint] from a WKT [String].
   ///
   /// Example:

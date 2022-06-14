@@ -109,6 +109,19 @@ class MultiPolygon extends Feature {
     return explodedFeatures;
   }
 
+  @override
+  Point get center {
+    List<Point> points = explode();
+    double lat = 0;
+    double long = 0;
+    for (final point in points) {
+      lat += point.coordinate.latitude;
+      long += point.coordinate.longitude;
+    }
+
+    return Point.fromLatLong(lat / points.length, long / points.length);
+  }
+
   /// Converts the [MultiPolygon] to a WKT a [MultiLineString].
   /// Uses the outer ring of each polygon, all holes are ignored.
   ///

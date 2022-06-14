@@ -97,6 +97,26 @@ class MultiLineString extends Feature {
     return explodedFeatures;
   }
 
+  /// Returns the center [Point] of the [MultiLineString].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).centroid(); // Coordinate(2, 3)
+  /// ```
+  @override
+  Point get center {
+    List<Point> points = explode();
+    double lat = 0;
+    double long = 0;
+
+    for (final point in points) {
+      lat += point.coordinate.latitude;
+      long += point.coordinate.longitude;
+    }
+
+    return Point.fromLatLong(lat / points.length, long / points.length);
+  }
+
   /// Flattens the [MultiLineString] into a [FeatureCollection] of [LineString]s.
   /// Properties are inherited from the [MultiLineString].
   ///

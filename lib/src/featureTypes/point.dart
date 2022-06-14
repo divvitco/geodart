@@ -116,6 +116,38 @@ class Point extends Feature {
     return [this];
   }
 
+  /// Get the center [Point] of the [Point].
+  /// Pretty useless, but needs to overwrite the [Feature] method.
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 2)).centroid(); // Point(1, 2)
+  /// ```
+  @override
+  Point get center {
+    return this;
+  }
+
+  /// Get the latitude of the [Point].
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 2)).latitude; // 2
+  /// ```
+  double get lat {
+    return coordinate.latitude;
+  }
+
+  /// Get the longitude of the [Point].
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 2)).longitude; // 2
+  /// ```
+  double get lng {
+    return coordinate.longitude;
+  }
+
   /// Checks for equality between two [Point]s, specifically if they have the same [coordinate] and [properties].
   ///
   /// Example:

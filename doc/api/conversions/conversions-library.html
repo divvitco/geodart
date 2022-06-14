@@ -56,7 +56,10 @@
 <pre class="language-dart"><code class="language-dart">import 'package:geodart/conversions.dart';
 
 // Convert distances
-convertDistance(20, SingleAxisUnits.nauticalMiles, SingleAxisUnits.feet); // returns 121522
+convertDistance(20, DistanceUnits.nauticalMiles, DistanceUnits.feet); // returns 121522
+
+// Convert areas
+convertArea(20, AreaUnits.hectares, AreaUnits.squareMeters); // returns 200000
 </code></pre>
 </section>
 
@@ -65,20 +68,36 @@ convertDistance(20, SingleAxisUnits.nauticalMiles, SingleAxisUnits.feet); // ret
       <h2>Classes</h2>
 
       <dl>
-        <dt id="SingleAxisUnit">
-  <span class="name "><a href="../conversions/SingleAxisUnit-class.html">SingleAxisUnit</a></span> 
+        <dt id="AreaUnit">
+  <span class="name "><a href="../conversions/AreaUnit-class.html">AreaUnit</a></span> 
+
+</dt>
+<dd>
+  A class to define units of area
+</dd>
+
+        <dt id="AreaUnits">
+  <span class="name "><a href="../conversions/AreaUnits-class.html">AreaUnits</a></span> 
+
+</dt>
+<dd>
+  A helper class to make units of area more accessible
+</dd>
+
+        <dt id="DistanceUnit">
+  <span class="name "><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></span> 
 
 </dt>
 <dd>
   A class to define units
 </dd>
 
-        <dt id="SingleAxisUnits">
-  <span class="name "><a href="../conversions/SingleAxisUnits-class.html">SingleAxisUnits</a></span> 
+        <dt id="DistanceUnits">
+  <span class="name "><a href="../conversions/DistanceUnits-class.html">DistanceUnits</a></span> 
 
 </dt>
 <dd>
-  A helper class to
+  A helper class to make units more accessible
 </dd>
 
       </dl>
@@ -92,8 +111,21 @@ convertDistance(20, SingleAxisUnits.nauticalMiles, SingleAxisUnits.feet); // ret
       <h2>Functions</h2>
 
       <dl class="callables">
+        <dt id="convertArea" class="callable">
+  <span class="name"><a href="../conversions/convertArea.html">convertArea</a></span><span class="signature">(<wbr><span class="parameter" id="convertArea-param-original"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">original</span>, </span><span class="parameter" id="convertArea-param-from"><span class="type-annotation"><a href="../conversions/AreaUnit-class.html">AreaUnit</a></span> <span class="parameter-name">from</span>, </span><span class="parameter" id="convertArea-param-to"><span class="type-annotation"><a href="../conversions/AreaUnit-class.html">AreaUnit</a></span> <span class="parameter-name">to</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convert <code>original</code> area <code>from</code> some unit <code>to</code> another.
+  
+
+</dd>
+
         <dt id="convertDistance" class="callable">
-  <span class="name"><a href="../conversions/convertDistance.html">convertDistance</a></span><span class="signature">(<wbr><span class="parameter" id="convertDistance-param-original"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">original</span>, </span><span class="parameter" id="convertDistance-param-from"><span class="type-annotation"><a href="../conversions/SingleAxisUnit-class.html">SingleAxisUnit</a></span> <span class="parameter-name">from</span>, </span><span class="parameter" id="convertDistance-param-to"><span class="type-annotation"><a href="../conversions/SingleAxisUnit-class.html">SingleAxisUnit</a></span> <span class="parameter-name">to</span></span>)
+  <span class="name"><a href="../conversions/convertDistance.html">convertDistance</a></span><span class="signature">(<wbr><span class="parameter" id="convertDistance-param-original"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">original</span>, </span><span class="parameter" id="convertDistance-param-from"><span class="type-annotation"><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></span> <span class="parameter-name">from</span>, </span><span class="parameter" id="convertDistance-param-to"><span class="type-annotation"><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></span> <span class="parameter-name">to</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
   </span>
   
@@ -140,14 +172,17 @@ convertDistance(20, SingleAxisUnits.nauticalMiles, SingleAxisUnits.feet); // ret
     <h5>conversions library</h5>
     <ol>
   <li class="section-title"><a href="../conversions/conversions-library.html#classes">Classes</a></li>
-  <li><a href="../conversions/SingleAxisUnit-class.html">SingleAxisUnit</a></li>
-  <li><a href="../conversions/SingleAxisUnits-class.html">SingleAxisUnits</a></li>
+  <li><a href="../conversions/AreaUnit-class.html">AreaUnit</a></li>
+  <li><a href="../conversions/AreaUnits-class.html">AreaUnits</a></li>
+  <li><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></li>
+  <li><a href="../conversions/DistanceUnits-class.html">DistanceUnits</a></li>
 
 
 
 
 
   <li class="section-title"><a href="../conversions/conversions-library.html#functions">Functions</a></li>
+  <li><a href="../conversions/convertArea.html">convertArea</a></li>
   <li><a href="../conversions/convertDistance.html">convertDistance</a></li>
 
 
@@ -161,7 +196,7 @@ convertDistance(20, SingleAxisUnits.nauticalMiles, SingleAxisUnits.feet); // ret
 <footer>
   <span class="no-break">
     geodart
-      0.1.0
+      0.2.0
   </span>
 
   
