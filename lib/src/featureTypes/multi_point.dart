@@ -81,6 +81,21 @@ class MultiPoint extends Feature {
     return Point.fromLatLong(lat / points.length, long / points.length);
   }
 
+  /// Returns the [BoundingBox] of the [MultiPoint]
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiPoint([Coordinate(1, 2), Coordinate(3, 4)]).bbox; // BoundingBox(1, 2, 3, 4)
+  /// ```
+  @override
+  BoundingBox get bbox {
+    List<Point> points = explode();
+    if (points.length < 2) {
+      return BoundingBox.empty();
+    }
+    return BoundingBox.fromPoints(points);
+  }
+
   /// Creates a [MultiPoint] from a WKT [String].
   ///
   /// Example:

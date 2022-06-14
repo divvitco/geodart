@@ -148,6 +148,18 @@ class Point extends Feature {
     return coordinate.longitude;
   }
 
+  /// Returns the [BoundingBox] of the [Point]
+  /// **Note:** SINGLE POINTS CANNOT BE BOUNDED. WILL ALWAYS RETURN [BoundingBox.empty].
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 2)).bbox; // BoundingBox(0, 0, 0, 0)
+  /// ```
+  @override
+  BoundingBox get bbox {
+    return BoundingBox.empty();
+  }
+
   /// Checks for equality between two [Point]s, specifically if they have the same [coordinate] and [properties].
   ///
   /// Example:

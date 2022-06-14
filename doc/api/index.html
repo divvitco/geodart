@@ -140,6 +140,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>coordinates</code> - The <a href="#Coordinate"><code>Coordinate</code></a> of the <a href="#Point"><code>Point</code></a>.</li>
 <li><code>type</code> - The type of the <a href="#Point"><code>Point</code></a>. Always <code>"Point"</code>.</li>
 <li><code>properties</code> - A <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of properties.</li>
+<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#Point"><code>Point</code></a>.</li>
 </ul>
 <h3 id="multi-point">Multi Point</h3>
 <p>A <a href="#Multi-Point"><code>MultiPoint</code></a> is a collection of <a href="#Coordinate"><code>Coordinate</code></a> objects, represented by individual and non-connected points.</p>
@@ -161,6 +162,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>coordinates</code> - A <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#Coordinate"><code>Coordinate</code></a> objects.</li>
 <li><code>type</code> - The type of the <a href="#Multi-Point"><code>MultiPoint</code></a>. Always <code>"MultiPoint"</code>.</li>
 <li><code>properties</code> - A <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of properties.</li>
+<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#multipoint"><code>MultiPoint</code></a>.</li>
 </ul>
 <h3 id="line-string">Line String</h3>
 <p>A <a href="#Line-String"><code>LineString</code></a> is a collection of <a href="#Coordinate"><code>Coordinate</code></a> objects that form a line.</p>
@@ -185,6 +187,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>isClosedRing</code> - A boolean indicating whether the LineString is a closed ring.</li>
 <li><code>length</code> - The length (in meters) of the LineString.</li>
 <li><code>properties</code> - A <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of properties.</li>
+<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#linestring"><code>LineString</code></a>.</li>
 </ul>
 <h3 id="multi-line-string">Multi Line String</h3>
 <p>A <a href="#Multi-Line-String"><code>MultiLineString</code></a> is a collection of <a href="#Coordinate"><code>Coordinate</code></a> objects that form multiple separate LineStrings with one set of shared properties.</p>
@@ -206,6 +209,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>coordinates</code> - A nested <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#Coordinate"><code>Coordinate</code></a> objects.</li>
 <li><code>type</code> - The type of the <a href="#Multi-Line-String"><code>MultiLineString</code></a>. Always <code>"MultiLineString"</code>.</li>
 <li><code>properties</code> - A <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of properties.</li>
+<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#MultiLineString"><code>MultiLineString</code></a>.</li>
 </ul>
 <h3 id="polygon">Polygon</h3>
 <p>A <a href="#Polygon"><code>Polygon</code></a> is a collection of <code>`LinearRing`</code>(#Linear Ring) objects that form a closed ring. The first LinearRing in the list is the outer ring, and any subsequent LinearRings are holes. Holes should be contained within the outer ring - if they are not, some algorithms may not work correctly. A Polygon should also not intersect itself - again, some algorithms may not work correctly if this is not the case.</p>
@@ -227,6 +231,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>type</code> - The type of the <a href="#Polygon"><code>Polygon</code></a>. Always <code>"Polygon"</code>.</li>
 <li><code>area</code> - The are (in square meters) of the Polygon.</li>
 <li><code>properties</code> - A <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of properties.</li>
+<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#polygon"><code>Polygon</code></a>.</li>
 </ul>
 <h3 id="multi-polygon">Multi Polygon</h3>
 <p>A <a href="#Multi-Polygon"><code>MultiPolygon</code></a> is a collection of <a href="#Polygon"><code>Polygon</code></a> geometries forming one MultiPolygon with shared properties.</p>
@@ -250,6 +255,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>type</code> - The type of the <a href="#Multi-Polygon"><code>MultiPolygon</code></a>. Always <code>"MultiPolygon"</code>.</li>
 <li><code>properties</code> - A <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of properties.</li>
 <li><code>area</code> - The are (in square meters) of the MultiPolygon.</li>
+<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#multi-polygon"><code>MultiPolygon</code></a>.</li>
 </ul>
 <h3 id="coordinate">Coordinate</h3>
 <p>A <a href="#Coordinate"><code>Coordinate</code></a> is a point in a two-dimensional Cartesian coordinate system.</p>
@@ -272,6 +278,28 @@ but might extended to include additional properties in the future.</p>
 <li><code>latitude</code> - The latitude of the <a href="#Coordinate"><code>Coordinate</code></a>.</li>
 <li><code>longitude</code> - The longitude of the <a href="#Coordinate"><code>Coordinate</code></a>.</li>
 <li><code>type</code> - The type of the <a href="#Coordinate"><code>Coordinate</code></a>. Always <code>"Coordinate"</code>.</li>
+</ul>
+<h3 id="boundingbox">BoundingBox</h3>
+<p>A <a href="#BoundingBox"><code>BoundingBox</code></a> is a rectangular area of the two-dimensional Cartesian coordinate system.
+  Generally, it is used to represent the smallest possible bounds of a <a href="#Feature"><code>Feature</code></a> in lat/long space.</p>
+<p><strong>Constructors</strong></p>
+<ul>
+<li><code>BoundingBox.fromCoordinates(List&lt;Coordinate&gt; points)</code> - Creates a <a href="#BoundingBox"><code>BoundingBox</code></a> from a <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#Coordinate"><code>Coordinate</code></a> objects.</li>
+<li><code>BoundingBox.empty()</code> - Creates an empty <a href="#BoundingBox"><code>BoundingBox</code></a>.</li>
+<li><code>BoundingBox.fromPoints(List&lt;Point&gt; points)</code> - Creates a <a href="#BoundingBox"><code>BoundingBox</code></a> from a <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#Point"><code>Point</code></a> objects.</li>
+</ul>
+<p><strong>Methods</strong></p>
+<ul>
+<li><code>toList()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of GeoJSON data.</li>
+</ul>
+<p><strong>Properties</strong></p>
+<ul>
+<li><code>minLong</code> - The minimum longitude of the <a href="#BoundingBox"><code>BoundingBox</code></a>.</li>
+<li><code>minLat</code> - The minimum latitude of the <a href="#BoundingBox"><code>BoundingBox</code></a>.</li>
+<li><code>maxLong</code> - The maximum longitude of the <a href="#BoundingBox"><code>BoundingBox</code></a>.</li>
+<li><code>maxLat</code> - The maximum latitude of the <a href="#BoundingBox"><code>BoundingBox</code></a>.</li>
+<li><code>type</code> - The type of the <a href="#BoundingBox"><code>BoundingBox</code></a>. Always <code>"BoundingBox"</code>.</li>
+<li><code>center</code> - The <a href="#coordinate"><code>Coordinate</code></a> center of the <a href="#BoundingBox"><code>BoundingBox</code></a>.</li>
 </ul>
 <h2 id="usage">Usage</h2>
 <p><strong>Measure the distance between two points.</strong></p>

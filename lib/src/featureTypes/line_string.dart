@@ -106,6 +106,18 @@ class LineString extends Feature {
     return Point.fromLatLong(lat, long);
   }
 
+  /// Returns the [BoundingBox] of the [LineString]
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).bbox; // BoundingBox(1, 2, 3, 4)
+  /// ```
+  @override
+  BoundingBox get bbox {
+    List<Point> points = explode();
+    return BoundingBox.fromPoints(points);
+  }
+
   /// If the [LineString] is a closed ring, it will be converted to a [Polygon].
   /// Any [properties] will be applied to the [Polygon].
   ///

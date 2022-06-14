@@ -28,6 +28,7 @@
 ///
 /// * The [Coordinate] class is a coordinate type for to denote one location with lat/long data.
 /// * The [LinearRing] class is a coordinate type for linear rings, which is a geometry type for polygons.
+/// * The [BoundingBox] class is a coordinate system for bounding boxes.
 ///
 /// ## About Features
 ///
@@ -101,6 +102,7 @@ library geometries;
 /// Feature Types
 export 'src/featureTypes/geometries/coordinate.dart';
 export 'src/featureTypes/geometries/linear_ring.dart';
+export 'src/featureTypes/geometries/bounding_box.dart';
 export 'src/featureTypes/feature.dart';
 export 'src/featureTypes/point.dart';
 export 'src/featureTypes/multi_point.dart';

@@ -122,6 +122,28 @@ class MultiPolygon extends Feature {
     return Point.fromLatLong(lat / points.length, long / points.length);
   }
 
+  /// Returns the [BoundingBox] of the [MultiPolygon].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiPolygon([
+  ///   [
+  ///     LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])
+  ///   ],
+  ///   [
+  ///     LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])
+  ///   ]
+  /// ]).bbox; // BoundingBox(2, 1, 12, 11)
+  /// ```
+  @override
+  BoundingBox get bbox {
+    List<Point> points = explode();
+    if (points.length < 2) {
+      return BoundingBox.empty();
+    }
+    return BoundingBox.fromPoints(points);
+  }
+
   /// Converts the [MultiPolygon] to a WKT a [MultiLineString].
   /// Uses the outer ring of each polygon, all holes are ignored.
   ///

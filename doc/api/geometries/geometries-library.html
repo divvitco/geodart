@@ -76,6 +76,7 @@ calculations, as well as a set of functions for working with them.</p>
 <ul>
 <li>The <a href="../geometries/Coordinate-class.html">Coordinate</a> class is a coordinate type for to denote one location with lat/long data.</li>
 <li>The <a href="../geometries/LinearRing-class.html">LinearRing</a> class is a coordinate type for linear rings, which is a geometry type for polygons.</li>
+<li>The <a href="../geometries/BoundingBox-class.html">BoundingBox</a> class is a coordinate system for bounding boxes.</li>
 </ul>
 <h2 id="about-features">About Features</h2>
 <p>Each of the above feature classes has a <code>toJson</code> method that returns a GeoJSON <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a> of the feature,
@@ -145,6 +146,15 @@ MultiPoint multiPoint = MultiPoint([
       <h2>Classes</h2>
 
       <dl>
+        <dt id="BoundingBox">
+  <span class="name "><a href="../geometries/BoundingBox-class.html">BoundingBox</a></span> 
+
+</dt>
+<dd>
+  A <a href="../geometries/BoundingBox-class.html">BoundingBox</a> is a rectangular region in a coordinate system, generally used to define the extent of a <a href="../geometries/Feature-class.html">Feature</a> or <a href="../geometries/FeatureCollection-class.html">FeatureCollection</a>.
+A <a href="../geometries/BoundingBox-class.html">BoundingBox</a> can be created from a <a href="../geometries/Coordinate-class.html">Coordinate</a> or a WKT <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>.
+</dd>
+
         <dt id="Coordinate">
   <span class="name "><a href="../geometries/Coordinate-class.html">Coordinate</a></span> 
 
@@ -269,6 +279,7 @@ The first <a href="../geometries/LinearRing-class.html">LinearRing</a> defines t
     <h5>geometries library</h5>
     <ol>
   <li class="section-title"><a href="../geometries/geometries-library.html#classes">Classes</a></li>
+  <li><a href="../geometries/BoundingBox-class.html">BoundingBox</a></li>
   <li><a href="../geometries/Coordinate-class.html">Coordinate</a></li>
   <li><a href="../geometries/Feature-class.html">Feature</a></li>
   <li><a href="../geometries/FeatureCollection-class.html">FeatureCollection</a></li>

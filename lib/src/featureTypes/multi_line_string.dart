@@ -117,6 +117,18 @@ class MultiLineString extends Feature {
     return Point.fromLatLong(lat / points.length, long / points.length);
   }
 
+  /// Returns the [BoundingBox] of the [MultiLineString]
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]]).bbox; // BoundingBox(1, 2, 3, 4)
+  /// ```
+  @override
+  BoundingBox get bbox {
+    List<Point> points = explode();
+    return BoundingBox.fromPoints(points);
+  }
+
   /// Flattens the [MultiLineString] into a [FeatureCollection] of [LineString]s.
   /// Properties are inherited from the [MultiLineString].
   ///

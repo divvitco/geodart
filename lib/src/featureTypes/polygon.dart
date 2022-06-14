@@ -103,6 +103,30 @@ class Polygon extends Feature {
     return Point.fromLatLong(lat / points.length, long / points.length);
   }
 
+  /// Returns the [BoundingBox] of the [Polygon].
+  ///
+  /// Example:
+  /// ```dart
+  /// Polygon polygon = Polygon([
+  ///   LinearRing([
+  ///     Coordinate(0, 0),
+  ///     Coordinate(0, 1),
+  ///     Coordinate(1, 1),
+  ///     Coordinate(1, 0),
+  ///     Coordinate(0, 0),
+  ///   ]),
+  /// ]);
+  /// print(polygon.bbox); // [0, 0, 1, 1]
+  /// ```
+  @override
+  BoundingBox get bbox {
+    List<Point> points = explode();
+    if (points.length < 2) {
+      return BoundingBox.empty();
+    }
+    return BoundingBox.fromPoints(points);
+  }
+
   /// Uses the [Polygon]'s [coordinates] to make a [LineString].
   /// Ignores any holes in the polygon.
   LineString toLineString() {

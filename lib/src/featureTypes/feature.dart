@@ -31,4 +31,8 @@ abstract class Feature {
   /// Returns the center [Point] of the [Feature].
   /// This is the average of all [Coordinate]s in the [Feature].
   Point get center;
+
+  /// Returns the [BoundingBox] of the [Feature].
+  /// This is the bounding box of all [Coordinate]s in the [Feature].
+  BoundingBox get bbox;
 }

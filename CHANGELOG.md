@@ -1,3 +1,8 @@
+## 0.2.1
+
+- Add BoundingBox as geometry tyoe
+- add `.bbox` method to all geometry features
+
 ## 0.2.0
 
 - Point lat lng exposed on point

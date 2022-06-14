@@ -122,6 +122,18 @@ Point(Coordinate(1, 2), {'name': 'point'}).toJson(); // {'type': 'Feature', 'geo
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="bbox" class="property">
+  <span class="name"><a href="../geometries/Point/bbox.html">bbox</a></span>
+  <span class="signature">&#8594; <a href="../geometries/BoundingBox-class.html">BoundingBox</a></span> 
+
+</dt>
+<dd>
+  Returns the <a href="../geometries/BoundingBox-class.html">BoundingBox</a> of the <a href="../geometries/Point-class.html">Point</a>
+<strong>Note:</strong> SINGLE POINTS CANNOT BE BOUNDED. WILL ALWAYS RETURN <a href="../geometries/BoundingBox/BoundingBox.empty.html">BoundingBox.empty</a>.
+  <div class="features">read-only, override</div>
+
+</dd>
+
         <dt id="center" class="property">
   <span class="name"><a href="../geometries/Point/center.html">center</a></span>
   <span class="signature">&#8594; <a href="../geometries/Point-class.html">Point</a></span> 
@@ -339,6 +351,7 @@ Pretty useless, but needs to overwrite the <a href="../geometries/Feature-class.
     <h5>geometries library</h5>
     <ol>
   <li class="section-title"><a href="../geometries/geometries-library.html#classes">Classes</a></li>
+  <li><a href="../geometries/BoundingBox-class.html">BoundingBox</a></li>
   <li><a href="../geometries/Coordinate-class.html">Coordinate</a></li>
   <li><a href="../geometries/Feature-class.html">Feature</a></li>
   <li><a href="../geometries/FeatureCollection-class.html">FeatureCollection</a></li>
@@ -374,6 +387,7 @@ Pretty useless, but needs to overwrite the <a href="../geometries/Feature-class.
     <li class="section-title">
       <a href="../geometries/Point-class.html#instance-properties">Properties</a>
     </li>
+    <li><a href="../geometries/Point/bbox.html">bbox</a></li>
     <li><a href="../geometries/Point/center.html">center</a></li>
     <li><a href="../geometries/Point/coordinate.html">coordinate</a></li>
     <li><a href="../geometries/Point/hashCode.html">hashCode</a></li>

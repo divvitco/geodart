@@ -115,6 +115,7 @@ A [`Point`](#Point) is a single position. It is represented by a [`Coordinate`](
 * `coordinates` - The [`Coordinate`](#Coordinate) of the [`Point`](#Point).
 * `type` - The type of the [`Point`](#Point). Always `"Point"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
+* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`Point`](#Point).
 
 ### Multi Point
 
@@ -138,6 +139,7 @@ A [`MultiPoint`](#Multi-Point) is a collection of [`Coordinate`](#Coordinate) ob
 * `coordinates` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Coordinate`](#Coordinate) objects.
 * `type` - The type of the [`MultiPoint`](#Multi-Point). Always `"MultiPoint"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
+* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`MultiPoint`](#multipoint).
 
 ### Line String
 
@@ -164,6 +166,7 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `isClosedRing` - A boolean indicating whether the LineString is a closed ring.
 * `length` - The length (in meters) of the LineString.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
+* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`LineString`](#linestring).
 
 ### Multi Line String
 
@@ -187,6 +190,7 @@ A [`MultiLineString`](#Multi-Line-String) is a collection of [`Coordinate`](#Coo
 * `coordinates` - A nested [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Coordinate`](#Coordinate) objects.
 * `type` - The type of the [`MultiLineString`](#Multi-Line-String). Always `"MultiLineString"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
+* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`MultiLineString`](#MultiLineString).
 
 ### Polygon
 
@@ -210,6 +214,7 @@ A [`Polygon`](#Polygon) is a collection of [`LinearRing`](#Linear Ring) objects 
 * `type` - The type of the [`Polygon`](#Polygon). Always `"Polygon"`.
 * `area` - The are (in square meters) of the Polygon.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
+* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`Polygon`](#polygon).
 
 ### Multi Polygon
 
@@ -235,6 +240,7 @@ A [`MultiPolygon`](#Multi-Polygon) is a collection of [`Polygon`](#Polygon) geom
 * `type` - The type of the [`MultiPolygon`](#Multi-Polygon). Always `"MultiPolygon"`.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 * `area` - The are (in square meters) of the MultiPolygon.
+* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`MultiPolygon`](#multi-polygon).
 
 ### Coordinate
 
@@ -259,6 +265,28 @@ A [`Coordinate`](#Coordinate) is a point in a two-dimensional Cartesian coordina
 * `latitude` - The latitude of the [`Coordinate`](#Coordinate).
 * `longitude` - The longitude of the [`Coordinate`](#Coordinate).
 * `type` - The type of the [`Coordinate`](#Coordinate). Always `"Coordinate"`.
+
+### BoundingBox
+
+  A [`BoundingBox`](#BoundingBox) is a rectangular area of the two-dimensional Cartesian coordinate system.
+  Generally, it is used to represent the smallest possible bounds of a [`Feature`](#Feature) in lat/long space.
+
+  **Constructors**
+
+  * `BoundingBox.fromCoordinates(List<Coordinate> points)` - Creates a [`BoundingBox`](#BoundingBox) from a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Coordinate`](#Coordinate) objects.
+  * `BoundingBox.empty()` - Creates an empty [`BoundingBox`](#BoundingBox).
+  * `BoundingBox.fromPoints(List<Point> points)` - Creates a [`BoundingBox`](#BoundingBox) from a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Point`](#Point) objects.
+
+  **Methods**
+  * `toList()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of GeoJSON data.
+
+  **Properties**
+  * `minLong` - The minimum longitude of the [`BoundingBox`](#BoundingBox).
+  * `minLat` - The minimum latitude of the [`BoundingBox`](#BoundingBox).
+  * `maxLong` - The maximum longitude of the [`BoundingBox`](#BoundingBox).
+  * `maxLat` - The maximum latitude of the [`BoundingBox`](#BoundingBox).
+  * `type` - The type of the [`BoundingBox`](#BoundingBox). Always `"BoundingBox"`.
+  * `center` - The [`Coordinate`](#coordinate) center of the [`BoundingBox`](#BoundingBox).
 
 ## Usage
 
