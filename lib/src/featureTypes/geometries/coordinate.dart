@@ -1,6 +1,14 @@
 import 'dart:math';
 
 /// The base coordinate class, used by all feature types.
+/// It's used to represent a point in geographic coordinates.
+///
+/// Example:
+/// ```dart
+/// Coordinate(1, 2); // Coordinate(1, 2)
+/// Coordinate(1, 2).toWKT(); // 1 2
+/// Coordinate(1, 2).toJson(); // [1, 2]
+/// ```
 class Coordinate {
   final double latitude;
   final double longitude;
@@ -26,25 +34,57 @@ class Coordinate {
 
   /// Converts the [Coordinate] to a WKT [String].
   /// Useless on its own, but useful for other classes.
+  ///
+  /// Example:
+  /// ```dart
+  /// Coordinate(1, 2).toWKT(); // 1 2
+  /// ```
   String toWKT() {
     return '$longitude $latitude';
   }
 
   /// Converts the [Coordinate] to a JSON coordinate [List].
+  ///
+  /// Example:
+  /// ```dart
+  /// Coordinate(1, 2).toJson(); // [1, 2]
+  /// ```
   List<double> toJson() {
     return [longitude, latitude];
   }
 
   /// Creates a [Coordinate] from a JSON [List].
+  ///
+  /// Example:
+  /// ```dart
+  /// Coordinate.fromJson([1, 2]); // Coordinate(1, 2)
+  /// ```
   factory Coordinate.fromJson(List<double> json) {
     return Coordinate(json[1], json[0]);
   }
 
   /// Creates a [Coordinate] from a WKT [String].
+  ///
+  /// Example:
+  /// ```dart
+  /// Coordinate.fromWKT('1 2'); // Coordinate(1, 2)
+  /// ```
   factory Coordinate.fromWKT(String wkt) {
     final coordinates = wkt.split(' ');
     return Coordinate(
         double.parse(coordinates[1]), double.parse(coordinates[0]));
+  }
+
+  /// Returns a random [Coordinate].
+  /// This is useful for testing.
+  ///
+  /// Example:
+  /// ```dart
+  /// Coordinate.random();
+  /// ```
+  factory Coordinate.random() {
+    return Coordinate(
+        Random().nextDouble() * 180 - 90, Random().nextDouble() * 360 - 180);
   }
 
   /// Returns the distance to a different [Coordinate] in meters.

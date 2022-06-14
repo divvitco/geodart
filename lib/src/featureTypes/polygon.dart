@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:geodart/geometries.dart';
 
 /// A [Polygon] is a single closed path with shared properties.
@@ -91,6 +89,7 @@ class Polygon extends Feature {
   /// ]);
   /// print(polygon.centroid);
   /// ```
+  @override
   Point get center {
     List<Point> points = explode();
     double lat = 0;
@@ -129,61 +128,49 @@ class Polygon extends Feature {
 
   /// Uses the [Polygon]'s [coordinates] to make a [LineString].
   /// Ignores any holes in the polygon.
+  ///
+  /// Example:
+  /// ```dart
+  /// Polygon polygon = Polygon([
+  ///   LinearRing([
+  ///     Coordinate(0, 0),
+  ///     Coordinate(0, 1),
+  ///     Coordinate(1, 1),
+  ///     Coordinate(1, 0),
+  ///     Coordinate(0, 0),
+  ///   ]),
+  /// ]);
+  /// print(polygon.lineString);
+  /// ```
   LineString toLineString() {
     return LineString(coordinates.first.coordinates);
   }
 
   /// The area pf the [Polygon] in square meters.
+  ///
+  /// Example:
+  /// ```dart
+  /// Polygon polygon = Polygon([
+  ///   LinearRing([
+  ///     Coordinate(0, 0),
+  ///     Coordinate(0, 1),
+  ///     Coordinate(1, 1),
+  ///     Coordinate(1, 0),
+  ///     Coordinate(0, 0),
+  ///   ]),
+  /// ]);
+  /// print(polygon.area); // 1
+  /// ```
   double get area {
-    num rad(num value) => value * pi / 180;
-    double ringArea(LinearRing ring) {
-      // ignore: constant_identifier_names
-      const WGS84_RADIUS = 6378137;
-      double ringAreaSum = 0;
+    double polyArea = 0;
 
-      if (ring.coordinates.length > 2) {
-        for (int i = 0; i < coordinates.length; i++) {
-          var lowerIndex = i;
-          var middleIndex = i + 1;
-          var upperIndex = i + 2;
-
-          if (i == ring.coordinates.length - 2) {
-            lowerIndex = ring.coordinates.length - 2;
-            middleIndex = ring.coordinates.length - 1;
-            upperIndex = 0;
-          } else if (i == ring.coordinates.length - 1) {
-            lowerIndex = ring.coordinates.length - 1;
-            middleIndex = 0;
-            upperIndex = 1;
-          }
-
-          var p1 = ring.coordinates[lowerIndex];
-          var p2 = ring.coordinates[middleIndex];
-          var p3 = ring.coordinates[upperIndex];
-
-          ringAreaSum +=
-              (rad(p3.longitude) - rad(p1.longitude)) * sin(rad(p2.latitude));
-        }
-
-        ringAreaSum = ringAreaSum * WGS84_RADIUS * WGS84_RADIUS / 2;
+    if (coordinates.length > 2) {
+      polyArea += (coordinates[0].area).abs();
+      for (var hole in coordinates.getRange(1, coordinates.length)) {
+        polyArea -= (hole.area).abs();
       }
-
-      return ringAreaSum;
     }
 
-    double polygonArea(List<LinearRing> rings) {
-      double polyArea = 0;
-
-      if (rings.isNotEmpty) {
-        polyArea += ringArea(rings[0]).abs();
-        for (var hole in rings.getRange(1, coordinates.length)) {
-          polyArea -= ringArea(hole).abs();
-        }
-      }
-
-      return polyArea;
-    }
-
-    return polygonArea(coordinates);
+    return polyArea;
   }
 }

@@ -104,6 +104,9 @@ convertArea(10, AreaUnit.acres, AreaUnit.squareMiles); // returns 0.004046856
 abstract class that can be extended to create new feature types.</p>
 <p>Positions are stored using <a href="#Coordinate"><code>Coordinate</code></a> objects, which has a variety of
 convenience methods for working with coordinates.</p>
+<p>Bounding boxes (generally used as the minimum surrounding area of a <code>Feature</code>) are stored 
+using <a href="#Bounding-Box"><code>BoundingBox</code></a> objects, which has a variety of convenience methods
+for working with bounding boxes.</p>
 <h3 id="feature-collection">Feature Collection</h3>
 <p>A <a href="#Feature-Collection"><code>FeatureCollection</code></a> is a collection of
 <a href="#Feature"><code>Feature</code></a> objects.</p>
@@ -116,10 +119,14 @@ but might extended to include additional properties in the future.</p>
 <p><strong>Methods</strong></p>
 <ul>
 <li><code>toJson()</code> - Returns a JSON object representing the <a href="#Feature-Collection"><code>FeatureCollection</code></a>. Automatically converts features to GeoJSON.</li>
+<li><code>nearestPointTo(Point point)</code> - Returns the nearest <a href="#point"><code>Point</code></a> in the <a href="#Feature-Collection"><code>FeatureCollection</code></a> to the given point.</li>
 </ul>
 <p><strong>Properties</strong></p>
 <ul>
 <li><code>features</code> - A <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#Feature"><code>Feature</code></a> objects.</li>
+<li><code>type</code> - The type of the <a href="#Feature-Collection"><code>FeatureCollection</code></a>. Always <code>"FeatureCollection"</code>.</li>
+<li><code>bbox</code> - The <code>`BoundingBox`</code> of the <a href="#Feature-Collection"><code>FeatureCollection</code></a>.</li>
+<li><code>envelope</code> - A <a href="#polygon"><code>Polygon</code></a> representing the envelope of the <a href="#Feature-Collection"><code>FeatureCollection</code></a>.</li>
 </ul>
 <h3 id="point">Point</h3>
 <p>A <a href="#Point"><code>Point</code></a> is a single position. It is represented by a <a href="#Coordinate"><code>Coordinate</code></a> object.</p>
@@ -175,7 +182,6 @@ but might extended to include additional properties in the future.</p>
 <ul>
 <li><code>along(distance)</code> - Returns a <a href="#Point"><code>Point</code></a> at the specified distance along the line.</li>
 <li><code>explode()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#Point"><code>Point</code></a> objects that make up the LineString.</li>
-<li><code>midpoint()</code> - Returns a <a href="#Point"><code>Point</code></a> at the midpoint of the LineString.</li>
 <li><code>toJson()</code> - Returns a GeoJSON <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of the LineString.</li>
 <li><code>toPolygon()</code> - Returns a <a href="#Polygon"><code>Polygon</code></a> that is the same as the LineString. LineString must be closed, or an exception will be thrown.</li>
 <li><code>toWKT()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/String-class.html"><code>String</code></a> of the LineString in WKT format.</li>
@@ -188,6 +194,8 @@ but might extended to include additional properties in the future.</p>
 <li><code>length</code> - The length (in meters) of the LineString.</li>
 <li><code>properties</code> - A <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of properties.</li>
 <li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#linestring"><code>LineString</code></a>.</li>
+<li><code>segments</code> - A <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#linestring"><code>LineString</code></a> objects that make up the LineString.</li>
+<li><code>midpoint</code> - Returns a <a href="#Point"><code>Point</code></a> at the midpoint of the LineString.</li>
 </ul>
 <h3 id="multi-line-string">Multi Line String</h3>
 <p>A <a href="#Multi-Line-String"><code>MultiLineString</code></a> is a collection of <a href="#Coordinate"><code>Coordinate</code></a> objects that form multiple separate LineStrings with one set of shared properties.</p>
@@ -291,6 +299,7 @@ but might extended to include additional properties in the future.</p>
 <p><strong>Methods</strong></p>
 <ul>
 <li><code>toList()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of GeoJSON data.</li>
+<li><code>toPolygon()</code> - Returns a <a href="#Polygon"><code>Polygon</code></a> that is the same geometry as the <a href="#BoundingBox"><code>BoundingBox</code></a>.</li>
 </ul>
 <p><strong>Properties</strong></p>
 <ul>
@@ -419,7 +428,7 @@ See the <a href="/LICENSE">LICENSE</a> file for more details.</p>
 <footer>
   <span class="no-break">
     geodart
-      0.2.0
+      0.2.2
   </span>
 
   

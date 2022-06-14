@@ -63,55 +63,31 @@
 
 <section class="desc markdown">
   <p>The area pf the <a href="../../geometries/Polygon-class.html">Polygon</a> in square meters.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">Polygon polygon = Polygon([
+  LinearRing([
+    Coordinate(0, 0),
+    Coordinate(0, 1),
+    Coordinate(1, 1),
+    Coordinate(1, 0),
+    Coordinate(0, 0),
+  ]),
+]);
+print(polygon.area); // 1
+</code></pre>
 </section>
 
 
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">double get area {
-  num rad(num value) =&gt; value * pi &#47; 180;
-  double ringArea(LinearRing ring) {
-    &#47;&#47; ignore: constant_identifier_names
-    const WGS84_RADIUS = 6378137;
-    double ringAreaSum = 0;
-
-    if (ring.coordinates.length &gt; 2) {
-      for (int i = 0; i &lt; coordinates.length; i++) {
-        var lowerIndex = i;
-        var middleIndex = i + 1;
-        var upperIndex = i + 2;
-
-        if (i == ring.coordinates.length - 2) {
-          lowerIndex = ring.coordinates.length - 2;
-          middleIndex = ring.coordinates.length - 1;
-          upperIndex = 0;
-        } else if (i == ring.coordinates.length - 1) {
-          lowerIndex = ring.coordinates.length - 1;
-          middleIndex = 0;
-          upperIndex = 1;
-        }
-
-        var p1 = ring.coordinates[lowerIndex];
-        var p2 = ring.coordinates[middleIndex];
-        var p3 = ring.coordinates[upperIndex];
-
-        ringAreaSum +=
-            (rad(p3.longitude) - rad(p1.longitude)) * sin(rad(p2.latitude));
-      }
-
-      ringAreaSum = ringAreaSum * WGS84_RADIUS * WGS84_RADIUS &#47; 2;
-    }
-
-    return ringAreaSum;
-  }
-
   double polygonArea(List&lt;LinearRing&gt; rings) {
     double polyArea = 0;
 
     if (rings.isNotEmpty) {
-      polyArea += ringArea(rings[0]).abs();
+      polyArea += (rings[0].area).abs();
       for (var hole in rings.getRange(1, coordinates.length)) {
-        polyArea -= ringArea(hole).abs();
+        polyArea -= (hole.area).abs();
       }
     }
 
@@ -190,7 +166,7 @@
 <footer>
   <span class="no-break">
     geodart
-      0.2.0
+      0.2.2
   </span>
 
   

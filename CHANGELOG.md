@@ -1,3 +1,11 @@
+## 0.2.2
+
+- Add BoundingBox `toPolygon` conversion
+- Add linestring `segments` property
+- Add `envelope` property to `BoundingBox`
+- Add `square` property to `BoundingBox`
+- Add `isCollectionOf` and `nearestPointTo` property to `FeatureCollection`
+
 ## 0.2.1
 
 - Add BoundingBox as geometry tyoe

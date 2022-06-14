@@ -81,7 +81,8 @@ print(polygon.centroid);
 
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Point get center {
+  <pre class="language-dart"><code class="language-dart">@override
+Point get center {
   List&lt;Point&gt; points = explode();
   double lat = 0;
   double long = 0;
@@ -162,7 +163,7 @@ print(polygon.centroid);
 <footer>
   <span class="no-break">
     geodart
-      0.2.0
+      0.2.2
   </span>
 
   

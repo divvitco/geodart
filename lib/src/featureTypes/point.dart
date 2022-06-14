@@ -104,6 +104,15 @@ class Point extends Feature {
     return Point(Coordinate(latitude, longitude));
   }
 
+  /// Creates a [Point] randomly.
+  /// Example:
+  /// ```dart
+  /// Point.random();
+  /// ```
+  factory Point.random() {
+    return Point(Coordinate.random());
+  }
+
   /// Explodes the [Point] into a list of [Point]s
   /// Pretty useless, but needs to overwrite the [Feature] method.
   ///
