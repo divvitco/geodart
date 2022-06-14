@@ -156,14 +156,14 @@ This is useful for testing.
     <h2>Methods</h2>
     <dl class="callables">
         <dt id="bearingTo" class="callable">
-  <span class="name"><a href="../geometries/Coordinate/bearingTo.html">bearingTo</a></span><span class="signature">(<wbr><span class="parameter" id="bearingTo-param-other"><span class="type-annotation"><a href="../geometries/Coordinate-class.html">Coordinate</a></span> <span class="parameter-name">other</span></span>)
+  <span class="name"><a href="../geometries/Coordinate/bearingTo.html">bearingTo</a></span><span class="signature">(<wbr><span class="parameter" id="bearingTo-param-other"><span class="type-annotation"><a href="../geometries/Coordinate-class.html">Coordinate</a></span> <span class="parameter-name">other</span>, </span><span class="parameter" id="bearingTo-param-unit">{<span class="type-annotation"><a href="../conversions/AngleUnit-class.html">AngleUnit</a>?</span> <span class="parameter-name">unit</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
   </span>
   
 
 </dt>
 <dd>
-  Returns the bearing to a different <a href="../geometries/Coordinate-class.html">Coordinate</a> in degrees.
+  Returns the bearing to a different <a href="../geometries/Coordinate-class.html">Coordinate</a> in degrees, or specified <code>unit</code>.
 Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the bearing between two points.
   
 
@@ -178,20 +178,21 @@ Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine for
 </dt>
 <dd>
   Returns the <a href="../geometries/Coordinate-class.html">Coordinate</a> at a certain distance and bearing from the <a href="../geometries/Coordinate-class.html">Coordinate</a>.
+<code>distance</code> is in meters and <code>bearing</code> is in degrees.
 Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the new coordinate.
   
 
 </dd>
 
         <dt id="distanceTo" class="callable">
-  <span class="name"><a href="../geometries/Coordinate/distanceTo.html">distanceTo</a></span><span class="signature">(<wbr><span class="parameter" id="distanceTo-param-other"><span class="type-annotation"><a href="../geometries/Coordinate-class.html">Coordinate</a></span> <span class="parameter-name">other</span></span>)
+  <span class="name"><a href="../geometries/Coordinate/distanceTo.html">distanceTo</a></span><span class="signature">(<wbr><span class="parameter" id="distanceTo-param-other"><span class="type-annotation"><a href="../geometries/Coordinate-class.html">Coordinate</a></span> <span class="parameter-name">other</span>, </span><span class="parameter" id="distanceTo-param-unit">{<span class="type-annotation"><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a>?</span> <span class="parameter-name">unit</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
   </span>
   
 
 </dt>
 <dd>
-  Returns the distance to a different <a href="../geometries/Coordinate-class.html">Coordinate</a> in meters.
+  Returns the distance to a different <a href="../geometries/Coordinate-class.html">Coordinate</a> in meters or specified <code>unit</code>.
 Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the distance between two points.
   
 
@@ -399,7 +400,7 @@ Useless on its own, but useful for other classes.
 <footer>
   <span class="no-break">
     geodart
-      0.2.2
+      0.2.3
   </span>
 
   

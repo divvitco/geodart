@@ -53,7 +53,8 @@
       
 
 <span class="returntype"><a href="../../geometries/MultiPoint-class.html">MultiPoint</a></span>
-<span class="name ">union</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="union-param-other"><span class="type-annotation"><a href="../../geometries/MultiPoint-class.html">MultiPoint</a></span> <span class="parameter-name">other</span></span></li>
+<span class="name ">union</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="union-param-multi">{<span class="type-annotation"><a href="../../geometries/MultiPoint-class.html">MultiPoint</a>?</span> <span class="parameter-name">multi</span>, </span></li>
+<li><span class="parameter" id="union-param-point"><span class="type-annotation"><a href="../../geometries/Point-class.html">Point</a>?</span> <span class="parameter-name">point</span>}</span></li>
 </ol>)
 
       
@@ -72,10 +73,11 @@ The resulting <a href="../../geometries/MultiPoint-class.html">MultiPoint</a> wi
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">MultiPoint union(MultiPoint other) {
+  <pre class="language-dart"><code class="language-dart">MultiPoint union({MultiPoint? multi, Point? point}) {
   return MultiPoint([
     ...coordinates,
-    ...other.coordinates,
+    ...(multi != null ? multi.coordinates : []),
+    ...(point != null ? [point.coordinate] : []),
   ], properties: properties);
 }</code></pre>
 </section>
@@ -146,7 +148,7 @@ The resulting <a href="../../geometries/MultiPoint-class.html">MultiPoint</a> wi
 <footer>
   <span class="no-break">
     geodart
-      0.2.2
+      0.2.3
   </span>
 
   

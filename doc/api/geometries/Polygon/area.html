@@ -81,20 +81,16 @@ print(polygon.area); // 1
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">double get area {
-  double polygonArea(List&lt;LinearRing&gt; rings) {
-    double polyArea = 0;
+  double polyArea = 0;
 
-    if (rings.isNotEmpty) {
-      polyArea += (rings[0].area).abs();
-      for (var hole in rings.getRange(1, coordinates.length)) {
-        polyArea -= (hole.area).abs();
-      }
+  if (coordinates.length &gt; 2) {
+    polyArea += (coordinates[0].area).abs();
+    for (var hole in coordinates.getRange(1, coordinates.length)) {
+      polyArea -= (hole.area).abs();
     }
-
-    return polyArea;
   }
 
-  return polygonArea(coordinates);
+  return polyArea;
 }</code></pre>
 </section>
 
@@ -166,7 +162,7 @@ print(polygon.area); // 1
 <footer>
   <span class="no-break">
     geodart
-      0.2.2
+      0.2.3
   </span>
 
   

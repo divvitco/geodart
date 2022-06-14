@@ -60,6 +60,9 @@ convertDistance(20, DistanceUnits.nauticalMiles, DistanceUnits.feet); // returns
 
 // Convert areas
 convertArea(20, AreaUnits.hectares, AreaUnits.squareMeters); // returns 200000
+
+// Convert angles
+convertAngle(20, AngleUnits.degrees, AngleUnits.radians); // returns 0.349079173398
 </code></pre>
 </section>
 
@@ -68,6 +71,22 @@ convertArea(20, AreaUnits.hectares, AreaUnits.squareMeters); // returns 200000
       <h2>Classes</h2>
 
       <dl>
+        <dt id="AngleUnit">
+  <span class="name "><a href="../conversions/AngleUnit-class.html">AngleUnit</a></span> 
+
+</dt>
+<dd>
+  A class to define units of angle
+</dd>
+
+        <dt id="AngleUnits">
+  <span class="name "><a href="../conversions/AngleUnits-class.html">AngleUnits</a></span> 
+
+</dt>
+<dd>
+  A helper class to make units of angle more accessible
+</dd>
+
         <dt id="AreaUnit">
   <span class="name "><a href="../conversions/AreaUnit-class.html">AreaUnit</a></span> 
 
@@ -111,6 +130,19 @@ convertArea(20, AreaUnits.hectares, AreaUnits.squareMeters); // returns 200000
       <h2>Functions</h2>
 
       <dl class="callables">
+        <dt id="convertAngle" class="callable">
+  <span class="name"><a href="../conversions/convertAngle.html">convertAngle</a></span><span class="signature">(<wbr><span class="parameter" id="convertAngle-param-original"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">original</span>, </span><span class="parameter" id="convertAngle-param-from"><span class="type-annotation"><a href="../conversions/AngleUnit-class.html">AngleUnit</a></span> <span class="parameter-name">from</span>, </span><span class="parameter" id="convertAngle-param-to"><span class="type-annotation"><a href="../conversions/AngleUnit-class.html">AngleUnit</a></span> <span class="parameter-name">to</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Convert <code>original</code> angle <code>from</code> some unit <code>to</code> another.
+  
+
+</dd>
+
         <dt id="convertArea" class="callable">
   <span class="name"><a href="../conversions/convertArea.html">convertArea</a></span><span class="signature">(<wbr><span class="parameter" id="convertArea-param-original"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">original</span>, </span><span class="parameter" id="convertArea-param-from"><span class="type-annotation"><a href="../conversions/AreaUnit-class.html">AreaUnit</a></span> <span class="parameter-name">from</span>, </span><span class="parameter" id="convertArea-param-to"><span class="type-annotation"><a href="../conversions/AreaUnit-class.html">AreaUnit</a></span> <span class="parameter-name">to</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
@@ -172,6 +204,8 @@ convertArea(20, AreaUnits.hectares, AreaUnits.squareMeters); // returns 200000
     <h5>conversions library</h5>
     <ol>
   <li class="section-title"><a href="../conversions/conversions-library.html#classes">Classes</a></li>
+  <li><a href="../conversions/AngleUnit-class.html">AngleUnit</a></li>
+  <li><a href="../conversions/AngleUnits-class.html">AngleUnits</a></li>
   <li><a href="../conversions/AreaUnit-class.html">AreaUnit</a></li>
   <li><a href="../conversions/AreaUnits-class.html">AreaUnits</a></li>
   <li><a href="../conversions/DistanceUnit-class.html">DistanceUnit</a></li>
@@ -182,6 +216,7 @@ convertArea(20, AreaUnits.hectares, AreaUnits.squareMeters); // returns 200000
 
 
   <li class="section-title"><a href="../conversions/conversions-library.html#functions">Functions</a></li>
+  <li><a href="../conversions/convertAngle.html">convertAngle</a></li>
   <li><a href="../conversions/convertArea.html">convertArea</a></li>
   <li><a href="../conversions/convertDistance.html">convertDistance</a></li>
 
@@ -196,7 +231,7 @@ convertArea(20, AreaUnits.hectares, AreaUnits.squareMeters); // returns 200000
 <footer>
   <span class="no-break">
     geodart
-      0.2.2
+      0.2.3
   </span>
 
   

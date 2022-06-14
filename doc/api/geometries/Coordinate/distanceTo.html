@@ -53,7 +53,8 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
-<span class="name ">distanceTo</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="distanceTo-param-other"><span class="type-annotation"><a href="../../geometries/Coordinate-class.html">Coordinate</a></span> <span class="parameter-name">other</span></span></li>
+<span class="name ">distanceTo</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="distanceTo-param-other"><span class="type-annotation"><a href="../../geometries/Coordinate-class.html">Coordinate</a></span> <span class="parameter-name">other</span>, </span></li>
+<li><span class="parameter" id="distanceTo-param-unit">{<span class="type-annotation"><a href="../../conversions/DistanceUnit-class.html">DistanceUnit</a>?</span> <span class="parameter-name">unit</span>}</span></li>
 </ol>)
 
       
@@ -61,7 +62,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Returns the distance to a different <a href="../../geometries/Coordinate-class.html">Coordinate</a> in meters.
+  <p>Returns the distance to a different <a href="../../geometries/Coordinate-class.html">Coordinate</a> in meters or specified <code>unit</code>.
 Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine formula</a> to calculate the distance between two points.</p>
 <p>Example:</p>
 <pre class="language-dart"><code class="language-dart">Coordinate(1, 2).distanceTo(Coordinate(3, 4)); // 314635.33
@@ -72,7 +73,7 @@ Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine for
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">double distanceTo(Coordinate other) {
+  <pre class="language-dart"><code class="language-dart">double distanceTo(Coordinate other, {DistanceUnit? unit}) {
   final lat1 = latitude * (pi &#47; 180);
   final lon1 = longitude * (pi &#47; 180);
   final lat2 = other.latitude * (pi &#47; 180);
@@ -85,7 +86,11 @@ Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine for
       cos(lat1) * cos(lat2) * sin(dLon &#47; 2) * sin(dLon &#47; 2);
   final c = 2 * atan2(sqrt(a), sqrt(1 - a));
 
-  return 6371000 * c;
+  return convertDistance(
+    6371000 * c,
+    DistanceUnits.meters,
+    unit ?? DistanceUnits.meters,
+  );
 }</code></pre>
 </section>
 
@@ -155,7 +160,7 @@ Uses the <a href="https://en.wikipedia.org/wiki/Haversine_formula">Haversine for
 <footer>
   <span class="no-break">
     geodart
-      0.2.2
+      0.2.3
   </span>
 
   
