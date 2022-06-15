@@ -176,56 +176,30 @@ class LinearRing {
   /// print(ring.contains(Point(Coordinate(0.5, 1.5)))); // false
   /// ```
   bool contains(Point point) {
-    bool rayCastIntersect(Point point, Point vertA, Point vertB) {
-      final double aY = vertA.lat;
-      final double bY = vertB.lat;
-      final double aX = vertA.lng;
-      final double bX = vertB.lng;
-      final double pY = point.lat;
-      final double pX = point.lng;
-
-      if ((aY > pY && bY > pY) ||
-          (aY < pY && bY < pY) ||
-          (aX < pX && bX < pX)) {
-        // The case where the ray does not possibly pass through the polygon edge,
-        // because both points A and B are above/below the line,
-        // or both are to the left/west of the starting point
-        // (as the line travels eastward into the polygon).
-        // Therefore we should not perform the check and simply return false.
-        // If we did not have this check we would get false positives.
-        return false;
-      }
-
-      // y = mx + b : Standard linear equation
-      // (y-b)/m = x : Formula to solve for x
-
-      // M is rise over run -> the slope or angle between vertices A and B.
-      final double m = (aY - bY) / (aX - bX);
-      // B is the Y-intercept of the line between vertices A and B
-      final double b = ((aX * -1) * m) + aY;
-      // We want to find the X location at which a flat horizontal ray at Y height
-      // of pY would intersect with the line between A and B.
-      // So we use our rearranged Y = MX+B, but we use pY as our Y value
-      final double x = (pY - b) / m;
-
-      // If the value of X
-      // (the x point at which the ray intersects the line created by points A and B)
-      // is "ahead" of the point's X value, then the ray can be said to intersect with the polygon.
-      return x > pX;
-    }
-
-    if (coordinates.length < 3) {
-      return false;
-    }
-
-    int intersectCount = 0;
-    for (int i = 0; i < coordinates.length; i += 1) {
-      final Point vertB = Point(
-          i == coordinates.length - 1 ? coordinates[0] : coordinates[i + 1]);
-      if (rayCastIntersect(point, Point(coordinates[i]), vertB)) {
-        intersectCount += 1;
+    Coordinate testCoord = coordinates.last;
+    bool c = false;
+    for (Coordinate coord in coordinates) {
+      // for each vertex in the polygon,
+      if (point.lat == coord.latitude && point.lng == coord.longitude) {
+        // the point is a vertex, so return true
+        return true;
+      } else if (coord.latitude > point.lat != testCoord.latitude > point.lat) {
+        // if the point is to the right of the current polygon edge
+        double slope = (point.lng - coord.longitude) *
+                (testCoord.latitude - coord.latitude) -
+            (testCoord.longitude - coord.longitude) *
+                (point.lat - coord.latitude);
+        print("slope: $slope");
+        if (slope == 0) {
+          // if the point is exactly on the current polygon edge
+          return true;
+        } else if ((slope < 0) != testCoord.latitude < coord.latitude) {
+          // if the point is to the right of the current polygon edge
+          c = !c;
+        }
+        testCoord = coord;
       }
     }
-    return (intersectCount % 2) == 1;
+    return c;
   }
 }
