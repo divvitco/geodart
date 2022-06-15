@@ -1,3 +1,11 @@
+## 0.2.4
+
+- `Polygon.random()` created.
+- Add readme links to conversion headings.
+- Additional `LineString` methods and properties.
+- `LinearRing` `random()` `centroid` and `area` methods added.
+- `Point` and `Polygon` `contained` and `isContainedIn` methods added in `LinearRing`, `MultiPolygon`, `Polygon`, and `Point`.
+
 ## 0.2.3
 
 - Expose `convertAngle` function.

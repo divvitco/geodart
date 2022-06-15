@@ -207,4 +207,16 @@ class MultiPolygon extends Feature {
     return coordinates.fold(
         0.0, (double acc, poly) => acc + Polygon(poly).area);
   }
+
+  /// Returns whether or not the [Point] is contained within the [MultiPolygon].
+  /// This is done by checking if the [Point] is contained within any of the [Polygon]s.
+  /// Uses the [Ray Casting](https://en.wikipedia.org/wiki/Point_in_polygon) algorithm.
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])]]).contains(Point(2, 2)); // true
+  /// ```
+  bool contains(Point point) {
+    return coordinates.any((poly) => Polygon(poly).contains(point));
+  }
 }

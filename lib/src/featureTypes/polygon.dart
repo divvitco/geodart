@@ -164,13 +164,32 @@ class Polygon extends Feature {
   double get area {
     double polyArea = 0;
 
-    if (coordinates.length > 2) {
-      polyArea += (coordinates[0].area).abs();
-      for (var hole in coordinates.getRange(1, coordinates.length)) {
-        polyArea -= (hole.area).abs();
-      }
+    polyArea += (coordinates[0].area).abs();
+    for (var hole in coordinates.sublist(1)) {
+      polyArea -= (hole.area).abs();
     }
 
     return polyArea;
+  }
+
+  /// Returns whether or not the [Polygon] contains the [Point].
+  /// Uses the [Ray Casting](https://en.wikipedia.org/wiki/Point_in_polygon) algorithm.
+  ///
+  /// Example:
+  /// ```dart
+  /// Polygon polygon = Polygon([
+  ///   LinearRing([
+  ///     Coordinate(0, 0),
+  ///     Coordinate(0, 1),
+  ///     Coordinate(1, 1),
+  ///     Coordinate(1, 0),
+  ///     Coordinate(0, 0),
+  ///   ]),
+  /// ]);
+  /// print(polygon.contains(Point(0.5, 0.5))); // true
+  /// ```
+  bool contains(Point point) {
+    return coordinates.first.contains(point) &&
+        !coordinates.sublist(1).any((ring) => ring.contains(point));
   }
 }

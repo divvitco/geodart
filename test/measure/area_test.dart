@@ -13,7 +13,7 @@ void main() {
           Coordinate(1, 2)
         ])
       ]);
-      expect(area(polygon), 74318205388.36292);
+      expect(area(polygon), 45272642.71187383);
     });
 
     test("area of a multipolygon", () {
@@ -35,7 +35,7 @@ void main() {
           ])
         ]
       ]);
-      expect(area(multiPolygon), 148636410776.72583);
+      expect(area(multiPolygon), 90545285.42374766);
     });
 
     test("area of a polygon with holes", () {
