@@ -68,6 +68,13 @@ Closed means the first and last <a href="../geometries/Coordinate-class.html">Co
         <dd>
           
         </dd>
+        <dt id="LinearRing.random" class="callable">
+          <span class="name"><a href="../geometries/LinearRing/LinearRing.random.html">LinearRing.random</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+          Creates a random <a href="../geometries/LinearRing-class.html">LinearRing</a> with 3 <a href="../geometries/Coordinate-class.html">Coordinate</a>s.
+            <div class="constructor-modifier features">factory</div>
+        </dd>
     </dl>
   </section>
 
@@ -87,14 +94,38 @@ Example:
 
 </dd>
 
+        <dt id="bbox" class="property">
+  <span class="name"><a href="../geometries/LinearRing/bbox.html">bbox</a></span>
+  <span class="signature">&#8594; <a href="../geometries/BoundingBox-class.html">BoundingBox</a></span> 
+
+</dt>
+<dd>
+  Returns the <a href="../geometries/BoundingBox-class.html">BoundingBox</a> of the <a href="../geometries/LinearRing-class.html">LinearRing</a>.
+  <div class="features">read-only</div>
+
+</dd>
+
+        <dt id="centroid" class="property">
+  <span class="name"><a href="../geometries/LinearRing/centroid.html">centroid</a></span>
+  <span class="signature">&#8594; <a href="../geometries/Point-class.html">Point</a></span> 
+
+</dt>
+<dd>
+  Returns the <a href="../geometries/LinearRing-class.html">LinearRing</a>'s centroid.
+The centroid is the <a href="../geometries/Point-class.html">Point</a> that is the center of the <a href="../geometries/LinearRing-class.html">LinearRing</a>.
+Example:
+  <div class="features">read-only</div>
+
+</dd>
+
         <dt id="coordinates" class="property">
   <span class="name"><a href="../geometries/LinearRing/coordinates.html">coordinates</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../geometries/Coordinate-class.html">Coordinate</a></span>&gt;</span></span> 
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../geometries/Coordinate-class.html">Coordinate</a></span>&gt;</span></span> 
 
 </dt>
 <dd>
   
-  <div class="features">read / write</div>
+  <div class="features">final</div>
 
 </dd>
 
@@ -129,6 +160,33 @@ Example:
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
+        <dt id="contains" class="callable">
+  <span class="name"><a href="../geometries/LinearRing/contains.html">contains</a></span><span class="signature">(<wbr><span class="parameter" id="contains-param-point"><span class="type-annotation"><a href="../geometries/Point-class.html">Point</a></span> <span class="parameter-name">point</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns whether or not the <a href="../geometries/LinearRing-class.html">LinearRing</a> contains the <a href="../geometries/Point-class.html">Point</a>.
+Uses the <a href="https://en.wikipedia.org/wiki/Point_in_polygon">Ray Casting</a> algorithm.
+  
+
+</dd>
+
+        <dt id="explode" class="callable">
+  <span class="name"><a href="../geometries/LinearRing/explode.html">explode</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../geometries/FeatureCollection-class.html">FeatureCollection</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns all the <a href="../geometries/Coordinate-class.html">Coordinate</a>s of the <a href="../geometries/LinearRing-class.html">LinearRing</a> as <a href="../geometries/Point-class.html">Point</a>s.
+  
+
+</dd>
+
         <dt id="noSuchMethod" class="callable inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
     <span class="returntype parameter">&#8594; dynamic</span>
@@ -139,6 +197,20 @@ Example:
 <dd class="inherited">
   Invoked when a non-existent method or property is accessed.
   <div class="features">inherited</div>
+
+</dd>
+
+        <dt id="reverse" class="callable">
+  <span class="name"><a href="../geometries/LinearRing/reverse.html">reverse</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../geometries/LinearRing-class.html">LinearRing</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Reverses the <a href="../geometries/LinearRing-class.html">LinearRing</a>'s <a href="../geometries/LinearRing/coordinates.html">coordinates</a>.
+Example:
+  
 
 </dd>
 
@@ -243,18 +315,24 @@ Example:
 
         <li class="section-title"><a href="../geometries/LinearRing-class.html#constructors">Constructors</a></li>
           <li><a href="../geometries/LinearRing/LinearRing.html">LinearRing</a></li>
+          <li><a href="../geometries/LinearRing/LinearRing.random.html">random</a></li>
 
 
     <li class="section-title">
       <a href="../geometries/LinearRing-class.html#instance-properties">Properties</a>
     </li>
     <li><a href="../geometries/LinearRing/area.html">area</a></li>
+    <li><a href="../geometries/LinearRing/bbox.html">bbox</a></li>
+    <li><a href="../geometries/LinearRing/centroid.html">centroid</a></li>
     <li><a href="../geometries/LinearRing/coordinates.html">coordinates</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
 
     <li class="section-title"><a href="../geometries/LinearRing-class.html#instance-methods">Methods</a></li>
+    <li><a href="../geometries/LinearRing/contains.html">contains</a></li>
+    <li><a href="../geometries/LinearRing/explode.html">explode</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../geometries/LinearRing/reverse.html">reverse</a></li>
     <li><a href="../geometries/LinearRing/toLineString.html">toLineString</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
 
@@ -273,7 +351,7 @@ Example:
 <footer>
   <span class="no-break">
     geodart
-      0.2.3
+      0.2.5
   </span>
 
   

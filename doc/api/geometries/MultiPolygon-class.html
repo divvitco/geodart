@@ -188,6 +188,21 @@ This is the average of all <a href="../geometries/Coordinate-class.html">Coordin
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
+        <dt id="contains" class="callable">
+  <span class="name"><a href="../geometries/MultiPolygon/contains.html">contains</a></span><span class="signature">(<wbr><span class="parameter" id="contains-param-point"><span class="type-annotation"><a href="../geometries/Point-class.html">Point</a></span> <span class="parameter-name">point</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns whether or not the <a href="../geometries/Point-class.html">Point</a> is contained within the <a href="../geometries/MultiPolygon-class.html">MultiPolygon</a>.
+This is done by checking if the <a href="../geometries/Point-class.html">Point</a> is contained within any of the <a href="../geometries/Polygon-class.html">Polygon</a>s.
+Uses the <a href="https://en.wikipedia.org/wiki/Point_in_polygon">Ray Casting</a> algorithm.
+  
+
+</dd>
+
         <dt id="explode" class="callable">
   <span class="name"><a href="../geometries/MultiPolygon/explode.html">explode</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../geometries/Point-class.html">Point</a></span>&gt;</span></span>
@@ -402,6 +417,7 @@ The resulting <a href="../geometries/MultiPolygon-class.html">MultiPolygon</a> w
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
 
     <li class="section-title"><a href="../geometries/MultiPolygon-class.html#instance-methods">Methods</a></li>
+    <li><a href="../geometries/MultiPolygon/contains.html">contains</a></li>
     <li><a href="../geometries/MultiPolygon/explode.html">explode</a></li>
     <li><a href="../geometries/MultiPolygon/flatten.html">flatten</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
@@ -428,7 +444,7 @@ The resulting <a href="../geometries/MultiPolygon-class.html">MultiPolygon</a> w
 <footer>
   <span class="no-break">
     geodart
-      0.2.3
+      0.2.5
   </span>
 
   

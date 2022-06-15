@@ -86,8 +86,8 @@ convertAngle(10, AngleUnits.degrees, AngleUnits.radians); // returns 0.174532925
 // Ten acres to square miles
 convertArea(10, AreaUnits.acres, AreaUnits.squareMiles); // returns 0.004046856
 </code></pre>
-<p>There are some static units that are available with the type of <code>DistanceUnit</code>, <code>AngleUnit</code> and <code>AreaUnit</code>. There are some preset units that are available with these types:</p>
-<p><strong><code>DistanceUnit</code></strong></p>
+<p>There are some static units that are available with the type of <a href="#distanceunit"><code>DistanceUnit</code></a>, <a href="#angleunit"><code>AngleUnit</code></a> and <a href="#areaunit"><code>AreaUnit</code></a>. There are some preset units that are available with these types:</p>
+<h3 id="distanceunit"><code>DistanceUnit</code></h3>
 <p>The following are the available units for length and distance:</p>
 <ul>
 <li><code>DistanceUnits.meters</code></li>
@@ -99,7 +99,7 @@ convertArea(10, AreaUnits.acres, AreaUnits.squareMiles); // returns 0.004046856
 <li><code>DistanceUnits.millimeters</code></li>
 <li><code>DistanceUnits.centimeters</code></li>
 </ul>
-<p><strong><code>AngleUnit</code></strong></p>
+<h3 id="angleunit"><code>AngleUnit</code></h3>
 <p>The following are the available units for angles:</p>
 <ul>
 <li><code>AngleUnits.degrees</code></li>
@@ -110,7 +110,7 @@ convertArea(10, AreaUnits.acres, AreaUnits.squareMiles); // returns 0.004046856
 <li><code>AngleUnits.arcMinutes</code></li>
 <li><code>AngleUnits.milliradians</code></li>
 </ul>
-<p><strong><code>AreaUnit</code></strong></p>
+<h3 id="areaunit"><code>AreaUnit</code></h3>
 <p>The following are the available units for area:</p>
 <ul>
 <li><code>AreaUnits.squareMeters</code></li>
@@ -181,6 +181,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>explode()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of itself.</li>
 <li><code>toJson()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of GeoJSON data.</li>
 <li><code>toWKT()</code> - Returns a Well-Known Text string representing the <a href="#Point"><code>Point</code></a>.</li>
+<li><code>isContainedIn(Feature feature)</code> - Returns true if the <a href="#Point"><code>Point</code></a> is contained within the given <a href="#polygon"><code>Polygon</code></a> or <a href="#multi-polygon"><code>MultiPolygon</code></a>.</li>
 </ul>
 <p><strong>Properties</strong></p>
 <ul>
@@ -231,6 +232,8 @@ but might extended to include additional properties in the future.</p>
 <li><code>toPolygon()</code> - Returns a <a href="#Polygon"><code>Polygon</code></a> that is the same as the LineString. LineString must be closed, or an exception will be thrown.</li>
 <li><code>toWKT()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/String-class.html"><code>String</code></a> of the LineString in WKT format.</li>
 <li><code>pointAt(double percentage)</code> - Returns a <a href="#Point"><code>Point</code></a> at the specified percentage along the line.</li>
+<li><code>reverse()</code> - Returns a <a href="#Line-String"><code>LineString</code></a> that is the reverse of the original LineString.</li>
+<li><code>isParallelTo(LineString line)</code> - Returns <code>true</code> if the LineString is parallel to the specified LineString, or all segments are parallel in order or reverse order.</li>
 </ul>
 <p><strong>Properties</strong></p>
 <ul>
@@ -239,10 +242,11 @@ but might extended to include additional properties in the future.</p>
 <li><code>isClosedRing</code> - A boolean indicating whether the LineString is a closed ring.</li>
 <li><code>length</code> - The length (in meters) of the LineString.</li>
 <li><code>properties</code> - A <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of properties.</li>
-<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#linestring"><code>LineString</code></a>.</li>
-<li><code>segments</code> - A <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#linestring"><code>LineString</code></a> objects that make up the LineString.</li>
+<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <a href="#line-string"><code>LineString</code></a>.</li>
+<li><code>segments</code> - A <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#line-string"><code>LineString</code></a> objects that make up the LineString.</li>
 <li><code>midpoint</code> - Returns a <a href="#Point"><code>Point</code></a> at the midpoint of the LineString.</li>
-<li><code>center</code> - The <a href="#Point"><code>Point</code></a> representing the center of the <a href="#linestring"><code>LineString</code></a>'s coordinates.</li>
+<li><code>center</code> - The <a href="#Point"><code>Point</code></a> representing the center of the <a href="#line-string"><code>LineString</code></a>'s coordinates.</li>
+<li><code>bearing</code> - The bearing of the <a href="#line-string"><code>LineString</code></a>. If more than 2 coordinates are provided, 0.0 is returned.</li>
 </ul>
 <h3 id="multi-line-string">Multi Line String</h3>
 <p>A <a href="#Multi-Line-String"><code>MultiLineString</code></a> is a collection of <a href="#Coordinate"><code>Coordinate</code></a> objects that form multiple separate LineStrings with one set of shared properties.</p>
@@ -279,6 +283,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>toJson()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/Map-class.html"><code>Map</code></a> of GeoJSON data.</li>
 <li><code>toWKT()</code> - Returns a Well-Known Text string representing the <a href="#Polygon"><code>Polygon</code></a>.</li>
 <li><code>toLineString()</code> - Returns a <a href="#Line-String"><code>LineString</code></a> that is the same geometry as the <a href="#Polygon"><code>Polygon</code></a>.</li>
+<li><code>contains(Point point)</code> - Returns <code>true</code> if the <a href="#Polygon"><code>Polygon</code></a> contains the specified <a href="#Point"><code>Point</code></a>.</li>
 </ul>
 <p><strong>Properties</strong></p>
 <ul>
@@ -303,6 +308,7 @@ but might extended to include additional properties in the future.</p>
 <li><code>union({MultiPolygon? multi, Polygon? poly})</code> - Merges the <a href="#Multi-Polygon"><code>MultiPolygon</code></a> with another <a href="#Multi-Polygon"><code>MultiPolygon</code></a> and/or <a href="#polygon"><code>Polygon</code></a>.</li>
 <li><code>flatten()</code> - Returns a <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#Polygon"><code>Polygon</code></a> objects.</li>
 <li><code>toMultiLineString()</code> - Returns a <a href="#Multi-Line-String"><code>MultiLineString</code></a> that is the same geometry as the <a href="#Multi-Polygon"><code>MultiPolygon</code></a>.</li>
+<li><code>contains(Point point)</code> - Returns <code>true</code> if the <a href="#Multi-Polygon"><code>MultiPolygon</code></a> contains the <a href="#Point"><code>Point</code></a>.</li>
 </ul>
 <p><strong>Properties</strong></p>
 <ul>
@@ -334,6 +340,26 @@ but might extended to include additional properties in the future.</p>
 <li><code>latitude</code> - The latitude of the <a href="#Coordinate"><code>Coordinate</code></a>.</li>
 <li><code>longitude</code> - The longitude of the <a href="#Coordinate"><code>Coordinate</code></a>.</li>
 <li><code>type</code> - The type of the <a href="#Coordinate"><code>Coordinate</code></a>. Always <code>"Coordinate"</code>.</li>
+</ul>
+<h3 id="linearring"><code>LinearRing</code></h3>
+<p>A <code>`LinearRing`</code>(#Linear Ring) is a closed <a href="#Line-String"><code>LineString</code></a> that is closed because the first and last coordinate are the same.</p>
+<p><strong>Constructors</strong></p>
+<ul>
+<li><code>LinearRing.random()</code> - Creates a <code>`LinearRing`</code>(#Linear Ring) with 3 random <a href="#coordinate"><code>Coordinates</code></a>.</li>
+</ul>
+<p><strong>Methods</strong></p>
+<ul>
+<li><code>toLineString()</code> - Returns a <a href="#Line-String"><code>LineString</code></a> that is the same geometry as the <code>`LinearRing`</code>(#Linear Ring).</li>
+<li><code>reverse()</code> - Returns a <code>`LinearRing`</code>(#Linear Ring) that is the same geometry as the <code>`LinearRing`</code>(#Linear Ring) but in reverse order.</li>
+<li><code>explode()</code> - Returns a <a href="#feature-collection"><code>FeatureCollection</code></a> of <a href="#Point"><code>Point</code></a> objects.</li>
+</ul>
+<p><strong>Properties</strong></p>
+<ul>
+<li><code>coordinates</code> - A <a href="https://api.dartlang.org/stable/dart-core/List-class.html"><code>List</code></a> of <a href="#Coordinate"><code>Coordinate</code></a> objects.</li>
+<li><code>type</code> - The type of the <code>`LinearRing`</code>(#Linear Ring). Always <code>"LinearRing"</code>.</li>
+<li><code>area</code> - The are (in square meters) of the <code>`LinearRing`</code>(#Linear Ring).</li>
+<li><code>centroid</code> - The <a href="#Coordinate"><code>Coordinate</code></a> that is the centroid of the <code>`LinearRing`</code>(#Linear Ring).</li>
+<li><code>bbox</code> - a <a href="#BoundingBox"><code>BoundingBox</code></a> of the <code>`LinearRing`</code>(#Linear Ring).</li>
 </ul>
 <h3 id="boundingbox">BoundingBox</h3>
 <p>A <a href="#BoundingBox"><code>BoundingBox</code></a> is a rectangular area of the two-dimensional Cartesian coordinate system.
@@ -477,7 +503,7 @@ See the <a href="/LICENSE">LICENSE</a> file for more details.</p>
 <footer>
   <span class="no-break">
     geodart
-      0.2.3
+      0.2.5
   </span>
 
   

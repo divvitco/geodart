@@ -54,7 +54,7 @@
 <section id="getter">
 
 <section class="multi-line-signature">
-  <span class="returntype"><a href="../../geometries/FeatureCollection-class.html">FeatureCollection</a></span>
+  <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../geometries/LineString-class.html">LineString</a></span>&gt;</span></span>
   <span class="name ">segments</span>
   
 
@@ -62,16 +62,16 @@
 
 
 <section class="desc markdown">
-  <p>Returns each segment (a 2-coordinate <a href="../../geometries/LineString-class.html">LineString</a>) of the <a href="../../geometries/LineString-class.html">LineString</a> in a <a href="../../geometries/FeatureCollection-class.html">FeatureCollection</a></p>
+  <p>Returns each segment (a 2-coordinate <code>LineString</code>) of the <code>LineString</code> in a <a href="../../geometries/FeatureCollection-class.html">FeatureCollection</a></p>
 <p>Example:</p>
-<pre class="language-dart"><code class="language-dart">LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6)]).segments; // FeatureCollection([LineString([Coordinate(1, 2), Coordinate(3, 4)]), LineString([Coordinate(3, 4), Coordinate(5, 6)])])
+<pre class="language-dart"><code class="language-dart">LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6)]).segments; // [LineString([Coordinate(1, 2), Coordinate(3, 4)]), LineString([Coordinate(3, 4), Coordinate(5, 6)])]
 </code></pre>
 </section>
 
 
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">FeatureCollection get segments {
+  <pre class="language-dart"><code class="language-dart">List&lt;LineString&gt; get segments {
   List&lt;LineString&gt; segments = [];
   for (int i = 0; i &lt; coordinates.length - 1; i++) {
     final start = coordinates[i];
@@ -79,7 +79,7 @@
     final segment = LineString([start, end]);
     segments.add(segment);
   }
-  return FeatureCollection(segments);
+  return segments;
 }</code></pre>
 </section>
 
@@ -117,6 +117,7 @@
       <a href="../../geometries/LineString-class.html#instance-properties">Properties</a>
     </li>
     <li><a href="../../geometries/LineString/bbox.html">bbox</a></li>
+    <li><a href="../../geometries/LineString/bearing.html">bearing</a></li>
     <li><a href="../../geometries/LineString/center.html">center</a></li>
     <li><a href="../../geometries/LineString/coordinates.html">coordinates</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
@@ -129,9 +130,11 @@
     <li class="section-title"><a href="../../geometries/LineString-class.html#instance-methods">Methods</a></li>
     <li><a href="../../geometries/LineString/along.html">along</a></li>
     <li><a href="../../geometries/LineString/explode.html">explode</a></li>
+    <li><a href="../../geometries/LineString/isParallelTo.html">isParallelTo</a></li>
     <li><a href="../../geometries/LineString/midpoint.html">midpoint</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../../geometries/LineString/pointAt.html">pointAt</a></li>
+    <li><a href="../../geometries/LineString/reverse.html">reverse</a></li>
     <li><a href="../../geometries/LineString/toJson.html">toJson</a></li>
     <li><a href="../../geometries/LineString/toPolygon.html">toPolygon</a></li>
     <li><a href="../../geometries/LineString/toString.html">toString</a></li>
@@ -157,7 +160,7 @@
 <footer>
   <span class="no-break">
     geodart
-      0.2.3
+      0.2.5
   </span>
 
   
