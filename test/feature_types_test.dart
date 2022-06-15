@@ -25,7 +25,7 @@ void main() {
         }
       };
       Polygon feature = Polygon.fromJson(geojson);
-      expect(feature.area, 220572482709.00787);
+      expect(feature.area, 8237532809.30144);
     });
 
     test("Invalid geojson", () {
@@ -83,7 +83,7 @@ void main() {
         }
       };
       MultiPolygon feature = MultiPolygon.fromJson(geojson);
-      expect(feature.area, 441144965418.01575);
+      expect(feature.area, 16475065618.60288);
     });
 
     test("invalid geojson", () {

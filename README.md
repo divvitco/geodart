@@ -50,9 +50,9 @@ convertAngle(10, AngleUnits.degrees, AngleUnits.radians); // returns 0.174532925
 convertArea(10, AreaUnits.acres, AreaUnits.squareMiles); // returns 0.004046856
 ```
 
-There are some static units that are available with the type of `DistanceUnit`, `AngleUnit` and `AreaUnit`. There are some preset units that are available with these types:
+There are some static units that are available with the type of [`DistanceUnit`](#distanceunit), [`AngleUnit`](#angleunit) and [`AreaUnit`](#areaunit). There are some preset units that are available with these types:
 
-**`DistanceUnit`**
+### `DistanceUnit`
 
 The following are the available units for length and distance:
 
@@ -65,7 +65,7 @@ The following are the available units for length and distance:
   - `DistanceUnits.millimeters`
   - `DistanceUnits.centimeters`
 
-**`AngleUnit`**
+### `AngleUnit`
 
 The following are the available units for angles:
 
@@ -77,7 +77,7 @@ The following are the available units for angles:
   - `AngleUnits.arcMinutes`
   - `AngleUnits.milliradians`
 
-**`AreaUnit`**
+### `AreaUnit`
 
 The following are the available units for area:
 
@@ -161,6 +161,7 @@ A [`Point`](#Point) is a single position. It is represented by a [`Coordinate`](
 * `explode()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of itself.
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `toWKT()` - Returns a Well-Known Text string representing the [`Point`](#Point).
+* `isContainedIn(Feature feature)` - Returns true if the [`Point`](#Point) is contained within the given [`Polygon`](#polygon) or [`MultiPolygon`](#multi-polygon).
 
 **Properties**
 
@@ -215,6 +216,8 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `toPolygon()` - Returns a [`Polygon`](#Polygon) that is the same as the LineString. LineString must be closed, or an exception will be thrown.
 * `toWKT()` - Returns a [`String`](https://api.dartlang.org/stable/dart-core/String-class.html) of the LineString in WKT format.
 * `pointAt(double percentage)` - Returns a [`Point`](#Point) at the specified percentage along the line.
+* `reverse()` - Returns a [`LineString`](#Line-String) that is the reverse of the original LineString.
+* `isParallelTo(LineString line)` - Returns `true` if the LineString is parallel to the specified LineString, or all segments are parallel in order or reverse order.
 
 **Properties**
 
@@ -223,10 +226,11 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `isClosedRing` - A boolean indicating whether the LineString is a closed ring.
 * `length` - The length (in meters) of the LineString.
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
-* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`LineString`](#linestring).
-* `segments` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#linestring) objects that make up the LineString.
+* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`LineString`](#line-string).
+* `segments` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`LineString`](#line-string) objects that make up the LineString.
 * `midpoint` - Returns a [`Point`](#Point) at the midpoint of the LineString.
-* `center` - The [`Point`](#Point) representing the center of the [`LineString`](#linestring)'s coordinates.
+* `center` - The [`Point`](#Point) representing the center of the [`LineString`](#line-string)'s coordinates.
+* `bearing` - The bearing of the [`LineString`](#line-string). If more than 2 coordinates are provided, 0.0 is returned.
 
 
 ### Multi Line String
@@ -268,6 +272,7 @@ A [`Polygon`](#Polygon) is a collection of [`LinearRing`](#Linear Ring) objects 
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `toWKT()` - Returns a Well-Known Text string representing the [`Polygon`](#Polygon).
 * `toLineString()` - Returns a [`LineString`](#Line-String) that is the same geometry as the [`Polygon`](#Polygon).
+* `contains(Point point)` - Returns `true` if the [`Polygon`](#Polygon) contains the specified [`Point`](#Point).
 
 **Properties**
 
@@ -294,6 +299,7 @@ A [`MultiPolygon`](#Multi-Polygon) is a collection of [`Polygon`](#Polygon) geom
 * `union({MultiPolygon? multi, Polygon? poly})` - Merges the [`MultiPolygon`](#Multi-Polygon) with another [`MultiPolygon`](#Multi-Polygon) and/or [`Polygon`](#polygon).
 * `flatten()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Polygon`](#Polygon) objects.
 * `toMultiLineString()` - Returns a [`MultiLineString`](#Multi-Line-String) that is the same geometry as the [`MultiPolygon`](#Multi-Polygon).
+* `contains(Point point)` - Returns `true` if the [`MultiPolygon`](#Multi-Polygon) contains the [`Point`](#Point).
 
 **Properties**
 
@@ -327,6 +333,28 @@ A [`Coordinate`](#Coordinate) is a point in a two-dimensional Cartesian coordina
 * `latitude` - The latitude of the [`Coordinate`](#Coordinate).
 * `longitude` - The longitude of the [`Coordinate`](#Coordinate).
 * `type` - The type of the [`Coordinate`](#Coordinate). Always `"Coordinate"`.
+
+### `LinearRing`
+
+A [`LinearRing`](#Linear Ring) is a closed [`LineString`](#Line-String) that is closed because the first and last coordinate are the same.
+
+**Constructors**
+
+* `LinearRing.random()` - Creates a [`LinearRing`](#Linear Ring) with 3 random [`Coordinates`](#coordinate).
+
+**Methods**
+
+* `toLineString()` - Returns a [`LineString`](#Line-String) that is the same geometry as the [`LinearRing`](#Linear Ring).
+* `reverse()` - Returns a [`LinearRing`](#Linear Ring) that is the same geometry as the [`LinearRing`](#Linear Ring) but in reverse order.
+* `explode()` - Returns a [`FeatureCollection`](#feature-collection) of [`Point`](#Point) objects.
+
+**Properties**
+
+* `coordinates` - A [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Coordinate`](#Coordinate) objects.
+* `type` - The type of the [`LinearRing`](#Linear Ring). Always `"LinearRing"`.
+* `area` - The are (in square meters) of the [`LinearRing`](#Linear Ring).
+* `centroid` - The [`Coordinate`](#Coordinate) that is the centroid of the [`LinearRing`](#Linear Ring).
+* `bbox` - a [`BoundingBox`](#BoundingBox) of the [`LinearRing`](#Linear Ring).
 
 ### BoundingBox
 

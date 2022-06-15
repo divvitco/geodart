@@ -169,6 +169,24 @@ class Point extends Feature {
     return BoundingBox.empty();
   }
 
+  /// Returns whether or not the [Point] is contained within the [Polygon] or [MultiPolygon].
+  /// Uses the [Ray Casting](https://en.wikipedia.org/wiki/Point_in_polygon) algorithm.
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 2)).isContainedBy(Polygon([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])); // false -> Polygon does not have any area, so it cannot contain a point
+  /// Point(Coordinate(0.5, 0.5)).isContainedBy(MultiPolygon([Polygon([Coordinate(0, 0), Coordinate(0, 1), Coordinate(1, 1), Coordinate(1, 0), Coordinate(0, 0)])])); // true
+  /// ```
+  bool isContainedIn(Feature feature) {
+    if (feature is Polygon) {
+      return feature.contains(this);
+    } else if (feature is MultiPolygon) {
+      return feature.contains(this);
+    } else {
+      throw ArgumentError("feature must be a Polygon or MultiPolygon");
+    }
+  }
+
   /// Checks for equality between two [Point]s, specifically if they have the same [coordinate] and [properties].
   ///
   /// Example:

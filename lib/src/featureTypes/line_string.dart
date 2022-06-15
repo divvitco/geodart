@@ -133,9 +133,9 @@ class LineString extends Feature {
   ///
   /// Example:
   /// ```dart
-  /// LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6)]).segments; // FeatureCollection([LineString([Coordinate(1, 2), Coordinate(3, 4)]), LineString([Coordinate(3, 4), Coordinate(5, 6)])])
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6)]).segments; // [LineString([Coordinate(1, 2), Coordinate(3, 4)]), LineString([Coordinate(3, 4), Coordinate(5, 6)])]
   /// ```
-  FeatureCollection get segments {
+  List<LineString> get segments {
     List<LineString> segments = [];
     for (int i = 0; i < coordinates.length - 1; i++) {
       final start = coordinates[i];
@@ -143,7 +143,7 @@ class LineString extends Feature {
       final segment = LineString([start, end]);
       segments.add(segment);
     }
-    return FeatureCollection(segments);
+    return segments;
   }
 
   /// If the [LineString] is a closed ring, it will be converted to a [Polygon].
@@ -263,5 +263,48 @@ class LineString extends Feature {
   bool get isClosedRing {
     return coordinates.length >= 4 &&
         coordinates[0] == coordinates[coordinates.length - 1];
+  }
+
+  double get bearing {
+    return coordinates.length == 2
+        ? coordinates.first.bearingTo(coordinates.last)
+        : 0.0;
+  }
+
+  /// Returns a [LineString] that is a copy of the [LineString] with the coordinates reversed.
+  /// The first coordinate will become the last, and the last coordinate will become the first.
+  /// If the [LineString] is a closed ring, the first and last coordinate will be the same.
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(1, 4), Coordinate(1, 2)]).reverse(); // LineString([Coordinate(1, 2), Coordinate(1, 4), Coordinate(3, 4), Coordinate(1, 2)])
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(1, 4)]).reverse(); // LineString([Coordinate(1, 4), Coordinate(3, 4), Coordinate(1, 2)])
+  /// ```
+  LineString reverse() {
+    return LineString(coordinates.reversed.toList(), properties: properties);
+  }
+
+  /// Returns whether or not the [LineString] is parallel to the [LineString] [other].
+  /// If the [LineString]s have different lengths, they are not considered parallel.
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).isParallelTo(LineString([Coordinate(2, 3), Coordinate(4, 5)])); // true
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).isParallelTo(LineString([Coordinate(4, 5), Coordinate(2, 3)])); // true
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).isParallelTo(LineString([Coordinate(4, 5), Coordinate(2, 6)])); // false
+  /// ```
+  bool isParallelTo(LineString other) {
+    if (coordinates.length != other.coordinates.length) {
+      return false;
+    } else if (coordinates.length == 2) {
+      return bearing == other.bearing;
+    } else {
+      return segments.every((LineString element) {
+        int index = segments.indexOf(element);
+
+        return element.bearing == other.segments[index].bearing ||
+            element.bearing == other.reverse().segments[index].bearing;
+      });
+    }
   }
 }
