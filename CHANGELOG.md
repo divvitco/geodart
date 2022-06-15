@@ -1,3 +1,8 @@
+## 0.2.5
+
+- `LinearRing.contains` bug fix
+- Tests for `LinearRing.contains` bug fix 
+
 ## 0.2.4
 
 - `Polygon.random()` created.

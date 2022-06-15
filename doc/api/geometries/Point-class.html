@@ -243,6 +243,20 @@ Pretty useless, but needs to overwrite the <a href="../geometries/Feature-class.
 
 </dd>
 
+        <dt id="isContainedIn" class="callable">
+  <span class="name"><a href="../geometries/Point/isContainedIn.html">isContainedIn</a></span><span class="signature">(<wbr><span class="parameter" id="isContainedIn-param-feature"><span class="type-annotation"><a href="../geometries/Feature-class.html">Feature</a></span> <span class="parameter-name">feature</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns whether or not the <a href="../geometries/Point-class.html">Point</a> is contained within the <a href="../geometries/Polygon-class.html">Polygon</a> or <a href="../geometries/MultiPolygon-class.html">MultiPolygon</a>.
+Uses the <a href="https://en.wikipedia.org/wiki/Point_in_polygon">Ray Casting</a> algorithm.
+  
+
+</dd>
+
         <dt id="noSuchMethod" class="callable inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
     <span class="returntype parameter">&#8594; dynamic</span>
@@ -407,6 +421,7 @@ Pretty useless, but needs to overwrite the <a href="../geometries/Feature-class.
 
     <li class="section-title"><a href="../geometries/Point-class.html#instance-methods">Methods</a></li>
     <li><a href="../geometries/Point/explode.html">explode</a></li>
+    <li><a href="../geometries/Point/isContainedIn.html">isContainedIn</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../geometries/Point/toJson.html">toJson</a></li>
     <li><a href="../geometries/Point/toString.html">toString</a></li>
@@ -429,7 +444,7 @@ Pretty useless, but needs to overwrite the <a href="../geometries/Feature-class.
 <footer>
   <span class="no-break">
     geodart
-      0.2.3
+      0.2.5
   </span>
 
   

@@ -84,5 +84,53 @@ void main() {
       expect(point.properties['name'], 'point');
       expect(point.toJson()['properties']['name'], 'point');
     });
+
+    test("Point is within polygon", () {
+      Polygon polygon = Polygon([
+        LinearRing([
+          Coordinate(0, 0),
+          Coordinate(0, 1),
+          Coordinate(1, 1),
+          Coordinate(1, 0),
+          Coordinate(0, 0)
+        ])
+      ]);
+      Point point = Point(Coordinate(0.5, 0.5));
+      expect(
+          LinearRing([
+            Coordinate(0, 0),
+            Coordinate(0, 1),
+            Coordinate(1, 1),
+            Coordinate(1, 0),
+            Coordinate(0, 0)
+          ]).contains(point),
+          isTrue);
+      expect(polygon.contains(point), isTrue);
+      expect(point.isContainedIn(polygon), true);
+    });
+
+    test("Point is not within polygon", () {
+      Polygon polygon = Polygon([
+        LinearRing([
+          Coordinate(0, 0),
+          Coordinate(0, 1),
+          Coordinate(1, 1),
+          Coordinate(1, 0),
+          Coordinate(0, 0)
+        ])
+      ]);
+      Point point = Point(Coordinate(2, 2));
+      expect(
+          LinearRing([
+            Coordinate(0, 0),
+            Coordinate(0, 1),
+            Coordinate(1, 1),
+            Coordinate(1, 0),
+            Coordinate(0, 0)
+          ]).contains(point),
+          isFalse);
+      expect(polygon.contains(point), isFalse);
+      expect(point.isContainedIn(polygon), false);
+    });
   });
 }

@@ -127,6 +127,17 @@ Currently only supports a 2 <a href="../geometries/Coordinate-class.html">Coordi
 
 </dd>
 
+        <dt id="bearing" class="property">
+  <span class="name"><a href="../geometries/LineString/bearing.html">bearing</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> 
+
+</dt>
+<dd>
+  
+  <div class="features">read-only</div>
+
+</dd>
+
         <dt id="center" class="property">
   <span class="name"><a href="../geometries/LineString/center.html">center</a></span>
   <span class="signature">&#8594; <a href="../geometries/Point-class.html">Point</a></span> 
@@ -207,11 +218,11 @@ The length is calculated using the <a href="https://en.wikipedia.org/wiki/Havers
 
         <dt id="segments" class="property">
   <span class="name"><a href="../geometries/LineString/segments.html">segments</a></span>
-  <span class="signature">&#8594; <a href="../geometries/FeatureCollection-class.html">FeatureCollection</a></span> 
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../geometries/LineString-class.html">LineString</a></span>&gt;</span></span> 
 
 </dt>
 <dd>
-  Returns each segment (a 2-coordinate <a href="../geometries/LineString-class.html">LineString</a>) of the <a href="../geometries/LineString-class.html">LineString</a> in a <a href="../geometries/FeatureCollection-class.html">FeatureCollection</a>
+  Returns each segment (a 2-coordinate <code>LineString</code>) of the <code>LineString</code> in a <a href="../geometries/FeatureCollection-class.html">FeatureCollection</a>
   <div class="features">read-only</div>
 
 </dd>
@@ -254,6 +265,20 @@ If the <code>distance</code> is less than 0, the first <a href="../geometries/Po
 
 </dd>
 
+        <dt id="isParallelTo" class="callable">
+  <span class="name"><a href="../geometries/LineString/isParallelTo.html">isParallelTo</a></span><span class="signature">(<wbr><span class="parameter" id="isParallelTo-param-other"><span class="type-annotation"><a href="../geometries/LineString-class.html">LineString</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns whether or not the <a href="../geometries/LineString-class.html">LineString</a> is parallel to the <a href="../geometries/LineString-class.html">LineString</a> <code>other</code>.
+If the <a href="../geometries/LineString-class.html">LineString</a>s have different lengths, they are not considered parallel.
+  
+
+</dd>
+
         <dt id="midpoint" class="callable">
   <span class="name"><a href="../geometries/LineString/midpoint.html">midpoint</a></span><span class="signature">(<wbr>)
     <span class="returntype parameter">&#8594; <a href="../geometries/Point-class.html">Point</a></span>
@@ -293,6 +318,21 @@ If the <code>percentage</code> is greater than 1, the last <a href="../geometrie
 If the <code>percentage</code> is less than 0, the first <a href="../geometries/Point-class.html">Point</a> in the <a href="../geometries/LineString-class.html">LineString</a> will be returned.
 If the <code>percentage</code> is 0, the first <a href="../geometries/Point-class.html">Point</a> in the <a href="../geometries/LineString-class.html">LineString</a> will be returned.
 If the <code>percentage</code> is 1, the last <a href="../geometries/Point-class.html">Point</a> in the <a href="../geometries/LineString-class.html">LineString</a> will be returned.
+  
+
+</dd>
+
+        <dt id="reverse" class="callable">
+  <span class="name"><a href="../geometries/LineString/reverse.html">reverse</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../geometries/LineString-class.html">LineString</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns a <a href="../geometries/LineString-class.html">LineString</a> that is a copy of the <a href="../geometries/LineString-class.html">LineString</a> with the coordinates reversed.
+The first coordinate will become the last, and the last coordinate will become the first.
+If the <a href="../geometries/LineString-class.html">LineString</a> is a closed ring, the first and last coordinate will be the same.
   
 
 </dd>
@@ -451,6 +491,7 @@ Any <a href="../geometries/Feature/properties.html">properties</a> will be appli
       <a href="../geometries/LineString-class.html#instance-properties">Properties</a>
     </li>
     <li><a href="../geometries/LineString/bbox.html">bbox</a></li>
+    <li><a href="../geometries/LineString/bearing.html">bearing</a></li>
     <li><a href="../geometries/LineString/center.html">center</a></li>
     <li><a href="../geometries/LineString/coordinates.html">coordinates</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
@@ -463,9 +504,11 @@ Any <a href="../geometries/Feature/properties.html">properties</a> will be appli
     <li class="section-title"><a href="../geometries/LineString-class.html#instance-methods">Methods</a></li>
     <li><a href="../geometries/LineString/along.html">along</a></li>
     <li><a href="../geometries/LineString/explode.html">explode</a></li>
+    <li><a href="../geometries/LineString/isParallelTo.html">isParallelTo</a></li>
     <li><a href="../geometries/LineString/midpoint.html">midpoint</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../geometries/LineString/pointAt.html">pointAt</a></li>
+    <li><a href="../geometries/LineString/reverse.html">reverse</a></li>
     <li><a href="../geometries/LineString/toJson.html">toJson</a></li>
     <li><a href="../geometries/LineString/toPolygon.html">toPolygon</a></li>
     <li><a href="../geometries/LineString/toString.html">toString</a></li>
@@ -488,7 +531,7 @@ Any <a href="../geometries/Feature/properties.html">properties</a> will be appli
 <footer>
   <span class="no-break">
     geodart
-      0.2.3
+      0.2.5
   </span>
 
   
