@@ -145,6 +145,24 @@ but might extended to include additional properties in the future.
 * `center` - The [`Point`](#point) representing the center of the [`FeatureCollection`](#Feature-Collection).
 * `isEmpty` - Whether or not the [`FeatureCollection`](#Feature-Collection) is empty.
 
+### Feature
+
+A [`Feature`](#Feature) is an abstract class that can be extended to create new feature types.
+
+**Because this class is abstract, you cannot instantiate it directly.**
+
+**Methods**
+
+* `explode()` - Returns a [List] of [`Point`](#point) objects, one for each coordinate in the [`Feature`](#Feature).
+* `toJson()` - Returns a JSON object representing the [`Feature`](#Feature). Automatically converts features to GeoJSON.
+* `toWKT()` - Returns a WKT string representing the [`Feature`](#Feature).
+
+**Properties**
+
+* `type` - The type of the [`Feature`](#Feature).
+* `bbox` - The [`BoundingBox`] of the [`Feature`](#Feature).
+* `center` - The [`Point`](#point) representing the center of the [`Feature`](#Feature).
+
 ### Point
 
 A [`Point`](#Point) is a single position. It is represented by a [`Coordinate`](#Coordinate) object.
@@ -206,7 +224,7 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 
 * `LineString.fromJson(Map<String, dynamic> json)` - Creates a [`LineString`](#Line-String) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `LineString.fromWkt(String wkt)` - Creates a [`LineString`](#Line-String) from a Well-Known Text string.
-* `LineString.random()` - Creates a [`LineString`](#Line-String) at a random location within the [-180, 180] x [-90, 90] bounding box.
+* `LineString.random({int length})` - Creates a [`LineString`](#Line-String) at a random location within the [-180, 180] x [-90, 90] bounding box with a given number of points (defaults to 2).
 
 **Methods**
 
@@ -218,6 +236,8 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `pointAt(double percentage)` - Returns a [`Point`](#Point) at the specified percentage along the line.
 * `reverse()` - Returns a [`LineString`](#Line-String) that is the reverse of the original LineString.
 * `isParallelTo(LineString line)` - Returns `true` if the LineString is parallel to the specified LineString, or all segments are parallel in order or reverse order.
+* `intersections(LineString line)` - Returns a [`FeatureCollection`] of [`Point`](#Point) objects where the LineString intersects the specified LineString.
+* `contains(Point point)` - Returns `true` if the LineString contains the specified [`Point`](#Point).
 
 **Properties**
 
@@ -231,7 +251,7 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `midpoint` - Returns a [`Point`](#Point) at the midpoint of the LineString.
 * `center` - The [`Point`](#Point) representing the center of the [`LineString`](#line-string)'s coordinates.
 * `bearing` - The bearing of the [`LineString`](#line-string). If more than 2 coordinates are provided, 0.0 is returned.
-
+* `slope` - The slope of the [`LineString`](#line-string). If more than 2 coordinates are provided, it uses the first and last coordinates.
 
 ### Multi Line String
 
@@ -241,6 +261,7 @@ A [`MultiLineString`](#Multi-Line-String) is a collection of [`Coordinate`](#Coo
 
 * `MultiLineString.fromJson(Map<String, dynamic> json)` - Creates a [`MultiLineString`](#Multi-Line-String) from a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `MultiLineString.fromWkt(String wkt)` - Creates a [`MultiLineString`](#Multi-Line-String) from a Well-Known Text string.
+* `MultiLineString.random({int count, int length})` - Creates a [`MultiLineString`](#Multi-Line-String) at a random location within the [-180, 180] x [-90, 90] bounding box, with a line count (count) and a number of points in each line (length).
 
 **Methods**
 

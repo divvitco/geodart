@@ -1,3 +1,14 @@
+## 0.2.6
+
+- `Feature` now has `+` capabilities.
+- `FeatureCollection` now has `+` capabilities.
+- `MultiPoint.random({int points})` created.
+- `LineString.random({int length})` added `length` parameter.
+- `MultiLineString.random({int count, int length})` added `length` and `count` parameter.
+- `LineString.intersections` added.
+- `LineString.slope` added.
+- `LineString.contains` added.
+
 ## 0.2.5
 
 - `LinearRing.contains` bug fix
