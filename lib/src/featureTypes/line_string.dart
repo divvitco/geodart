@@ -106,6 +106,9 @@ class LineString extends Feature {
           coordinates == other.coordinates &&
           properties == other.properties;
 
+  @override
+  int get hashCode => coordinates.hashCode ^ properties.hashCode;
+
   /// Explodes the [LineString] into a [List] of [Point]s
   ///
   /// Example:
