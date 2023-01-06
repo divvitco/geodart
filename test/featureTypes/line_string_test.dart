@@ -27,5 +27,16 @@ void main() {
       expect(line.midpoint().coordinate,
           Coordinate(2.0003044085023722, 2.999390393801055));
     });
+
+    test("intersections", () {
+      LineString line1 = LineString([Coordinate(1, 2), Coordinate(3, 4)]);
+      LineString line2 = LineString([Coordinate(2, 2), Coordinate(4, 4)]);
+
+      expect(line1.intersections(line2).features.length, 0);
+
+      LineString line3 = LineString([Coordinate(1, 1), Coordinate(3, 3)]);
+      LineString line4 = LineString([Coordinate(1, 3), Coordinate(3, 1)]);
+      expect(line3.intersections(line4).features, [Point(Coordinate(2, 2))]);
+    });
   });
 }
