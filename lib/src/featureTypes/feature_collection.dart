@@ -236,4 +236,48 @@ class FeatureCollection {
 
     return nearestPoint;
   }
+
+  /// Returns the addition of the current [FeatureCollection] and the [other], which is a [Feature], a [List] of [Feature]s, or [FeatureCollection].
+  /// If the [other] is a [Feature], it is added to the [FeatureCollection].
+  /// If the [other] is a [FeatureCollection], it is added to the [FeatureCollection].
+  /// If the [other] is not a [Feature] or [FeatureCollection], it throws an [ArgumentError].
+  ///
+  /// Example:
+  /// ```dart
+  /// FeatureCollection([
+  ///   Point(Coordinate(1, 2)),
+  ///   Point(Coordinate(5, 6))
+  /// ]) + Point(Coordinate(7, 8)); // FeatureCollection([Point(1, 2), Point(5, 6), Point(7, 8)])
+  ///
+  /// FeatureCollection([
+  ///   Point(Coordinate(1, 2)),
+  ///   Point(Coordinate(5, 6))
+  /// ]) + FeatureCollection([Point(7, 8)]); // FeatureCollection([Point(1, 2), Point(5, 6), Point(7, 8)])
+  ///
+  /// FeatureCollection([
+  ///   Point(Coordinate(1, 2)),
+  ///   Point(Coordinate(5, 6))
+  /// ]) + LineString([Coordinate(7, 8), Coordinate(9, 10)]); // FeatureCollection([Point(1, 2), Point(5, 6), LineString([Coordinate(7, 8), Coordinate(9, 10)])])
+  ///
+  /// FeatureCollection([
+  ///  Point(Coordinate(1, 2)),
+  /// Point(Coordinate(5, 6))
+  /// ]) + MultiPoint([Coordinate(7, 8)]); // FeatureCollection([Point(1, 2), Point(5, 6), MultiPoint([Coordinate(7, 8)])])
+  ///
+  /// FeatureCollection([
+  ///   Point(Coordinate(1, 2)),
+  ///   Point(Coordinate(5, 6))
+  /// ]) + 5; // throws ArgumentError
+  /// ```
+  FeatureCollection operator +(dynamic other) {
+    if (other is FeatureCollection) {
+      return FeatureCollection(features + other.features);
+    } else if (other is Feature) {
+      return FeatureCollection(features + [other]);
+    } else if (other is List<Feature>) {
+      return FeatureCollection(features + other);
+    } else {
+      throw ArgumentError('Unsupported type: ${other.runtimeType}');
+    }
+  }
 }
