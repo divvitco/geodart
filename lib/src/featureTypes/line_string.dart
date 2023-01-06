@@ -80,16 +80,31 @@ class LineString extends Feature {
     );
   }
 
-  /// Creates a [LineString] with random [Coordinate]s
-  /// Currently only supports a 2 [Coordinate] [LineString]
+  /// Creates a [LineString] with random [Coordinate]s with the number of vertices specified [length].
+  /// The [length] must be greater than 2, or an [ArgumentError] will be thrown.
   ///
   /// Example:
   /// ```dart
   /// LineString.random(); // LineString([Coordinate(?, ?), Coordinate(?, ?)])
   /// ```
-  factory LineString.random() {
-    return LineString([Coordinate.random(), Coordinate.random()]);
+  factory LineString.random({int length = 2}) {
+    if (length <= 2) {
+      throw ArgumentError('length must be greater than 2');
+    }
+    List<Coordinate> coordinates = [];
+    for (int i = 0; i < length; i++) {
+      coordinates.add(Coordinate.random());
+    }
+    return LineString(coordinates);
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LineString &&
+          runtimeType == other.runtimeType &&
+          coordinates == other.coordinates &&
+          properties == other.properties;
 
   /// Explodes the [LineString] into a [List] of [Point]s
   ///
@@ -306,5 +321,104 @@ class LineString extends Feature {
             element.bearing == other.reverse().segments[index].bearing;
       });
     }
+  }
+
+  /// Returns the slope of the line, using only the first and last coordinate.
+  /// If the line is vertical, null is returned
+  /// If the line is horizontal, 0 is returned
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).slope; // 1
+  /// LineString([Coordinate(1, 2), Coordinate(3, 2)]).slope; // 0
+  /// LineString([Coordinate(1, 2), Coordinate(1, 4)]).slope; // null
+  /// ```
+  double? get slope {
+    if (coordinates.first.x == coordinates.last.x) {
+      return null;
+    }
+    return (coordinates.last.y - coordinates.first.y) /
+        (coordinates.last.x - coordinates.first.x);
+  }
+
+  /// Returns true if the [Point] is on the line
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).contains(Point(Coordinate(2, 3))); // true
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).contains(Point(Coordinate(2, 4))); // false
+  /// ```
+  bool contains(Point point) {
+    if (slope == null) {
+      // If the line is vertical, check if the x-coordinate of the point is equal to the x-coordinate
+      return point.coordinate.x == coordinates.first.x &&
+          point.coordinate.y >= coordinates.first.y &&
+          point.coordinate.y <= coordinates.last.y;
+    } else {
+      // Calculate the y-intercept of the line
+      final double yIntercept =
+          coordinates.first.y - (slope! * coordinates.first.x);
+
+      // Check if the point is on the line by plugging the x-coordinate of the point
+      // into the equation of the line and checking if the result is equal to the y-coordinate
+      // of the point
+      final bool isOnLine =
+          (slope! * point.coordinate.x + yIntercept) == point.coordinate.y;
+      return isOnLine;
+    }
+  }
+
+  /// Returns a [FeatureCollection] of [Point]s where the [LineString] intersects with the [LineString] [other].
+  /// If the [LineString]s do not intersect, an empty [FeatureCollection] is returned.
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).intersections(LineString([Coordinate(2, 3), Coordinate(4, 5)])); // FeatureCollection([]) - does not intersect
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).intersections(LineString([Coordinate(3, 4), Coordinate(1, 2)])); // FeatureCollection([Point()]) - intersects at (2, 3)
+  /// ```
+  FeatureCollection intersections(LineString other) {
+    Point? getIntersection(LineString segment1, LineString segment2) {
+      final a1 = segment1.coordinates.first;
+      final a2 = segment1.coordinates.last;
+      final b1 = segment2.coordinates.first;
+      final b2 = segment2.coordinates.last;
+
+      final denominator =
+          (a1.y - a2.y) * (b1.x - b2.x) - (a1.x - a2.x) * (b1.y - b2.y);
+      if (denominator == 0) {
+        return null;
+      }
+
+      final x = -1 *
+          ((a1.x * a2.y - a1.y * a2.x) * (b1.x - b2.x) -
+              (a1.x - a2.x) * (b1.x * b2.y - b1.y * b2.x)) /
+          denominator;
+      final y = -1 *
+          ((a1.x * a2.y - a1.y * a2.x) * (b1.y - b2.y) -
+              (a1.y - a2.y) * (b1.x * b2.y - b1.y * b2.x)) /
+          denominator;
+
+      final intersection = Point(Coordinate(x, y));
+      if (segment1.contains(intersection) && segment2.contains(intersection)) {
+        return intersection;
+      } else {
+        return null;
+      }
+    }
+
+    FeatureCollection intersections = FeatureCollection([]);
+
+    for (var segment in segments) {
+      final FeatureCollection segmentIntersections = FeatureCollection(other
+          .segments
+          .where(
+              (otherSegment) => getIntersection(segment, otherSegment) != null)
+          .map((LineString otherSegment) =>
+              getIntersection(segment, otherSegment)!)
+          .toList());
+      intersections.features.addAll(segmentIntersections.features);
+    }
+
+    return intersections;
   }
 }

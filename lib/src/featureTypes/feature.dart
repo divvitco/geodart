@@ -36,4 +36,25 @@ abstract class Feature {
   /// Returns the [BoundingBox] of the [Feature].
   /// This is the bounding box of all [Coordinate]s in the [Feature].
   BoundingBox get bbox;
+
+  /// Adds two [Feature]s together to form a [FeatureCollection].
+  /// Each [Feature] in the [FeatureCollection] will retain their [properties] and [coordinates].
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 2)) + Point(Coordinate(3, 4)); // FeatureCollection([Point(Coordinate(1, 2)), Point(Coordinate(3, 4))])
+  /// Polygon([LinearRing([Coordinate(0, 0), Coordinate(1, 0), Coordinate(1, 1), Coordinate(0, 1), Coordinate(0, 0)])]) + MultiPoint([Coordinate(1, 1), Coordinate(2, 2)]); // FeatureCollection([Polygon([LinearRing([Coordinate(0, 0), Coordinate(1, 0), Coordinate(1, 1), Coordinate(0, 1), Coordinate(0, 0)])]), MultiPoint([Coordinate(1, 1), Coordinate(2, 2)])])
+  /// ```
+  FeatureCollection operator +(Feature other) {
+    return FeatureCollection([this, other]);
+  }
+
+  // /// Adds a buffer distance to the [Feature].
+  // /// [distance] is in meters. [steps] is the number of points used to approximate the buffer.
+  // ///
+  // /// Example:
+  // /// ```dart
+  // /// Point(Coordinate(1, 2)).buffer(0.5); // Polygon([LinearRing([Coordinate(0, 0), Coordinate(1, 0), Coordinate(1, 1), Coordinate(0, 1), Coordinate(0, 0)])])
+  // /// ```
+  // Feature buffer(double distance, {int steps = 8});
 }

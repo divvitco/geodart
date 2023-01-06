@@ -189,7 +189,6 @@ class LinearRing {
                 (testCoord.latitude - coord.latitude) -
             (testCoord.longitude - coord.longitude) *
                 (point.lat - coord.latitude);
-        print("slope: $slope");
         if (slope == 0) {
           // if the point is exactly on the current polygon edge
           return true;

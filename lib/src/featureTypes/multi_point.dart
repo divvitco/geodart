@@ -110,6 +110,22 @@ class MultiPoint extends Feature {
     );
   }
 
+  /// Creates a [MultiPoint] at random.
+  /// The number of [Coordinate]s is defined by [points].
+  ///
+  /// Example:
+  /// ```dart
+  /// // Create a random MultiPoint with 10 points (not necessarily the points given in the example)
+  /// MultiPoint.random(10); // MultiPoint([Coordinate(0, 0), Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(13, 14), Coordinate(15, 16), Coordinate(17, 18)])
+  /// ```
+  factory MultiPoint.random({int points = 3}) {
+    List<Coordinate> coordinates = [];
+    for (int i = 0; i < points; i++) {
+      coordinates.add(Coordinate.random());
+    }
+    return MultiPoint(coordinates);
+  }
+
   /// Explodes the [MultiPoint] into a [List] of [Point]s.
   ///
   /// Example:

@@ -82,6 +82,26 @@ class MultiLineString extends Feature {
     );
   }
 
+  /// Creates a random [MultiLineString] with a given number of lines ([count]) and length of each line ([length]).
+  /// The [length] is the number of points in each line (must be 2 or more).
+  /// The [count] is the number of lines in the [MultiLineString] (must be one or more).
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiLineString.random(); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]])
+  /// MultiLineString.random(count: 2, length: 3); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(7, 8)], [Coordinate(9, 10), Coordinate(11, 12), Coordinate(13, 14), Coordinate(15, 16)]])
+  /// ```
+  factory MultiLineString.random({int count = 1, int length = 2}) {
+    if (count < 1) {
+      throw ArgumentError('count must be 1 or more');
+    }
+    List<List<Coordinate>> coordinates = [];
+    for (var i = 0; i < count; i++) {
+      coordinates.add(LineString.random(length: length).coordinates);
+    }
+    return MultiLineString(coordinates);
+  }
+
   /// Explodes the [MultiLineString] into a [List] of [Point]s.
   ///
   /// Example:

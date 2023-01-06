@@ -191,4 +191,12 @@ class Coordinate {
 
     return Coordinate(lat3 * (180 / pi), lon3 * (180 / pi));
   }
+
+  get x {
+    return longitude;
+  }
+
+  get y {
+    return latitude;
+  }
 }
