@@ -1,3 +1,7 @@
+## 0.2.8
+
+- `MultiLineString.fromWKT` creation bug.
+
 ## 0.2.7
 
 - `LineString.hashCode` operator.

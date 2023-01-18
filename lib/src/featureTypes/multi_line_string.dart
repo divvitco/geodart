@@ -73,11 +73,15 @@ class MultiLineString extends Feature {
   /// ```
   @override
   factory MultiLineString.fromWKT(String wkt) {
-    final wktLines = wkt.split('(')[1].split(')')[0].split(',');
+    if (!wkt.startsWith('MULTILINESTRING')) {
+      throw ArgumentError('wkt is not a MultiLineString');
+    }
+    final wktLines = wkt.split('((')[1].split('))')[0].split('),(');
     return MultiLineString(
       wktLines
-          .map((c) => c.split('('))
-          .map((c) => c.map((point) => Coordinate.fromWKT(point)).toList())
+          .map((line) => line.split(','))
+          .map(
+              (line) => line.map((point) => Coordinate.fromWKT(point)).toList())
           .toList(),
     );
   }
