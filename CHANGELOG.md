@@ -1,3 +1,7 @@
+## 0.2.7
+
+- `LineString.hashCode` operator.
+
 ## 0.2.6
 
 - `Feature` now has `+` capabilities.
