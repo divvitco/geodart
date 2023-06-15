@@ -55,6 +55,22 @@ class Coordinate {
     return [longitude, latitude];
   }
 
+  /// Converts the [Coordinate] to a ENU [List] with a specified [origin].
+  ///
+  /// Example:
+  /// ```dart
+  /// Coordinate(1, 1).toENU(Coordinate(2, 2)); // [111132.82788448388, 111217.49433410358, 0.0]
+  /// ```
+  List<double> toENU(Coordinate origin) {
+    final dist = origin.distanceTo(this);
+    final bearing = origin.bearingTo(this, unit: AngleUnits.radians);
+    final xEast = dist *
+        sin(bearing); // sin and cos flipped since bearing increases clockwise from north
+    final yNorth = dist * cos(bearing);
+    final zUp = 0.0;
+    return [xEast, yNorth, zUp];
+  }
+
   /// Creates a [Coordinate] from a JSON [List].
   ///
   /// Example:

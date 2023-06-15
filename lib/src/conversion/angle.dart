@@ -1,3 +1,5 @@
+import 'dart:math';
+
 /// Convert [original] angle [from] some unit [to] another.
 ///
 /// Example:
@@ -25,7 +27,7 @@ class AngleUnits {
   static final AngleUnit radians =
       AngleUnit(title: "Radians", identifier: "rad", radianRatio: 1);
   static final AngleUnit degrees =
-      AngleUnit(title: "Degrees", identifier: "deg", radianRatio: 57.2958);
+      AngleUnit(title: "Degrees", identifier: "deg", radianRatio: 180 / pi);
   static final AngleUnit gradians =
       AngleUnit(title: "Gradians", identifier: "grad", radianRatio: 63.662);
   static final AngleUnit turns =
