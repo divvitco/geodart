@@ -1,3 +1,8 @@
+## 0.3.1
+
+- `MultiLineString.fromJson` creation bug.
+- Update lint version
+
 ## 0.3.0
 
 - Add conversion from LLA Coordinate to ENU Coordinate (thanks [@keenranger](https://github.com/keenranger))
