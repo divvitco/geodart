@@ -56,13 +56,17 @@ class MultiLineString extends Feature {
       throw ArgumentError('json is not a MultiLineString');
     }
 
-    return MultiLineString(
-      json['geometry']['coordinates']
+    dynamic coordinatesData = json['geometry']['coordinates'];
+    if (coordinatesData is List<List<dynamic>>) {
+      List<List<Coordinate>> coordinatesList = coordinatesData
           .map((line) =>
               line.map((point) => Coordinate.fromJson(point)).toList())
-          .toList(),
-      properties: Map<String, dynamic>.from(json['properties']),
-    );
+          .toList();
+      return MultiLineString(coordinatesList,
+          properties: Map<String, dynamic>.from(json['properties']));
+    } else {
+      throw ArgumentError('json is not a MultiLineString');
+    }
   }
 
   /// Creates a [MultiLineString] from a WKT [String].
