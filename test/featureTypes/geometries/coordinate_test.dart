@@ -13,6 +13,11 @@ void main() {
           'Coordinate{latitude: 1.0, longitude: 2.0}');
     });
 
+    test("coordinate toENU", () {
+      expect(Coordinate(2, 2).toENU(Coordinate(1, 1)),
+          [111132.82788448388, 111217.49433410358, 0.0]);
+    });
+
     test("coordinate distance", () {
       expect(Coordinate(1, 2).distanceTo(Coordinate(3, 4)), 314402.95102362486);
     });
