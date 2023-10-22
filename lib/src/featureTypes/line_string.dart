@@ -283,6 +283,19 @@ class LineString extends Feature {
         coordinates[0] == coordinates[coordinates.length - 1];
   }
 
+  /// Returns the bearing of the [LineString] in degrees.
+  /// The bearing is the angle measured in degrees clockwise from true north
+  /// between the first and last coordinate of the [LineString].
+  /// If the [LineString] has less than 2 coordinates, 0 will be returned.
+  /// The bearing will always be between 0 and 360.
+  /// The bearing will be 0 if the [LineString] is a closed ring.
+  ///
+  /// Example:
+  /// ```dart
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).bearing; // 45.0
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(1, 4), Coordinate(1, 2)]).bearing; // 0.0
+  /// LineString([Coordinate(1, 2), Coordinate(3, 4), Coordinate(1, 4)]).bearing; // 90.0
+  /// ```
   double get bearing {
     return coordinates.length == 2
         ? coordinates.first.bearingTo(coordinates.last)

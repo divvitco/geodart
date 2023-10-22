@@ -1,11 +1,11 @@
 name: geodart
 description: A geospatial library for Dart. Designed primarily around vector features (like, with coordinate points), this library provides a simple interface for working with geographic data.
-version: 0.2.8
+version: 0.3.0
 homepage: https://github.com/divvitco/geodart
 repository: https://github.com/divvitco/geodart
 
 environment:
-  sdk: '>=2.17.1 <3.0.0'
+  sdk: '>=2.17.1 <4.0.0'
 
 dev_dependencies:
   lints: ^2.0.0
