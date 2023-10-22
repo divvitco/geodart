@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Add conversion from LLA Coordinate to ENU Coordinate (thanks [@keenranger](https://github.com/keenranger))
+
 ## 0.2.8
 
 - `MultiLineString.fromWKT` creation bug.
