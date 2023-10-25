@@ -1,3 +1,10 @@
+## 0.3.2
+
+- polygon intersections
+- add buffering to points to make circles
+- add light error checking to multipolygon union
+- convex hull calculation for feature collections
+
 ## 0.3.1
 
 - `MultiLineString.fromJson` creation bug.
