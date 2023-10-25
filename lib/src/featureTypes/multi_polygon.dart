@@ -219,4 +219,59 @@ class MultiPolygon extends Feature {
   bool contains(Point point) {
     return coordinates.any((poly) => Polygon(poly).contains(point));
   }
+
+  /// Returns whether or not the [MultiPolygon] overlaps itself.
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiPolygon([
+  ///   [
+  ///     LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])
+  ///   ],
+  ///   [
+  ///     LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])
+  ///   ]
+  /// ]).hasSelfIntersections; // false
+  bool get hasSelfIntersections {
+    for (int i = 0; i < coordinates.length; i++) {
+      for (int j = i + 1; j < coordinates.length; j++) {
+        if (Polygon(coordinates[i]).intersects(Polygon(coordinates[j]))) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /// Returns whether or not the [MultiPolygon] intersects another [MultiPolygon] or [Polygon].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiPolygon([
+  ///   [LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])]
+  /// ]).intersects(
+  ///   poly: Polygon([
+  ///     LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])
+  ///   ])
+  /// ); // false
+  /// ```
+  bool intersects({MultiPolygon? multi, Polygon? poly}) {
+    if (multi != null) {
+      for (final ringSets in multi.coordinates) {
+        if (intersects(poly: Polygon(ringSets))) {
+          return true;
+        }
+      }
+      return false;
+    } else if (poly != null) {
+      for (final ringSets in coordinates) {
+        if (Polygon(ringSets).intersects(poly)) {
+          return true;
+        }
+      }
+      return false;
+    } else {
+      throw ArgumentError('multi or poly must be provided');
+    }
+  }
 }

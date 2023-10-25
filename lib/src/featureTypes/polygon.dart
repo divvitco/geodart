@@ -192,4 +192,36 @@ class Polygon extends Feature {
     return coordinates.first.contains(point) &&
         !coordinates.sublist(1).any((ring) => ring.contains(point));
   }
+
+  /// Returns whether the two [Polygon]s intersect.
+  /// Uses the `toLineString` to check for intersections, rather than checking for shared volume.
+  ///
+  /// Example:
+  /// ```dart
+  /// Polygon poly1 = Polygon([
+  ///   LinearRing([
+  ///     Coordinate(0, 0),
+  ///     Coordinate(0, 1),
+  ///     Coordinate(1, 1),
+  ///     Coordinate(1, 0),
+  ///     Coordinate(0, 0),
+  ///   ]),
+  /// ]);
+  /// Polygon poly2 = Polygon([
+  ///   LinearRing([
+  ///     Coordinate(0.5, 0.5),
+  ///     Coordinate(0.5, 1.5),
+  ///     Coordinate(1.5, 1.5),
+  ///     Coordinate(1.5, 0.5),
+  ///     Coordinate(0.5, 0.5),
+  ///   ]),
+  /// ]);
+  /// print(poly1.intersects(poly2)); // true
+  /// ```
+  bool intersects(Polygon poly) {
+    return toLineString()
+        .intersections(poly.toLineString())
+        .features
+        .isNotEmpty;
+  }
 }

@@ -294,6 +294,7 @@ A [`Polygon`](#Polygon) is a collection of [`LinearRing`](#Linear Ring) objects 
 * `toWKT()` - Returns a Well-Known Text string representing the [`Polygon`](#Polygon).
 * `toLineString()` - Returns a [`LineString`](#Line-String) that is the same geometry as the [`Polygon`](#Polygon).
 * `contains(Point point)` - Returns `true` if the [`Polygon`](#Polygon) contains the specified [`Point`](#Point).
+* `intersects(Polygon poly)` - Returns `true` if the [`Polygon`](#Polygon) intersects the specified [`Polygon`](#Polygon).
 
 **Properties**
 
@@ -321,6 +322,7 @@ A [`MultiPolygon`](#Multi-Polygon) is a collection of [`Polygon`](#Polygon) geom
 * `flatten()` - Returns a [`List`](https://api.dartlang.org/stable/dart-core/List-class.html) of [`Polygon`](#Polygon) objects.
 * `toMultiLineString()` - Returns a [`MultiLineString`](#Multi-Line-String) that is the same geometry as the [`MultiPolygon`](#Multi-Polygon).
 * `contains(Point point)` - Returns `true` if the [`MultiPolygon`](#Multi-Polygon) contains the [`Point`](#Point).
+* `intersects(poly: Polygon, multi: MultiPolygon)` - Returns `true` if this [`MultiPolygon`](#Multi-Polygon) intersects the passed [`Polygon`](#Polygon) or [`MultiPolygon`](#Multi-Polygon).
 
 **Properties**
 
@@ -329,6 +331,7 @@ A [`MultiPolygon`](#Multi-Polygon) is a collection of [`Polygon`](#Polygon) geom
 * `properties` - A [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of properties.
 * `area` - The are (in square meters) of the MultiPolygon.
 * `bbox` - a [`BoundingBox`](#BoundingBox) of the [`MultiPolygon`](#multi-polygon).
+* `hasSelfIntersections` - Returns `true` if any of the contained [`LinearRing`](#linearring) geometries intersect.
 
 ### Coordinate
 
@@ -344,6 +347,7 @@ A [`Coordinate`](#Coordinate) is a point in a two-dimensional Cartesian coordina
 
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `toWKT()` - Returns a Well-Known Text string representing the [`Coordinate`](#Coordinate).
+* `toENU(Coordinate origin)` - Returns the difference in 3 dimensional space (as `List<double>[xEast, yNorth, zUp]`) between the [`Coordinate`](#Coordinate) and the passed [`Coordinate`](#Coordinate) origin.
 * `distanceTo(Coordinate other)` - Returns the distance (in meters) between the [`Coordinate`](#Coordinate) and another [`Coordinate`](#Coordinate).
 * `bearingTo(Coordinate other)` - Returns the bearing (in degrees) between the [`Coordinate`](#Coordinate) and another [`Coordinate`](#Coordinate).
 * `destination(num distance, num bearing)` - Returns a [`Coordinate`](#Coordinate) that is the same geometry as the [`Coordinate`](#Coordinate) but moved a given distance and bearing.
