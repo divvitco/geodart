@@ -180,6 +180,7 @@ A [`Point`](#Point) is a single position. It is represented by a [`Coordinate`](
 * `toJson()` - Returns a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of GeoJSON data.
 * `toWKT()` - Returns a Well-Known Text string representing the [`Point`](#Point).
 * `isContainedIn(Feature feature)` - Returns true if the [`Point`](#Point) is contained within the given [`Polygon`](#polygon) or [`MultiPolygon`](#multi-polygon).
+* `buffer(double distance, {DistanceUnit unit = DistanceUnits.meters, int steps = 40})`- Returns a [`Polygon`](#Polygon) that is the buffer of the [`Point`](#Point) of the given distance.
 
 **Properties**
 
