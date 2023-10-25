@@ -1,4 +1,6 @@
+import 'package:geodart/conversions.dart';
 import 'package:geodart/geometries.dart';
+import 'dart:math' as math;
 
 /// A [Point] is a single position in a coordinate system, with [properties].
 /// A [Point] can be created from a [Coordinate], from a WKT [String], or from a GeoJSON [Map].
@@ -123,6 +125,35 @@ class Point extends Feature {
   @override
   List<Point> explode() {
     return [this];
+  }
+
+  /// Returns a buffer [Polygon] of [distance] around the [Point]. The default [unit] is [DistanceUnit.meters]. The default [steps] is 40.
+  ///
+  /// Example:
+  /// ```dart
+  /// Point(Coordinate(1, 1)).buffer(13, {unit: Distance.feet}); // Polygon([Coordinate, ...])
+  /// ```
+  Polygon buffer(double distance, {DistanceUnit? unit, int steps = 40}) {
+    // Calculate the buffer in the given unit (e.g., meters or feet)
+    final double bufferRadiusMeters = convertDistance(
+        distance, unit ?? DistanceUnits.meters, DistanceUnits.meters);
+
+    // Create a circle as a buffer polygon
+    final List<Coordinate> vertices = [];
+
+    for (int i = 0; i < steps; i++) {
+      final double angle = 2 * math.pi * i / steps;
+      final double x =
+          coordinate.longitude + bufferRadiusMeters * math.cos(angle);
+      final double y =
+          coordinate.latitude + bufferRadiusMeters * math.sin(angle);
+      vertices.add(Coordinate(x, y));
+    }
+
+    // Close the circle
+    vertices.add(vertices.first);
+
+    return LineString(vertices).toPolygon();
   }
 
   /// Get the center [Point] of the [Point].
