@@ -144,6 +144,7 @@ but might extended to include additional properties in the future.
 * `envelope` - A [`Polygon`](#polygon) representing the envelope of the [`FeatureCollection`](#Feature-Collection).
 * `center` - The [`Point`](#point) representing the center of the [`FeatureCollection`](#Feature-Collection).
 * `isEmpty` - Whether or not the [`FeatureCollection`](#Feature-Collection) is empty.
+* `convexHull` - The smallest [`Polygon`](#polygon) representing the convex hull of the [`FeatureCollection`](#Feature-Collection).
 
 ### Feature
 
@@ -237,7 +238,7 @@ A [`LineString`](#Line-String) is a collection of [`Coordinate`](#Coordinate) ob
 * `pointAt(double percentage)` - Returns a [`Point`](#Point) at the specified percentage along the line.
 * `reverse()` - Returns a [`LineString`](#Line-String) that is the reverse of the original LineString.
 * `isParallelTo(LineString line)` - Returns `true` if the LineString is parallel to the specified LineString, or all segments are parallel in order or reverse order.
-* `intersections(LineString line)` - Returns a [`FeatureCollection`] of [`Point`](#Point) objects where the LineString intersects the specified LineString.
+* `intersections(LineString line)` - Returns a [`FeatureCollection`](#feature-collection) of [`Point`](#Point) objects where the LineString intersects the specified LineString.
 * `contains(Point point)` - Returns `true` if the LineString contains the specified [`Point`](#Point).
 
 **Properties**

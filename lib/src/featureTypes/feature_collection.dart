@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:geodart/geometries.dart';
 
 /// A FeatureCollection is a collection of [Feature]s.
@@ -279,5 +281,80 @@ class FeatureCollection {
     } else {
       throw ArgumentError('Unsupported type: ${other.runtimeType}');
     }
+  }
+
+  /// Returns the convex hull of the [FeatureCollection], which is the smallest convex [Polygon] that contains all the [Point]s in the [FeatureCollection].
+  ///
+  /// Example:
+  /// ```dart
+  /// FeatureCollection([
+  ///   Point(Coordinate(1, 2)),
+  ///   Point(Coordinate(5, 6))
+  /// ]).convexHull; // Throws error
+  ///
+  /// FeatureCollection([
+  ///   Point(Coordinate(1, 2)),
+  ///   Polygon([LinearRing([Coordinate(3, 4), Coordinate(5, 6), Coordinate(7, 8), Coordinate(3, 4)])])
+  /// ]).convexHull; // Polygon([LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(7, 8), Coordinate(1, 2)])])
+  /// ```
+  Polygon get convexHull {
+    int orientation(Coordinate p, Coordinate q, Coordinate r) {
+      double val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
+      if (val == 0) return 0; // Collinear
+      return (val > 0) ? 1 : 2; // Clockwise or counterclockwise
+    }
+
+    List<Coordinate> points = (explode().features as List<Point>)
+        .map((Point point) => point.coordinate)
+        .toList();
+    if (points.length < 3) {
+      throw ArgumentError('Need at least 3 points to make a convex hull');
+    }
+
+    List<Coordinate> hull = [];
+
+    // Find the point with the lowest y-coordinate (and leftmost if tied)
+    int minY = 0;
+    for (int i = 1; i < points.length; i++) {
+      if (points[i].y < points[minY].y ||
+          (points[i].y == points[minY].y && points[i].x < points[minY].x)) {
+        minY = i;
+      }
+    }
+
+    // Swap the lowest point with the first point
+    Coordinate temp = points[0];
+    points[0] = points[minY];
+    points[minY] = temp;
+
+    // Sort the remaining points based on the polar angle
+    Coordinate pivot = points[0];
+    points.sublist(1).sort((Coordinate a, Coordinate b) {
+      double angleA = atan2(a.y - pivot.y, a.x - pivot.x);
+      double angleB = atan2(b.y - pivot.y, b.x - pivot.x);
+      if (angleA < angleB) return -1;
+      if (angleA > angleB) return 1;
+      double distA =
+          (a.x - pivot.x) * (a.x - pivot.x) + (a.y - pivot.y) * (a.y - pivot.y);
+      double distB =
+          (b.x - pivot.x) * (b.x - pivot.x) + (b.y - pivot.y) * (b.y - pivot.y);
+      if (distA < distB) return -1;
+      return 1;
+    });
+
+    hull.add(points[0]);
+    hull.add(points[1]);
+
+    for (int i = 2; i < points.length; i++) {
+      while (hull.length > 1 &&
+          orientation(
+                  hull[hull.length - 2], hull[hull.length - 1], points[i]) !=
+              1) {
+        hull.removeLast();
+      }
+      hull.add(points[i]);
+    }
+
+    return Polygon([LinearRing(hull)]);
   }
 }
