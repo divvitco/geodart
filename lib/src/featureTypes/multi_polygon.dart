@@ -190,6 +190,9 @@ class MultiPolygon extends Feature {
   /// MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])]]).union(multi: MultiPolygon([[LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])); // MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)])], [LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])
   /// ```
   MultiPolygon union({MultiPolygon? multi, Polygon? poly}) {
+    if (poly == null && multi == null) {
+      throw ArgumentError('multi or poly must be provided');
+    }
     return MultiPolygon([
       ...coordinates,
       ...(multi != null ? multi.coordinates : []),
