@@ -196,8 +196,8 @@ class LinearRing {
           // if the point is to the right of the current polygon edge
           c = !c;
         }
-        testCoord = coord;
       }
+    testCoord = coord;
     }
     return c;
   }
