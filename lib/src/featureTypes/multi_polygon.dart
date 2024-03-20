@@ -5,8 +5,8 @@ class MultiPolygon extends Feature {
   List<List<LinearRing>> coordinates;
   static final String type = 'MultiPolygon';
 
-  MultiPolygon(this.coordinates, {properties = const <String, dynamic>{}})
-      : super(properties: properties);
+  MultiPolygon(this.coordinates,
+      {super.properties = const <String, dynamic>{}});
 
   @override
   String toString() {

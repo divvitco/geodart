@@ -6,8 +6,7 @@ class Polygon extends Feature {
   List<LinearRing> coordinates;
   static final String type = 'Polygon';
 
-  Polygon(this.coordinates, {properties = const <String, dynamic>{}})
-      : super(properties: properties);
+  Polygon(this.coordinates, {super.properties = const <String, dynamic>{}});
 
   @override
   String toString() {
