@@ -83,6 +83,29 @@ class MultiPolygon extends Feature {
     );
   }
 
+  /// Creates a [MultiPolygon] from a WKT [String].
+  ///
+  /// Example:
+  /// ```dart
+  /// MultiPolygon.fromWKT('MULTIPOLYGON(((1 2, 3 4, 5 6, 1 2)), ((7 8, 9 10, 11 12, 7 8)))'); // MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)]), LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])
+  /// ```
+  @override
+  factory MultiPolygon.fromWKT(String wkt) {
+    final polygonType = wkt.matchAsPrefix('MULTIPOLYGON');
+    if (polygonType == null) {
+      throw ArgumentError('wkt is not a MultiPolygon');
+    }
+    final trimmed = wkt
+        .split('MULTIPOLYGON')[1]
+        .trim()
+        .substring(2, -3); // remove MULTIPOLYGON and surrounding brackets
+    final polygons =
+        trimmed.split(RegExp(r'\)\),\s?\(\(')); // split by )), (( or )),((
+    return MultiPolygon(polygons
+        .map((poly) => Polygon.fromWKT('POLYGON(($poly))').coordinates)
+        .toList());
+  }
+
   /// explode the [MultiPolygon] into a [List] of [Point]s.
   ///
   /// Example:
