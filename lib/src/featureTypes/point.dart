@@ -16,8 +16,7 @@ class Point extends Feature {
   Coordinate coordinate;
   static final String type = 'Point';
 
-  Point(this.coordinate, {properties = const <String, dynamic>{}})
-      : super(properties: properties);
+  Point(this.coordinate, {super.properties = const <String, dynamic>{}});
 
   @override
   String toString() {

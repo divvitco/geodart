@@ -5,8 +5,7 @@ class MultiPoint extends Feature {
   List<Coordinate> coordinates;
   static final String type = 'MultiPoint';
 
-  MultiPoint(this.coordinates, {properties = const <String, dynamic>{}})
-      : super(properties: properties);
+  MultiPoint(this.coordinates, {super.properties = const <String, dynamic>{}});
 
   @override
   String toString() {
