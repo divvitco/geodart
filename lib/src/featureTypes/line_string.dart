@@ -1,5 +1,4 @@
 import 'package:geodart/geometries.dart';
-import 'dart:convert';
 
 /// A [LineString] is a [Feature] made up of connected [Coordinate]s to form a line.
 class LineString extends Feature {
@@ -394,34 +393,34 @@ class LineString extends Feature {
   /// ```
   FeatureCollection intersections(LineString other) {
     Point? lineSegmentsIntersect(LineString segment1, LineString segment2) {
-      final double delta_x1 =
+      final double deltaX1 =
           segment1.coordinates.last.x - segment1.coordinates.first.x;
-      final double delta_y1 =
+      final double deltaY1 =
           segment1.coordinates.last.y - segment1.coordinates.first.y;
 
-      final double delta_x2 =
+      final double deltaX2 =
           segment2.coordinates.last.x - segment2.coordinates.first.x;
-      final double delta_y2 =
+      final double deltaY2 =
           segment2.coordinates.last.y - segment2.coordinates.first.y;
 
-      final double s = (-delta_y1 *
+      final double s = (-deltaY1 *
                   (segment1.coordinates.first.x -
                       segment2.coordinates.first.x) +
-              delta_x1 *
+              deltaX1 *
                   (segment1.coordinates.first.y -
                       segment2.coordinates.first.y)) /
-          (-delta_x2 * delta_y1 + delta_x1 * delta_y2);
-      final double t = (delta_x2 *
+          (-deltaX2 * deltaY1 + deltaX1 * deltaY2);
+      final double t = (deltaX2 *
                   (segment1.coordinates.first.y -
                       segment2.coordinates.first.y) -
-              delta_y2 *
+              deltaY2 *
                   (segment1.coordinates.first.x -
                       segment2.coordinates.first.x)) /
-          (-delta_x2 * delta_y1 + delta_x1 * delta_y2);
+          (-deltaX2 * deltaY1 + deltaX1 * deltaY2);
 
       if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
-        return Point(Coordinate(segment1.coordinates.first.x + (t * delta_x1),
-            segment1.coordinates.first.y + (t * delta_y1)));
+        return Point(Coordinate(segment1.coordinates.first.x + (t * deltaX1),
+            segment1.coordinates.first.y + (t * deltaY1)));
       } else {
         return null;
       }
