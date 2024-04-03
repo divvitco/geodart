@@ -1,5 +1,3 @@
-import 'dart:js_util';
-
 import 'package:geodart/geometries.dart';
 import 'package:test/test.dart';
 
