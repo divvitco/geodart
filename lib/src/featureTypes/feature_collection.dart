@@ -76,6 +76,45 @@ class FeatureCollection {
     );
   }
 
+  /// Creates a FeatureCollection from a WKT string.
+  ///
+  /// Example:
+  /// ```dart
+  /// FeatureCollection.fromWKT('GEOMETRYCOLLECTION(POINT(1 2), POINT(3 4))'); // FeatureCollection([Point(Coordinate(1, 2)), Point(Coordinate(3, 4))])
+  /// ```
+  factory FeatureCollection.fromWKT(String wkt) {
+    final regexBody = RegExp(r'GEOMETRYCOLLECTION\w?\((.*)\)', multiLine: true);
+    final match = regexBody.firstMatch(wkt);
+    if (match == null) {
+      throw ArgumentError('Invalid WKT');
+    }
+
+    final geometryString = match.group(1);
+    final regexGeometry = RegExp(
+        r'(\),[\s|\n]{0,2})(?=(POINT|MULTIPOINT|LINESTRING|MULTILINESTRING|POLYGON|MULTIPOLYGON))');
+    final geometries = geometryString?.split(regexGeometry) ?? [];
+
+    return FeatureCollection(
+      geometries.map((g) {
+        if (g.startsWith('POINT')) {
+          return Point.fromWKT(g);
+        } else if (g.startsWith('MULTIPOINT')) {
+          return MultiPoint.fromWKT(g);
+        } else if (g.startsWith('LINESTRING')) {
+          return LineString.fromWKT(g);
+        } else if (g.startsWith('MULTILINESTRING')) {
+          return MultiLineString.fromWKT(g);
+        } else if (g.startsWith('POLYGON')) {
+          return Polygon.fromWKT(g);
+        } else if (g.startsWith('MULTIPOLYGON')) {
+          return MultiPolygon.fromWKT(g);
+        } else {
+          throw ArgumentError('Invalid geometry type');
+        }
+      }).toList(),
+    );
+  }
+
   /// Creates a [FeatureCollection] of [Point]s from the geometries of the [Feature]s contained within.
   ///
   /// Example:
