@@ -1,3 +1,5 @@
+import 'dart:js_util';
+
 import 'package:geodart/geometries.dart';
 import 'package:test/test.dart';
 
@@ -11,6 +13,15 @@ void main() {
       Map<String, dynamic> featureCollectionJson = featureCollection.toJson();
 
       expect(hydroelectricLinesCanada, featureCollectionJson);
+    });
+
+    test('from wkt', () {
+      FeatureCollection featureCollection = FeatureCollection.fromWKT(
+          'GEOMETRYCOLLECTION(POINT(1 2), LINESTRING(1 2, 3 4))');
+      expect(featureCollection.features.length, 2);
+      expect(featureCollection.features[0] is Point, true);
+      expect(featureCollection.features[1] is LineString, true);
+      expect(featureCollection.features[0], Point.fromWKT('POINT(1 2)'));
     });
   });
 }
