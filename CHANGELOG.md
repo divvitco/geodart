@@ -1,3 +1,10 @@
+## 0.3.3
+
+- Update linear_ring.dart (thanks [@sheldoncoup](https://github.com/sheldoncoup))
+- dart analyze errors for use_super_parameters
+- multipolygon from wkt
+- BUG: No intersections using LineString
+
 ## 0.3.2
 
 - polygon intersections
