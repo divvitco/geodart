@@ -1,4 +1,5 @@
 import 'package:geodart/geometries.dart';
+import 'dart:convert';
 
 /// A [LineString] is a [Feature] made up of connected [Coordinate]s to form a line.
 class LineString extends Feature {
@@ -54,7 +55,7 @@ class LineString extends Feature {
     }
 
     return LineString(
-      (json['coordinates'] as List<dynamic>)
+      (json['geometry']['coordinates'] as List<dynamic>)
           .map((dynamic c) => Coordinate.fromJson(c))
           .toList(),
       properties: Map<String, dynamic>.from(json['properties']),
@@ -392,48 +393,51 @@ class LineString extends Feature {
   /// LineString([Coordinate(1, 2), Coordinate(3, 4)]).intersections(LineString([Coordinate(3, 4), Coordinate(1, 2)])); // FeatureCollection([Point()]) - intersects at (2, 3)
   /// ```
   FeatureCollection intersections(LineString other) {
-    Point? getIntersection(LineString segment1, LineString segment2) {
-      final a1 = segment1.coordinates.first;
-      final a2 = segment1.coordinates.last;
-      final b1 = segment2.coordinates.first;
-      final b2 = segment2.coordinates.last;
+    Point? lineSegmentsIntersect(LineString segment1, LineString segment2) {
+      final double delta_x1 =
+          segment1.coordinates.last.x - segment1.coordinates.first.x;
+      final double delta_y1 =
+          segment1.coordinates.last.y - segment1.coordinates.first.y;
 
-      final denominator =
-          (a1.y - a2.y) * (b1.x - b2.x) - (a1.x - a2.x) * (b1.y - b2.y);
-      if (denominator == 0) {
-        return null;
-      }
+      final double delta_x2 =
+          segment2.coordinates.last.x - segment2.coordinates.first.x;
+      final double delta_y2 =
+          segment2.coordinates.last.y - segment2.coordinates.first.y;
 
-      final x = -1 *
-          ((a1.x * a2.y - a1.y * a2.x) * (b1.x - b2.x) -
-              (a1.x - a2.x) * (b1.x * b2.y - b1.y * b2.x)) /
-          denominator;
-      final y = -1 *
-          ((a1.x * a2.y - a1.y * a2.x) * (b1.y - b2.y) -
-              (a1.y - a2.y) * (b1.x * b2.y - b1.y * b2.x)) /
-          denominator;
+      final double s = (-delta_y1 *
+                  (segment1.coordinates.first.x -
+                      segment2.coordinates.first.x) +
+              delta_x1 *
+                  (segment1.coordinates.first.y -
+                      segment2.coordinates.first.y)) /
+          (-delta_x2 * delta_y1 + delta_x1 * delta_y2);
+      final double t = (delta_x2 *
+                  (segment1.coordinates.first.y -
+                      segment2.coordinates.first.y) -
+              delta_y2 *
+                  (segment1.coordinates.first.x -
+                      segment2.coordinates.first.x)) /
+          (-delta_x2 * delta_y1 + delta_x1 * delta_y2);
 
-      final intersection = Point(Coordinate(x, y));
-      if (segment1.contains(intersection) && segment2.contains(intersection)) {
-        return intersection;
+      if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
+        return Point(Coordinate(segment1.coordinates.first.x + (t * delta_x1),
+            segment1.coordinates.first.y + (t * delta_y1)));
       } else {
         return null;
       }
     }
 
-    FeatureCollection intersections = FeatureCollection([]);
+    List<Point> points = [];
 
-    for (var segment in segments) {
-      final FeatureCollection segmentIntersections = FeatureCollection(other
-          .segments
-          .where(
-              (otherSegment) => getIntersection(segment, otherSegment) != null)
-          .map((LineString otherSegment) =>
-              getIntersection(segment, otherSegment)!)
-          .toList());
-      intersections.features.addAll(segmentIntersections.features);
+    for (final segment1 in segments) {
+      for (final segment2 in other.segments) {
+        final intersection = lineSegmentsIntersect(segment1, segment2);
+        if (intersection != null) {
+          points.add(intersection);
+        }
+      }
     }
 
-    return intersections;
+    return FeatureCollection(points);
   }
 }
