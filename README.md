@@ -128,6 +128,7 @@ but might extended to include additional properties in the future.
 **Constructors**
 
 * `FeatureCollection.fromJson(Map<String, dynamic> json)` - Creates a [`FeatureCollection`](#Feature-Collection) from a JSON object. Automatically converts features from GeoJSON to their respective types.
+* `FeatureCollection.fromWKT(String wkt)` - Creates a [`FeatureCollection`](#Feature-Collection) from a Well-Known Text string.
 
 **Methods**
 
