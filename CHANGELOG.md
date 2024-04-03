@@ -1,3 +1,9 @@
+## 0.3.4
+
+- PR Validator to verify changes to main and PRs in 
+- Feature collection from wkt
+- Static analysis warnings
+
 ## 0.3.3
 
 - Update linear_ring.dart (thanks [@sheldoncoup](https://github.com/sheldoncoup))
