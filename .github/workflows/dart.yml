@@ -40,3 +40,8 @@ jobs:
       # want to change this to 'flutter test'.
       - name: Run tests
         run: dart test
+
+      # Verify that there are no formatting changes. This causes pub.dev to
+      # reduce the score of your package.
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .

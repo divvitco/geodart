@@ -197,7 +197,7 @@ class LinearRing {
           c = !c;
         }
       }
-    testCoord = coord;
+      testCoord = coord;
     }
     return c;
   }
