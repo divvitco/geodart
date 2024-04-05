@@ -1,3 +1,9 @@
+## 0.3.5
+
+* Increase comments around conversion utils
+* `fromJson` method fix with casting
+* Add some new, more practical examples
+
 ## 0.3.4
 
 - PR Validator to verify changes to main and PRs in 
