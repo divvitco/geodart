@@ -71,16 +71,20 @@ class MultiPolygon extends Feature {
       throw ArgumentError('json is not a MultiPolygon');
     }
 
-    return MultiPolygon(
-      (json['geometry']['coordinates'] as List<List<List<List<double>>>>)
-          .map((dynamic poly) => (poly as List<List<List<double>>>)
-              .map((dynamic shape) => LinearRing((shape as List<List<double>>)
-                  .map((dynamic coord) => Coordinate.fromJson(coord))
+    MultiPolygon poly = MultiPolygon(
+      (json['geometry']['coordinates'] as List)
+          .map((poly) => (poly as List)
+              .map((shape) => LinearRing((shape as List)
+                  .map((coord) => Coordinate.fromJson((coord as List)
+                      .map((e) => (e is int ? e.toDouble() : e as double))
+                      .toList()))
                   .toList()))
-              .toList())
-          .toList(),
+              .toList()) // Convert the outer Iterable to a List
+          .toList(), // Convert the inner Iterable to a List
       properties: Map<String, dynamic>.from(json['properties']),
     );
+
+    return poly;
   }
 
   /// Creates a [MultiPolygon] from a WKT [String].

@@ -55,7 +55,7 @@ class FeatureCollection {
     }
 
     return FeatureCollection(
-      (json['features'] as List<Map<String, dynamic>>)
+      (List<Map<String, dynamic>>.from(json['features']))
           .map((Map<String, dynamic> f) {
         if (f['geometry']['type'] == 'Point') {
           return Point.fromJson(f);

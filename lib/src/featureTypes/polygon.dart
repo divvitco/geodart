@@ -44,11 +44,14 @@ class Polygon extends Feature {
       throw ArgumentError('json is not a Polygon');
     }
 
-    List<LinearRing> rings =
-        (json['geometry']['coordinates'] as List<List<dynamic>>)
-            .map((List<dynamic> shape) => LinearRing(
-                shape.map((dynamic c) => Coordinate.fromJson(c)).toList()))
-            .toList();
+    List<LinearRing> rings = (json['geometry']['coordinates'] as List)
+        .map((shape) => LinearRing((shape as List)
+            .map((c) => Coordinate.fromJson((c as List)
+                .map((e) => (e is int ? e.toDouble() : e as double))
+                .toList()))
+            .toList()))
+        .toList();
+
     return Polygon(rings,
         properties: Map<String, dynamic>.from(json['properties']));
   }
