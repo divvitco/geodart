@@ -28,7 +28,7 @@ class MultiPolygon extends Feature {
   /// ```
   @override
   String toWKT() {
-    return 'MULTIPOLYGON(${coordinates.map((poly) => "(${poly.map((ring) => "(${ring.coordinates.map((c) => c.toWKT()).toList()})").toList()})").join(',')})';
+    return 'MULTIPOLYGON (${coordinates.map((poly) => "(${poly.map((ring) => "(${ring.coordinates.map((c) => c.toWKT()).toList().join(', ')})").toList().join(', ')})").join(', ')})';
   }
 
   /// Returns a GeoJSON representation of the [MultiPolygon]
@@ -95,16 +95,15 @@ class MultiPolygon extends Feature {
   /// ```
   @override
   factory MultiPolygon.fromWKT(String wkt) {
-    final polygonType = wkt.matchAsPrefix('MULTIPOLYGON');
-    if (polygonType == null) {
+    final polygonType = wkt.startsWith('MULTIPOLYGON');
+    if (!polygonType) {
       throw ArgumentError('wkt is not a MultiPolygon');
     }
-    final trimmed = wkt
-        .split('MULTIPOLYGON')[1]
-        .trim()
-        .substring(2, -3); // remove MULTIPOLYGON and surrounding brackets
+    final parens = wkt.split('MULTIPOLYGON')[1].trim();
+    final trimmed = parens.substring(
+        3, parens.length - 3); // remove MULTIPOLYGON and surrounding brackets
     final polygons =
-        trimmed.split(RegExp(r'\)\),\s?\(\(')); // split by )), (( or )),((
+        trimmed.split(RegExp(r'\)\),\s*\(\(')); // split by )), (( or )),((
     return MultiPolygon(polygons
         .map((poly) => Polygon.fromWKT('POLYGON(($poly))').coordinates)
         .toList());

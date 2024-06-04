@@ -19,7 +19,7 @@ class Polygon extends Feature {
   /// Converts the [Polygon] to a WKT [String].
   @override
   String toWKT() {
-    return 'POLYGON(${coordinates.map((ring) => "(${ring.coordinates.map((c) => c.toWKT()).toList()})").toList().join(',')})';
+    return 'POLYGON (${coordinates.map((ring) => "(${ring.coordinates.map((c) => c.toWKT()).toList().join(', ')})").join(', ')})';
   }
 
   /// Returns a GeoJSON [Map] of the [Polygon].
@@ -60,9 +60,29 @@ class Polygon extends Feature {
   /// **Right now, cannot handle polygons with holes**.
   @override
   factory Polygon.fromWKT(String wkt) {
-    final coordinates = wkt.split('(')[1].split(')')[0].split(',');
-    return Polygon(
-        [LinearRing(coordinates.map((c) => Coordinate.fromWKT(c)).toList())]);
+    final polygonType = wkt.startsWith('POLYGON');
+    if (!polygonType) {
+      throw ArgumentError('wkt is not a Polygon');
+    }
+    wkt = wkt.substring(wkt.indexOf('(') + 1, wkt.lastIndexOf(')')).trim();
+
+    final rings = [];
+    for (int i = 0; i < wkt.length; i++) {
+      if (wkt[i] == '(') {
+        final end = wkt.indexOf(')', i);
+        rings.add(wkt.substring(i + 1, end));
+        i = end + 1;
+      }
+    }
+
+    return Polygon(rings
+        .map((ring) => LinearRing(
+              ring
+                  .split(',')
+                  .map<Coordinate>((c) => Coordinate.fromWKT(c.trim()))
+                  .toList(),
+            ))
+        .toList());
   }
 
   /// Explodes the [Polygon] into a [List] of [Point]s.
