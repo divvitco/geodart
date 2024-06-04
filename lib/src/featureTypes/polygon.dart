@@ -60,6 +60,10 @@ class Polygon extends Feature {
   /// **Right now, cannot handle polygons with holes**.
   @override
   factory Polygon.fromWKT(String wkt) {
+    final polygonType = wkt.startsWith('POLYGON');
+    if (!polygonType) {
+      throw ArgumentError('wkt is not a Polygon');
+    }
     wkt = wkt.substring(wkt.indexOf('(') + 1, wkt.lastIndexOf(')')).trim();
 
     final rings = [];
