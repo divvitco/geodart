@@ -1,3 +1,9 @@
+## 0.3.6
+
+* Fix `Polygon.fromWKT` creation bug
+* Fix `MultiPolygon.fromWKT` creation bug
+* Add `MultiPolygon.fromWKT` and `Polygon.fromWKT` tests
+
 ## 0.3.5
 
 * Increase comments around conversion utils
