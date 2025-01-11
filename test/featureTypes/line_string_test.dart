@@ -105,5 +105,29 @@ void main() {
 
       expect(line1.intersections(line2).features.length, 2);
     });
+
+    test("intersections - lat/lng ordering", () {
+      // Create two lines that intersect at a known point
+      // First line goes from (lat=1, lng=0) to (lat=3, lng=2)
+      // Second line goes from (lat=1, lng=2) to (lat=3, lng=0)
+      // They should intersect at (lat=2, lng=1)
+      LineString line1 = LineString([
+        Coordinate(1, 0),
+        Coordinate(3, 2),
+      ]);
+      LineString line2 = LineString([
+        Coordinate(1, 2),
+        Coordinate(3, 0),
+      ]);
+
+      var intersections = line1.intersections(line2);
+      expect(intersections.features.length, 1);
+
+      var intersection = intersections.features.first as Point;
+      expect(intersection.coordinate.latitude,
+          closeTo(2, 0.0001)); // Should be lat=2
+      expect(intersection.coordinate.longitude,
+          closeTo(1, 0.0001)); // Should be lng=1
+    });
   });
 }
