@@ -419,8 +419,9 @@ class LineString extends Feature {
           (-deltaX2 * deltaY1 + deltaX1 * deltaY2);
 
       if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
-        return Point(Coordinate(segment1.coordinates.first.x + (t * deltaX1),
-            segment1.coordinates.first.y + (t * deltaY1)));
+        final x = segment1.coordinates.first.x + (t * deltaX1);
+        final y = segment1.coordinates.first.y + (t * deltaY1);
+        return Point(Coordinate(y, x));
       } else {
         return null;
       }

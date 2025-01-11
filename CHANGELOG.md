@@ -1,3 +1,7 @@
+## 0.3.7
+
+* Fix `LineString.intersections` bug
+
 ## 0.3.6
 
 * Fix `Polygon.fromWKT` creation bug
