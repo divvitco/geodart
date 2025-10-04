@@ -1,3 +1,7 @@
+## 0.3.8
+
+* Add `x` and `y` type docs to `Coordinate`
+
 ## 0.3.7
 
 * Fix `LineString.intersections` bug
