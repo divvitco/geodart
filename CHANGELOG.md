@@ -1,3 +1,7 @@
+## 0.3.9
+
+* Fix `x` and `y` type to `double` in `Coordinate`
+
 ## 0.3.8
 
 * Add `x` and `y` type docs to `Coordinate`
