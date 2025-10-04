@@ -214,7 +214,7 @@ class Coordinate {
   /// ```dart
   /// Coordinate(1, 2).x; // 1
   /// ```
-  get x {
+  double get x {
     return longitude;
   }
 
@@ -224,7 +224,7 @@ class Coordinate {
   /// ```dart
   /// Coordinate(1, 2).y; // 2
   /// ```
-  get y {
+  double get y {
     return latitude;
   }
 }
