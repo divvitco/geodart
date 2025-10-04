@@ -208,10 +208,22 @@ class Coordinate {
     return Coordinate(lat3 * (180 / pi), lon3 * (180 / pi));
   }
 
+  /// Returns the longitude of the [Coordinate].
+  ///
+  /// Example:
+  /// ```dart
+  /// Coordinate(1, 2).x; // 1
+  /// ```
   get x {
     return longitude;
   }
 
+  /// Returns the latitude of the [Coordinate].
+  ///
+  /// Example:
+  /// ```dart
+  /// Coordinate(1, 2).y; // 2
+  /// ```
   get y {
     return latitude;
   }
