@@ -65,7 +65,6 @@ class Point extends Feature {
   ///   'properties': {'name': 'point'}
   /// });
   /// ```
-  @override
   factory Point.fromJson(Map<String, dynamic> json) {
     if (json['geometry'] == null) {
       throw ArgumentError('json does not contain geometry');
@@ -89,7 +88,6 @@ class Point extends Feature {
   /// ```dart
   /// Point.fromWKT('POINT(1 2)');
   /// ```
-  @override
   factory Point.fromWKT(String wkt) {
     final coordinates = wkt.split('(')[1].split(')')[0];
     return Point(Coordinate.fromWKT(coordinates));

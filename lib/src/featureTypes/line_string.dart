@@ -47,7 +47,6 @@ class LineString extends Feature {
   /// ```dart
   /// LineString.fromJson({'type': 'Feature', 'geometry': {'type': 'LineString', 'coordinates': [[1, 2], [3, 4]]}, 'properties': {}}); // LineString([Coordinate(1, 2), Coordinate(3, 4)])
   /// ```
-  @override
   factory LineString.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'LineString') {
       throw ArgumentError('json is not a LineString');
@@ -67,7 +66,6 @@ class LineString extends Feature {
   /// ```dart
   /// LineString.fromWKT('LINESTRING(0 0, 1 2)'); // LineString([Coordinate(0, 0), Coordinate(1, 2)])
   /// ```
-  @override
   factory LineString.fromWKT(String wkt) {
     if (!wkt.startsWith('LINESTRING')) {
       throw ArgumentError('wkt is not a LineString');

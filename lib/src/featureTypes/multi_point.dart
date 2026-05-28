@@ -47,7 +47,6 @@ class MultiPoint extends Feature {
   /// ```dart
   /// MultiPoint.fromJson({'type': 'Feature', 'geometry': {'type': 'MultiPoint', 'coordinates': [[1, 2], [3, 4]]}, 'properties': {}}); // MultiPoint([Coordinate(1, 2), Coordinate(3, 4)])
   /// ```
-  @override
   factory MultiPoint.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'MultiPoint') {
       throw ArgumentError('json is not a MultiPoint');
@@ -101,7 +100,6 @@ class MultiPoint extends Feature {
   /// ```dart
   /// MultiPoint.fromWKT('MULTIPOINT(0 0, 1 2)'); // MultiPoint([Coordinate(0, 0), Coordinate(1, 2)])
   /// ```
-  @override
   factory MultiPoint.fromWKT(String wkt) {
     final coordinates = wkt.split('(')[1].split(')')[0].split(',');
     return MultiPoint(

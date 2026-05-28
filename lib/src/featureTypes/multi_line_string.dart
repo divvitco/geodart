@@ -50,7 +50,6 @@ class MultiLineString extends Feature {
   /// ```dart
   /// MultiLineString.fromJson({'type': 'Feature', 'geometry': {'type': 'MultiLineString', 'coordinates': [[[1, 2], [3, 4]]]}, 'properties': {}}); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]])
   /// ```
-  @override
   factory MultiLineString.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'MultiLineString') {
       throw ArgumentError('json is not a MultiLineString');
@@ -75,7 +74,6 @@ class MultiLineString extends Feature {
   /// ```dart
   /// MultiLineString.fromWKT('MULTILINESTRING((1 2, 3 4))'); // MultiLineString([[Coordinate(1, 2), Coordinate(3, 4)]])
   /// ```
-  @override
   factory MultiLineString.fromWKT(String wkt) {
     if (!wkt.startsWith('MULTILINESTRING')) {
       throw ArgumentError('wkt is not a MultiLineString');

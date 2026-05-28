@@ -65,7 +65,6 @@ class MultiPolygon extends Feature {
   /// ```dart
   /// MultiPolygon.fromJson({'type': 'Feature', 'geometry': {'type': 'MultiPolygon', 'coordinates': [[[[1, 2], [3, 4], [5, 6], [1, 2]]], [[[7, 8], [9, 10], [11, 12], [7, 8]]]]}, 'properties': {}}); // MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)]), LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])
   /// ```
-  @override
   factory MultiPolygon.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'MultiPolygon') {
       throw ArgumentError('json is not a MultiPolygon');
@@ -93,7 +92,6 @@ class MultiPolygon extends Feature {
   /// ```dart
   /// MultiPolygon.fromWKT('MULTIPOLYGON(((1 2, 3 4, 5 6, 1 2)), ((7 8, 9 10, 11 12, 7 8)))'); // MultiPolygon([[LinearRing([Coordinate(1, 2), Coordinate(3, 4), Coordinate(5, 6), Coordinate(1, 2)]), LinearRing([Coordinate(7, 8), Coordinate(9, 10), Coordinate(11, 12), Coordinate(7, 8)])]])
   /// ```
-  @override
   factory MultiPolygon.fromWKT(String wkt) {
     final polygonType = wkt.startsWith('MULTIPOLYGON');
     if (!polygonType) {

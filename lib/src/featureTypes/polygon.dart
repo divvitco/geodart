@@ -38,7 +38,6 @@ class Polygon extends Feature {
   }
 
   /// Creates a [Polygon] from a GeoJSON [Map].
-  @override
   factory Polygon.fromJson(Map<String, dynamic> json) {
     if (json['geometry']['type'] != 'Polygon') {
       throw ArgumentError('json is not a Polygon');
@@ -58,7 +57,6 @@ class Polygon extends Feature {
 
   /// Creates a [Polygon] from a WKT [String].
   /// **Right now, cannot handle polygons with holes**.
-  @override
   factory Polygon.fromWKT(String wkt) {
     final polygonType = wkt.startsWith('POLYGON');
     if (!polygonType) {

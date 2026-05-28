@@ -1,3 +1,7 @@
+## 0.3.10
+
+* Remove invalid `@override` annotations from factory constructors to fix static analysis warnings
+
 ## 0.3.9
 
 * Fix `x` and `y` type to `double` in `Coordinate`
